@@ -1,0 +1,491 @@
+---
+title: "Weighted pairwise likelihood and limited information goodness-of-fit tests for binary factor models"
+subtitle: "Adolphe Quetelet Seminar Series, Ghent University"
+author:
+  - name: Haziq Jamil
+    orcid: 0000-0003-3298-1010
+    affiliations: 
+      - 'Assistant Professor in Statistics, Universiti Brunei Darussalam<br>Visiting Fellow, London School of Economics and Political Science'
+      - '<span style="font-style:normal;">[`https://haziqj.ml/pligof-gent/`](https://haziqj.ml/pligof-gent/)</span>'
+date: "15 April 2024"
+---
+
+```{r}
+#| echo: false
+library(lavaan.bingof)
+library(lavaan)
+library(gt)
+library(tidyverse)
+
+load("R/p_mult_bern_fig.RData")
+```
+
+
+```{r latex_shortcuts}
+#| echo: false
+#| results: asis
+#| eval: !expr knitr::is_html_output()
+
+# LaTeX shortcuts 
+cat(readr::read_file("maths_shortcuts.tex"))
+``` 
+
+Some notes
+
+- Check how to identify source of misfit (I think there's a reference in Olivares paper)
+- Note nomenclature: Pseudo-likelihood, composite likelihood, pairwise likelihood, etc.
+
+# Introduction 
+
+## Introduction
+
+::: {.callout-note icon=false title="Context"}
+Employ latent variable models (factor models) to analyse binary data $y_1,\dots,y_p$ collected via simple random or complex sampling.
+:::
+
+:::: {.columns}
+
+::: {.column width="12.5%"}
+:::
+
+::: {.column width="25%"}
+![*(Psychometrics)*<br>Behavioural checklist](figures/eg1.jpg)
+:::
+
+::: {.column width="25%"}
+![*(Education)*<br>Achievement test](figures/eg2.jpg)
+:::
+
+::: {.column width="25%"}
+![*(Sociology)*<br>Intergenerational support](figures/eg3.jpg)
+:::
+
+::::
+
+::: {.aside}
+Photo credits: Unsplash
+[\@glenncarstenspeters](https://unsplash.com/photos/RLw-UC03Gwc),
+[\@ivalex](https://unsplash.com/photos/PDRFeeDniCk),
+[\@oanhmj](https://unsplash.com/photos/8uhVTxlbBd4)
+:::
+
+
+## Introduction (cont.)
+
+::: {.fragment .fade-out fragment-index=1 .absolute left=0 top=80}
+| $i$ | $y_1$ | $y_2$ | $y_3$ | $y_4$ | $y_5$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | 1 | 0 | 0 | 1 | 1 |
+| 2 | 1 | 1 | 1 | 1 | 1 |
+| 3 | 1 | 1 | 1 | 0 | 1 |
+| $\vdots$ |  |  | $\vdots$ |  | |
+| $n$ | 1 | 0 | 0 | 1 | 1 |
+|  |  |  |  |  |  |
+: {.table-ubd}
+:::
+
+::: {.fragment .fade-in-then-out fragment-index=1 .absolute left=0 top=80}
+| $i$ | $y_1$ | $y_2$ | $y_3$ | $y_4$ | $y_5$ | Pattern |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | 1 | 0 | 0 | 1 | 1 | 10011 |
+| 2 | 1 | 1 | 1 | 1 | 1 | 11111 |
+| 3 | 1 | 1 | 1 | 0 | 1 | 11101 |
+| $\vdots$ |  |  | $\vdots$ |  |  | $\vdots$ |
+| $n$ | 1 | 0 | 0 | 1 | 1 | 10011 |
+|  |  |  |  |  |  |  |
+: {.table-ubd}
+:::
+
+::: {.fragment .fade-in-then-out fragment-index=2 .absolute left=0 top=80}
+| $r$ | $y_1$ | $y_2$ | $y_3$ | $y_4$ | $y_5$ | Pattern | Obs. freq |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | 1 | 1 | 1 | 1 | 1 | 11111 | 343 |
+| 2 | 1 | 1 | 0 | 1 | 1 | 11011 | 153 |
+| 3 | 1 | 0 | 1 | 1 | 1 | 10111 | 71 |
+| $\vdots$ |  |  | $\vdots$ |  |  | $\vdots$ | $\vdots$ |
+| $R$ | 0 | 1 | 1 | 1 | 0 | 01110 | 1 |
+|  |  |  |  |  |  |  |  |
+: {.table-ubd }
+:::
+
+::: {.fragment .fade-in-then-out fragment-index=3 .absolute left=0 top=80}
+| $r$ | Pattern | Obs. freq |
+|:---:|:---:|:---:|
+| 1 | 11111 | 343 |
+| 2 | 11011 | 153 |
+| 3 | 10111 | 71 |
+| $\vdots$ | $\vdots$ | $\vdots$ |
+| 32 | 01110 | 1 |
+|  |  |  |
+: {.table-ubd }
+:::
+
+::: {.fragment .fade-in-then-out fragment-index=4 .absolute left=0 top=80}
+| $r$ | Pattern | Obs. freq | Exp. freq |
+|:---:|:---:|:---:|:---:|
+| 1 | 11111 | 343 | 342.1 |
+| 2 | 11011 | 153 | 151.3 |
+| 3 | 10111 | 71 | 62.81 |
+| $\vdots$ | $\vdots$ | $\vdots$ | $\vdots$ |
+| 32 | 01110 | 1 | 0.948 |
+|  |  |  |  |
+: {.table-ubd }
+:::
+
+::: {.fragment .fade-in fragment-index=5 .absolute left=0 top=80}
+| $r$ | Pattern | Obs. freq | Exp. freq |
+|:---:|:---:|:---:|:---:|
+| 1 | 11111 | 343 | 342.1 |
+| 2 | 11011 | 153 | 151.3 |
+| 3 | 10111 | 71 | 62.81 |
+| $\vdots$ | $\vdots$ | $\vdots$ | $\vdots$ |
+| 28 | 01110 | [**1**]{.ubdred} | 1.831 |
+| 29 | 01110 | [**1**]{.ubdred} | 3.276 |
+| 30 | 01110 | [**1**]{.ubdred} | 0.948 |
+| 31 | 01110 | [**0**]{.ubdred} | 0.013 |
+| 32 | 01110 | [**0**]{.ubdred} | 0.009 |
+|  |  |  |  |
+: {.table-ubd }
+:::
+
+::: {.absolute left="600px"}
+
+::: {.fragment fragment-index=5}
+- [**Sparsity**]{.ubdred} affects reliability of goodness-of-fit tests.
+  - Limited information tests
+:::
+
+::: {.fragment fragment-index=6}
+
+- Computational burden of likelihood-based models.
+  - Pairwise likelihood
+
+:::
+
+::: {.fragment fragment-index=7}
+
+- Unequal probability sampling (e.g. due to a complex design)
+  - Incorporate design weights
+:::
+
+:::
+
+## Definitions
+
+## Parametric models
+
+## Maximum likelihood estimation
+
+## Pairwise likelihood estimation
+
+## Pairs of variables and pairwise probabilities
+
+# Limited information GOF tests
+
+<!-- ## Goodness-of-fit -->
+
+<!-- ::: {.r-stack} -->
+
+<!-- ::: {.absolute left=0 top=70} -->
+
+<!-- ```{r} -->
+<!-- #| echo: false -->
+<!-- p_mult_bern_fig + -->
+<!--   ggsankey::theme_sankey() + -->
+<!--   theme( -->
+<!--     legend.position = "none", -->
+<!--     plot.margin = unit(c(-0.5,-3.2,0,-3.2), "cm") -->
+<!--   ) -->
+<!-- ``` -->
+
+<!-- ::: -->
+
+<!-- ::: {data-id="box1" .fragment .fade-out style="background: white; width: 373px; height: 700px;" .absolute left=125} -->
+<!-- ::: -->
+
+<!-- ::: {data-id="box2" style="background: white; width: 800px; height: 700px;" .absolute left=498} -->
+<!-- ::: -->
+
+<!-- ::: -->
+
+## Goodness-of-fit
+
+::: {.r-stack}
+
+::: {.absolute left=0 top=70}
+```{r}
+#| echo: false
+knitr::include_graphics("figures/mult_bern1.png")
+```
+:::
+
+::: {.absolute .fragment fragment-index=1 left=0 top=70}
+```{r}
+#| echo: false
+knitr::include_graphics("figures/mult_bern2.png")
+```
+:::
+
+:::: {.absolute left=580 top=70}
+
+::: {.fragment fragment-index=1}
+- GOF tests are usually constructed by inspecting the fit of the joint probabilities $\hat\pi_r := \pi_r(\hat\btheta)$.
+:::
+
+::: {.fragment}
+- E.g.
+
+   - LR: $X^2 = 2N\sum_r \hat p_r\log(\hat p_r/\hat\pi_r)$;
+   - Pearson: $X^2 = N\sum_r (\hat p_r - \hat\pi_r)^2 / \hat\pi_r$,
+   
+  These tests are asymptotically distributed as chi square.
+:::
+
+::: {.fragment}
+- Likely to face sparsity issues (small or zero cell counts) which distort the approximation to the chi square.
+:::
+
+::::
+
+:::
+
+## Limited information goodness-of-fit (LIGOF)
+
+::: {.r-stack}
+
+::: {.absolute left=0 top=70}
+```{r}
+#| echo: false
+knitr::include_graphics("figures/mult_bern2.png")
+```
+:::
+
+:::: {.absolute left=580 top=70}
+
+::: {.fragment fragment-index=1 .fade-out}
+Consider instead the fit of the lower dimensional marginals.
+
+- **Univariate**:  $\ \dot\pi_i := \Pr(y_i = 1)$
+
+- **Bivariate**:  $\ \dot\pi_{ij} := \Pr(y_i = 1, y_j=1)$
+
+- Collectively:
+$$
+\bpi_2 = \begin{pmatrix}
+\dot\bpi_1 \\
+\dot\bpi_2 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+(\dot\pi_1, \dots, \dot\pi_p)^\top \\
+\big(\dot\pi_{ij}\big)_{i<j} \\
+\end{pmatrix}
+$$
+This is of dimensions $S=p + p(p-1)/2$.
+
+:::
+
+::::
+
+
+::: {.absolute .fragment  fragment-index=1 .fade-in left=0 top=70}
+```{r}
+#| echo: false
+knitr::include_graphics("figures/mult_bern3.png")
+```
+:::
+
+::: {.absolute .fragment .fade-in left=0 top=70}
+```{r}
+#| echo: false
+knitr::include_graphics("figures/mult_bern4.png")
+```
+:::
+
+:::
+
+## Transformation
+
+Define $T_2: \mathbb{R}^R \to \mathbb{R}^S$ such that $\bpi \mapsto \bpi_2$.
+To illustrate, consider $p=3$ ($R=2^3=8$ and $S=3+3=6$):
+
+$$
+\myoverbrace{
+\left(
+\begin{array}{c}
+\dot\pi_1 \\
+\dot\pi_2 \\
+\dot\pi_3 \\
+\hdashline
+\dot\pi_{12} \\
+\dot\pi_{13} \\
+\dot\pi_{23} \\
+\end{array} \right)
+\vphantom{
+\begin{array}{c}
+\pi_{000} \\
+\pi_{100} \\
+\pi_{010} \\
+\pi_{001} \\
+\pi_{110} \\
+\pi_{101} \\
+\pi_{011} \\
+\pi_{111} \\
+\end{array}
+}
+}{\bpi_2}
+=
+\myoverbrace{
+\left(
+\begin{array}{cccccccc}
+0 & 1 & 0 & 0 & 1 & 1 & 0 & 1 \\
+0 & 0 & 1 & 0 & 1 & 0 & 1 & 1 \\
+0 & 0 & 0 & 1 & 0 & 1 & 1 & 1 \\
+\hdashline
+0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 \\
+0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 \\
+0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 \\
+\end{array} \right)
+\vphantom{
+\begin{array}{c}
+\pi_{000} \\
+\pi_{100} \\
+\pi_{010} \\
+\pi_{001} \\
+\pi_{110} \\
+\pi_{101} \\
+\pi_{011} \\
+\pi_{111} \\
+\end{array}
+}
+}{T_2}
+\
+\myoverbrace{
+\left(
+\begin{array}{c}
+\pi_{000} \\
+\pi_{100} \\
+\pi_{010} \\
+\pi_{001} \\
+\pi_{110} \\
+\pi_{101} \\
+\pi_{011} \\
+\pi_{111} \\
+\end{array} \right)
+}{\bpi}
+$$
+
+::: {.aside}
+See @reiser1996analysis and @maydeu2005limited.
+:::
+
+## Some theory {.scrollable}
+
+Consider the residuals $\hat\be_2 = \bp_2 - \bpi_2(\mlepl)$. What is its distribution?
+
+<!-- $\sqrt n (\bp - \bpi) \xrightarrow{\text D} \N_R(\bzero, \bSigma)$ [CLT].  -->
+
+<!-- - $\sqrt n (\bp_2 - \bpi_2) \xrightarrow{\text D} \N_S(\bzero, \bSigma_2)$ follows from the CLT, where $\bSigma_2 = T_2\bSigma T_2^\top$.  -->
+
+<!-- - Taylor expand MPLE and score function: -->
+$$
+\begin{aligned}
+\hat\be_2 
+= \bp_2 - \bpi_2(\mlepl) 
+&\approx \bp_2 - \bpi_2(\btheta) - \bDelta_2(\mlepl - \btheta) \\
+&\approx \bp_2 - \bpi_2(\btheta) - \bDelta_2\cH(\btheta)^{-1}\nabla\pl(\btheta)  \\
+&= \bp_2 - \bpi_2(\btheta) - \bDelta_2 \cH(\btheta)^{-1} \bB(\btheta)  \big(\bp_2 - \bpi_2(\btheta) \big) \\
+&= \left( \bI - \bDelta_2\cH(\btheta)^{-1} \bB(\btheta)  \right) \left( \bp_2 - \bpi_2(\btheta) \right) 
+\end{aligned}
+$$
+Therefore, $\sqrt n \hat\be_2 \xrightarrow{\text D} {\N}_S\left(\bzero, \bOmega_2\right)$ as $n\to\infty$, where
+$$
+\bOmega_2 = \left( \bI - \bDelta_2\cH(\btheta)^{-1} \bB(\btheta)  \right) \bSigma_2 \left( \bI - \bDelta_2\cH(\btheta)^{-1} \bB(\btheta)  \right)^\top
+$$
+
+- $\bSigma_2 = \bT_2\bSigma\bT_2^\top$ (uni \& bivariate multinomial matrix);
+- $\bDelta_2 = \bT_2 \big(\partial\pi_r(\btheta) / \partial\theta_k \big)_{r,k}$ (uni \& bivariate derivatives);
+- $\cH(\btheta)$ is the sensitivity matrix; and
+- $\bB(\btheta)$ is some transformation matrix dependent on $\btheta$.
+
+## Distribution of test statistics
+
+LIGOF test statistics generally take the quadratic form 
+$$
+X^2  = n \hat\be_2^\top \hat\bXi \hat\be_2,
+$$
+where $\bXi(\hat\btheta) =: \hat\bXi \xrightarrow{\text P} \bXi$ is some $S\times S$ weight matrix. 
+Generally, $X^2$ is reffered to a chi square distribution under $H_0$, because
+$$
+X^2 \xrightarrow{\text D} \sum_{s=1}^S \delta_s\chi^2_1 \quad \text{as} \quad n\to\infty,
+$$
+where the $\delta_s$ are the eigenvalues of $\bM = \bOmega_2\bXi$. 
+
+1. If $\bM$ is idempotent, then the chi square is exact.
+2. Otherwise, it is a sum of scaled chi squares.
+
+
+<!-- - **Wald test**. Set $\bXi=\bOmega_2^+$, the Moore-Penrose generalised inverse of $\bOmega_2$. Then $X^2$ -->
+
+## Test statistics used
+
+::: columns
+
+::: {.column width=28%}
+<br><br><br><br>
+
+::: {.callout-note appearance="simple"}
+
+[$$\begin{gathered}X^2  = n \hat\be_2^\top \hat\bXi \hat\be_2 \\\sqrt n \hat\be_2 \approx {\N}_S (\bzero, \hat\bOmega_2)\end{gathered}$$]{.ubdblue}
+
+:::
+:::
+
+::: {.column width=6%}
+:::
+
+::: {.column width=62%}
+<br>
+
+|   | Name         | $\bXi$                              | D.f.  |
+|---|--------------|-------------------------------------|-------|
+| 1 | Wald         | $\bOmega_2^+$                       | $S-m$ |
+| 2 | Wald (VCF)   | $\bXi\bOmega_2\bXi$                 | $S-m$ |
+| 3 | Wald (Diag.) | $\diag(\bOmega_2)^{-1}$             | est.  |
+| 4 | Pearson      | $\diag(\bpi_2)^{-1}$               | est.  |
+| 5 | RSS          | $\mathbf I$                         | est.  |
+| 6 | Multinomial  | $\diag(\bpi_2) - \bpi_2\bpi_2^\top$ | est.  |
+|   |              |                                     |       |
+
+: {.table-ubd}
+:::
+
+:::
+
+
+
+
+
+
+::: aside
+1--@reiser1996analysis; 2--@maydeu2005limited; 4--@bartholomew2002goodness;<br>5,6--@maydeu2008overview.
+:::
+
+# Simulation results
+
+## Informative sampling
+
+- Check bias, coverage, and SD/SE of the estimators
+
+## `{lavaan}`
+
+## Educational survey
+
+- Inspect Type I error rates
+- Power of tests
+
+# Summary
+
+## Conclusions
+
+## References {.appendix}
