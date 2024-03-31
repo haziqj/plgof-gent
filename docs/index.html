@@ -1001,18 +1001,177 @@ Haziq Jamil <a href="https://orcid.org/0000-0003-3298-1010" class="quarto-title-
 </section>
 <section id="definitions" class="slide level2">
 <h2>Definitions</h2>
+<ul>
+<li><p>Let <span class="math inline">\({\mathbf y}= (y_1, \ldots, y_p)^\top \in\{0,1\}^p\)</span> be a vector of Bernoulli random variables.</p></li>
+<li><p>The joint probability of observing any response pattern <span class="math inline">\({\mathbf c}_r=(c_{r1},\dots,c_{rp})^\top\)</span>, for any <span class="math inline">\(r=1,\dots,R:=2^p\)</span>, is given by <span id="eq-joint-bern-prob"><span class="math display">\[
+\pi_r = \operatorname{P}({\mathbf y}= {\mathbf c}_r) = \operatorname{P}(y_1=c_{r1},\dots,y_p=c_{rp}).
+\tag{1}\]</span></span> and <span class="math inline">\(\sum_{r=1}^R \pi_r = 1\)</span>.</p></li>
+<li><p>Suppose <span class="math inline">\(h=1,\dots,n\)</span> observations of <span class="math inline">\({\mathbf y}={\mathbf y}^{(h)}\)</span> are recorded, and each unit has a probability of selection <span class="math inline">\(1/w_h\)</span>.</p></li>
+<li><p>Out of convenience, sampling weights are (typically) normalised so that <span class="math inline">\(\sum_{h=1}^n w_h = n\)</span>.</p>
+<ul>
+<li>Simple random sampling (SRS): <span class="math inline">\(w_h=1, \forall h\)</span>.</li>
+<li>Stratified sampling: <span class="math inline">\(w_h = N_s(h)/N\)</span>, the stratum fractions.</li>
+<li>Etc.</li>
+</ul></li>
+</ul>
+</section>
+<section id="multinomial-distribution" class="slide level2">
+<h2>Multinomial distribution</h2>
+<ul>
+<li>Let <span class="math inline">\(p_r = \hat n_r \big/ \sum_h w_h\)</span> be the the <span class="math inline">\(r\)</span>th entry of the <span class="math inline">\(R\)</span>-vector of proportions <span class="math inline">\({\mathbf p}\)</span>, with <span class="math inline">\(\hspace{1.4cm}\)</span> <span id="eq-obs-freq"><span class="math display">\[
+\hat n_r = \sum_{h=1}^n w_h [{\mathbf y}^{(h)} = {\mathbf c}_r].
+\tag{2}\]</span></span></li>
+</ul>
+<div class="nudge-up-large">
+<ul>
+<li>The random vector <span class="math inline">\(\hat{\mathbf n}= (\hat n_1,\dots,\hat n_R)^\top\)</span> follows a multinomial distribution with parameters <span class="math inline">\(n\)</span>, <span class="math inline">\(R\)</span>, and <span class="math inline">\({\boldsymbol\pi}:=(\pi_1,\dots,\pi_R)^\top\)</span>.</li>
+</ul>
+</div>
+<div class="nudge-up-xxl">
+<p><span class="math display">\[
+\mathop{\mathrm{E}}(\hat{\mathbf n}) = n{\mathbf p}= n{\boldsymbol\pi}\hspace{2em}\text{and}\hspace{2em} \mathop{\mathrm{Var}}(\hat{\mathbf n}) = n\big( \ {\color{lightgray}\overbrace{\color{black}\mathop{\mathrm{diag}}({\boldsymbol\pi}) - {\boldsymbol\pi}{\boldsymbol\pi}^\top}^{{\boldsymbol\Sigma}}} \ \big)
+\]</span></p>
+</div>
+<div class="nudge-up-xxl">
+<ul>
+<li>It is widely known that <span class="citation" data-cites="agresti2012categorical">(<a href="#/references" role="doc-biblioref" onclick="">Agresti 2012</a>)</span> for IID samples that <span id="eq-multin-clt"><span class="math display">\[
+\sqrt n ({\mathbf p}- {\boldsymbol\pi}) \xrightarrow{\text D} {\mathop{\mathrm{N}}}_R({\mathbf 0}, {\boldsymbol\Sigma})
+\tag{3}\]</span></span> as <span class="math inline">\(n\to\infty\)</span>. This also works for complex sampling <span class="citation" data-cites="fuller2009introduction">(<a href="#/references" role="doc-biblioref" onclick="">Fuller 2009</a>)</span>, but <span class="math inline">\({\boldsymbol\Sigma}\)</span> may take a different form.</li>
+</ul>
+</div>
 </section>
 <section id="parametric-models" class="slide level2">
 <h2>Parametric models</h2>
+<div class="columns">
+<div class="column" style="width:37%;">
+<p><img data-src="figures/sem_path.png"></p>
+</div><div class="column" style="width:63%;">
+<div class="absolute" style="top: 25px; ">
+<ul>
+<li>E.g. binary factor model with underlying variable approach (s.t. constraints) <span id="eq-facmod"><span class="math display">\[
+\begin{gathered}
+y_i = \begin{cases}
+1 &amp; y_i^* &gt; \tau_i \\
+0 &amp; y_i^* \leq \tau_i
+\end{cases} \\
+{\mathbf y}^* = {\boldsymbol\Lambda}{\boldsymbol\eta}+ {\boldsymbol\epsilon}\\
+{\boldsymbol\eta}\sim {\mathop{\mathrm{N}}}_q({\mathbf 0}, {\boldsymbol\Psi}), \hspace{3pt}
+{\boldsymbol\epsilon}\sim {\mathop{\mathrm{N}}}_p({\mathbf 0}, {\boldsymbol\Theta}_{\epsilon})
+\end{gathered}
+\tag{4}\]</span></span></li>
+</ul>
+</div>
+<div class="fragment absolute" data-fragment-index="1" style="top: 355px; ">
+<ul>
+<li>The log-likelihood for <span class="math inline">\({\boldsymbol\theta}^\top = (\)</span><span class="ubdred"><span class="math inline">\({\boldsymbol\lambda}\)</span></span><span class="math inline">\(,\)</span><span class="ubdteal"><span class="math inline">\({\boldsymbol\rho}\)</span></span><span class="math inline">\(,\)</span><span class="ubdblue"><span class="math inline">\({\boldsymbol\tau}\)</span></span><span class="math inline">\()\)</span> is <span class="math inline">\(\hspace{3.8cm}\)</span> <span id="eq-facmod-loglik"><span class="math display">\[
+\log L({\boldsymbol\theta}\mid {\mathbf y}) = \sum_{r=1}^R \hat n_r \log \pi_r({\boldsymbol\theta})
+\tag{5}\]</span></span> where <span class="math inline">\(\pi_r({\boldsymbol\theta}) = \int \phi_p({\mathbf y}^* \mid {\mathbf 0}, {\boldsymbol\Lambda}{\boldsymbol\Psi}{\boldsymbol\Lambda}^\top + {\boldsymbol\Theta}_\epsilon) \mathop{\mathrm{d}}\hspace{0.5pt}\!{\mathbf y}^*\)</span>.</li>
+</ul>
+</div>
+<!-- ::: {.fragment fragment-index=2} -->
+<div class="fragment fade-in absolute" style="top: 643px; ">
+<ul>
+<li>FIML may be difficult (high-dimensional integral; perfect separation).</li>
+</ul>
+</div>
+<!-- ::: -->
+</div>
+</div>
 </section>
-<section id="maximum-likelihood-estimation" class="slide level2">
-<h2>Maximum likelihood estimation</h2>
+<section id="composite-likelihood" class="slide level2 scrollable">
+<h2>Composite likelihood</h2>
+<ul>
+<li><p>Composite likelihood is an inference function derived by multiplying a collection of component likelihoods</p></li>
+<li><p>Because each individual component is a conditional or marginal density, the resulting estimating equation obtained from the derivative of the composite log-likelihood is an unbiased estimating equation</p></li>
+<li><p>Because the components are multiplied, whether or not they are independent, the inference function has the properties of likelihood from a misspeciﬁed model</p></li>
+<li><p>Terminology</p>
+<ul>
+<li>Pseudo-likelihood: Function of parameter and data that behaves in “some respect” as a likelihood</li>
+<li>Composite likelihood: An example of pseudo-likelihood, based on terms that are marginal or conditional densities</li>
+<li>Quasi-likelihood: Wedderburn’s likelihood which is not a pdf or misspecified likelihoods</li>
+<li>Limited information methods: Inference procedures based on low-dimensional margins.</li>
+</ul></li>
+<li><p>Let <span class="math inline">\(\{{\mathcal A}_1,\dots,{\mathcal A}_K\}\)</span> a set of marginal or conditional events (partitioning the variable space). Each set <span class="math inline">\({\mathcal A}_k\)</span> is associated with a component likelihood <span class="math inline">\(L({\boldsymbol\theta}\mid {\mathbf y}\in {\mathcal A}_k)\)</span>. The composite likelihood is defined as <span class="citation" data-cites="lindsay1988composite">(<a href="#/references" role="doc-biblioref" onclick="">Lindsay 1988</a>)</span> <span class="math display">\[
+{\mathcal L}({\boldsymbol\theta}\mid {\mathbf y}) = \prod_{k=1}^K L({\boldsymbol\theta}\mid {\mathbf y}\in {\mathcal A}_k)
+\]</span></p></li>
+<li><p>Some history</p>
+<ul>
+<li>Besag (1974) introduced the idea of composite likelihood for spatial data</li>
+<li>Liang (1987) studies composite conditional likelihoods</li>
+<li>Molenberghs and Verbeke (2005) in the context of longitudinal studies</li>
+<li>Independence likelihood</li>
+<li>Pairwise likelihood</li>
+</ul></li>
+<li><p>Conceptually</p></li>
+</ul>
+</section>
+<section id="an-analogy" class="slide level2">
+<h2>An analogy</h2>
+<div class="fragment fade-out absolute" data-fragment-index="1" style="top: 30px; left: 125px; ">
+<p><img data-src="figures/Jigsaw.png" style="width:85.0%"></p>
+</div>
+<div class="fragment fade-in absolute" data-fragment-index="1" style="top: 30px; left: 125px; ">
+<p><img data-src="figures/stage1.png" style="width:85.0%"></p>
+</div>
+<div class="fragment fade-in absolute" style="top: 30px; left: 125px; ">
+<p><img data-src="figures/stage2.png" style="width:85.0%"></p>
+</div>
+<div class="fragment fade-in absolute" style="top: 30px; left: 125px; ">
+<p><img data-src="figures/stage3.png" style="width:85.0%"></p>
+</div>
+<div class="fragment fade-in absolute" style="top: 30px; left: 125px; ">
+<p><img data-src="figures/stage4.png" style="width:85.0%"></p>
+</div>
+<div class="fragment fade-in absolute" style="top: 30px; left: 125px; ">
+<p><img data-src="figures/stage5.png" style="width:85.0%"></p>
+</div>
+<div class="fragment fade-in absolute" style="top: 30px; left: 125px; ">
+<p><img data-src="figures/stage6.png" style="width:85.0%"></p>
+</div>
+<div class="fragment">
+<div class="absolute" style="top: 30px; left: 125px; ">
+<p><img data-src="figures/full_jigsaw2.png" style="width:85.0%"></p>
+</div>
+<div class="absolute" style="top: 300px; left: 235px; ">
+<p><span class="ubdtealbg"><strong><em>Enjoy the approximate picture instead of worrying<br>not being able to see every blade of grass.</em></strong></span></p>
+</div>
+</div>
 </section>
 <section id="pairwise-likelihood-estimation" class="slide level2">
 <h2>Pairwise likelihood estimation</h2>
+<ul>
+<li><p>For pairs of variables <span class="math inline">\(y_i\)</span> and <span class="math inline">\(y_j\)</span>, <span class="math inline">\(i,j=1,\dots,n\)</span>, and <span class="math inline">\(i&lt;j\)</span>, define <span class="math inline">\(\hspace{5cm}\)</span> <span id="eq-pairwise"><span class="math display">\[
+\pi_{cc'}^{(ij)}({\boldsymbol\theta}) = \operatorname{P}_{{\boldsymbol\theta}}(y_i = c, y_i = c'), \hspace{2em} c,c'\in\{0,1\}.
+\tag{6}\]</span></span> There are <span class="math inline">\(\tilde R = 4 \times \binom{p}{2}\)</span> such probabilities, with <span class="math inline">\(\sum_{y_i,y_j} \pi_{y_iy_j}^{(ij)}({\boldsymbol\theta}) = 1\)</span>.</p></li>
+<li><p>The pairwise log-likelihood takes the form <span class="citation" data-cites="katsikatsou2012pairwise">(<a href="#/references" role="doc-biblioref" onclick="">Katsikatsou et al. 2012</a>)</span> <span id="eq-pairwise-loglik"><span class="math display">\[
+\log \operatorname{\mathcal L_{\text P}}({\boldsymbol\theta}\mid {\mathbf y}) = \sum_{i&lt;j} \sum_{c}\sum_{c'} \hat n_{cc'}^{(ij)} \log \pi_{y_iy_j}^{(ij)}({\boldsymbol\theta}),
+\tag{7}\]</span></span> where <span class="math inline">\(\hat n_{cc'}^{(ij)} = \sum_h w_h [{\mathbf y}^{(h)}_i = c, {\mathbf y}^{(h)}_j = c']\)</span>.</p></li>
+<li><p>Evaluation of <a href="#/pairwise-likelihood-estimation" class="quarto-xref">Equation&nbsp;7</a> involves only bivariate normal integrals: <span class="math display">\[
+\pi_{cc'}^{(ij)}({\boldsymbol\theta}) = \int\int \phi_2\big({\mathbf y}^*_{ij} \mid {\mathbf 0}, {\boldsymbol\Sigma}_{y^*}^{(ij)} ({\boldsymbol\theta})\big) \mathop{\mathrm{d}}\hspace{0.5pt}\!{\mathbf y}^*_{ij},
+\]</span></p></li>
+</ul>
 </section>
-<section id="pairs-of-variables-and-pairwise-probabilities" class="slide level2">
-<h2>Pairs of variables and pairwise probabilities</h2>
+<section id="mple-properties" class="slide level2">
+<h2>MPLE properties</h2>
+<ul>
+<li>Let <span class="math inline">\(\hat{\boldsymbol\theta}_{\text{PL}}= \mathop{\mathrm{argmax}}_{{\boldsymbol\theta}} \operatorname{\mathcal L_{\text P}}({\boldsymbol\theta}\mid {\mathbf y})\)</span>. Under certain regularity conditions, <span class="citation" data-cites="varin2011overview">(<a href="#/references" role="doc-biblioref" onclick="">Varin, Reid, and Firth 2011</a>)</span> <span id="eq-asymptotic-mple"><span class="math display">\[
+\sqrt n (\hat{\boldsymbol\theta}_{\text{PL}}- {\boldsymbol\theta}) \xrightarrow{\text D} {\mathop{\mathrm{N}}}_m
+\left(
+{\mathbf 0},
+\left\{ {\mathcal H}({\boldsymbol\theta}){\mathcal J}({\boldsymbol\theta})^{-1}{\mathcal H}({\boldsymbol\theta}) \right\}^{-1}
+\right),\hspace{1em} \text{where}
+\tag{8}\]</span></span>
+<ul>
+<li><span class="math inline">\({\mathcal H}({\boldsymbol\theta})=-\mathop{\mathrm{E}}\nabla^2\log \operatorname{\mathcal L_{\text P}}({\boldsymbol\theta}\mid {\mathbf y}^{(h)})\)</span> is the <em>sensitivity matrix</em>; and</li>
+<li><span class="math inline">\({\mathcal J}({\boldsymbol\theta})=\mathop{\mathrm{Var}}\big(\nabla\log\operatorname{\mathcal L_{\text P}}({\boldsymbol\theta}\mid {\mathbf y}^{(h)})\big)\)</span> is the <em>variability matrix</em>.</li>
+</ul></li>
+<li>Estimators of these matrices are given by <span class="citation" data-cites="zhao.joe05 asparouhov2005sampling">(<a href="#/references" role="doc-biblioref" onclick="">Zhao and Joe 2005</a>; <a href="#/references" role="doc-biblioref" onclick="">Asparouhov 2005</a>)</span> <span id="eq-hessian"><span class="math display">\[
+\begin{aligned}
+{\mathbf H}&amp;= - \frac{1}{\sum_h w_h} \sum_h \nabla^2\log \operatorname{\mathcal L_{\text P}}({\boldsymbol\theta}\mid {\mathbf y}^{(h)}) \Bigg|_{{\boldsymbol\theta}= \hat{\boldsymbol\theta}_{\text{PL}}} \hspace{2em}\text{and} \\
+{\mathbf J}&amp;= \frac{1}{\sum_h w_h} \sum_h \nabla\log \operatorname{\mathcal L_{\text P}}({\boldsymbol\theta}\mid {\mathbf y}^{(h)}) \nabla\log \operatorname{\mathcal L_{\text P}}({\boldsymbol\theta}\mid {\mathbf y}^{(h)})^T \Bigg|_{{\boldsymbol\theta}= \hat{\boldsymbol\theta}_{\text{PL}}}.
+\end{aligned}
+\tag{9}\]</span></span></li>
+</ul>
 </section></section>
 <section>
 <section id="limited-information-gof-tests" class="title-slide slide level1 center">
@@ -1213,7 +1372,7 @@ Haziq Jamil <a href="https://orcid.org/0000-0003-3298-1010" class="quarto-title-
 \]</span></p>
 
 <aside><div>
-<p>See <span class="citation" data-cites="reiser1996analysis">Reiser (<a href="#/references" role="doc-biblioref" onclick="">1996</a>)</span> and <span class="citation" data-cites="maydeu2005limited">Maydeu-Olivares and Joe (<a href="#/references" role="doc-biblioref" onclick="">2005</a>)</span>.</p>
+<p>See <span class="citation" data-cites="reiser1996analysis">Reiser (<a href="#/references" role="doc-biblioref" onclick="">1996</a>)</span> and <span class="citation" data-cites="maydeu2005limited">Maydeu-Olivares and Joe (<a href="#/references" role="doc-biblioref" onclick="">2005</a>)</span> for further details.</p>
 </div></aside></section>
 <section id="some-theory" class="slide level2 scrollable">
 <h2>Some theory</h2>
@@ -1244,12 +1403,12 @@ Haziq Jamil <a href="https://orcid.org/0000-0003-3298-1010" class="quarto-title-
 <h2>Distribution of test statistics</h2>
 <p>LIGOF test statistics generally take the quadratic form <span class="math display">\[
 X^2  = n \hat{\mathbf e}_2^\top \hat{\boldsymbol\Xi}\hat{\mathbf e}_2,
-\]</span> where <span class="math inline">\({\boldsymbol\Xi}(\hat{\boldsymbol\theta}) =: \hat{\boldsymbol\Xi}\xrightarrow{\text P} {\boldsymbol\Xi}\)</span> is some <span class="math inline">\(S\times S\)</span> weight matrix. Generally, <span class="math inline">\(X^2\)</span> is reffered to a chi square distribution under <span class="math inline">\(H_0\)</span>, because <span class="math display">\[
+\]</span> where <span class="math inline">\({\boldsymbol\Xi}(\hat{\boldsymbol\theta}) =: \hat{\boldsymbol\Xi}\xrightarrow{\text P} {\boldsymbol\Xi}\)</span> is some <span class="math inline">\(S\times S\)</span> weight matrix. Generally, <span class="math inline">\(X^2\)</span> is reffered to a chi square distribution under <span class="math inline">\(H_0\)</span>, because <span class="citation" data-cites="mathai1992quadratic">(<a href="#/references" role="doc-biblioref" onclick="">Mathai and Provost 1992</a>)</span> <span class="math display">\[
 X^2 \xrightarrow{\text D} \sum_{s=1}^S \delta_s\chi^2_1 \quad \text{as} \quad n\to\infty,
-\]</span> where the <span class="math inline">\(\delta_s\)</span> are the eigenvalues of <span class="math inline">\({\mathbf M}= {\boldsymbol\Omega}_2{\boldsymbol\Xi}\)</span>.</p>
+\]</span> where the <span class="math inline">\(\delta_s\)</span> are the eigenvalues of <span class="math inline">\({\mathbf M}= {\boldsymbol\Omega}_2{\boldsymbol\Xi}\)</span>. Two cases:</p>
 <ol type="1">
 <li>If <span class="math inline">\({\mathbf M}\)</span> is idempotent, then the chi square is exact.</li>
-<li>Otherwise, it is a sum of scaled chi squares.</li>
+<li>Otherwise, it is a sum of scaled chi squares. Can be <em>approximated</em> by a chi square with degrees of freedom needing estimation <span class="citation" data-cites="cai2006limited">(<a href="#/references" role="doc-biblioref" onclick="">Cai et al. 2006</a>)</span>.</li>
 </ol>
 <!-- - **Wald test**. Set $\bXi=\bOmega_2^+$, the Moore-Penrose generalised inverse of $\bOmega_2$. Then $X^2$ -->
 </section>
@@ -1337,21 +1496,2052 @@ X^2 \xrightarrow{\text D} \sum_{s=1}^S \delta_s\chi^2_1 \quad \text{as} \quad n\
 <h1>Simulation results</h1>
 
 </section>
+<section id="factor-models" class="slide level2">
+<h2>Factor models</h2>
+<!-- Five factor models with varying number of items and latent factors are considered. -->
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">M1: <code>1F5V</code></a></li><li><a href="#tabset-1-2">M2: <code>1F8V</code></a></li><li><a href="#tabset-1-3">M3: <code>1F15V</code></a></li><li><a href="#tabset-1-4">M4: <code>2F10V</code></a></li><li><a href="#tabset-1-5">M5: <code>3F15V</code></a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/sem_path_mod1-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:40%;">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Loadings
+5 x 1 sparse Matrix of class "dgCMatrix"
+         
+[1,] 0.80
+[2,] 0.70
+[3,] 0.47
+[4,] 0.38
+[5,] 0.34
+
+Thresholds
+[1] -1.43 -0.55 -0.13 -0.72
+[5] -1.13
+
+Factor correlations
+[1] 1</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2">
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/sem_path_mod2-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:40%;">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Loadings
+8 x 1 sparse Matrix of class "dgCMatrix"
+         
+[1,] 0.80
+[2,] 0.70
+[3,] 0.47
+[4,] 0.38
+[5,] 0.34
+[6,] 0.80
+[7,] 0.70
+[8,] 0.47
+
+Thresholds
+[1] -1.43 -0.55 -0.13 -0.72
+[5] -1.13 -1.43 -0.55 -0.13
+
+Factor correlations
+[1] 1</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-3">
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/sem_path_mod3-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:40%;">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Loadings
+15 x 1 sparse Matrix of class "dgCMatrix"
+          
+ [1,] 0.80
+ [2,] 0.70
+ [3,] 0.47
+ [4,] 0.38
+ [5,] 0.34
+ [6,] 0.80
+ [7,] 0.70
+ [8,] 0.47
+ [9,] 0.38
+[10,] 0.34
+[11,] 0.80
+[12,] 0.70
+[13,] 0.47
+[14,] 0.38
+[15,] 0.34
+
+Thresholds
+ [1] -1.43 -0.55 -0.13 -0.72
+ [5] -1.13 -1.43 -0.55 -0.13
+ [9] -0.72 -1.13 -1.43 -0.55
+[13] -0.13 -0.72 -1.13
+
+Factor correlations
+[1] 1</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-4">
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/sem_path_mod4-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:40%;">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Loadings
+10 x 2 sparse Matrix of class "dgCMatrix"
+               
+ [1,] 0.80 .   
+ [2,] 0.70 .   
+ [3,] 0.47 .   
+ [4,] 0.38 .   
+ [5,] 0.34 .   
+ [6,] .    0.80
+ [7,] .    0.70
+ [8,] .    0.47
+ [9,] .    0.38
+[10,] .    0.34
+
+Thresholds
+ [1] -1.43 -0.55 -0.13 -0.72
+ [5] -1.13 -1.43 -0.55 -0.13
+ [9] -0.72 -1.13
+
+Factor correlations
+     [,1] [,2]
+[1,]  1.0  0.3
+[2,]  0.3  1.0</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-5">
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/sem_path_mod5-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:40%;">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Loadings
+15 x 3 sparse Matrix of class "dgCMatrix"
+                    
+ [1,] 0.80 .    .   
+ [2,] 0.70 .    .   
+ [3,] 0.47 .    .   
+ [4,] 0.38 .    .   
+ [5,] 0.34 .    .   
+ [6,] .    0.80 .   
+ [7,] .    0.70 .   
+ [8,] .    0.47 .   
+ [9,] .    0.38 .   
+[10,] .    0.34 .   
+[11,] .    .    0.80
+[12,] .    .    0.70
+[13,] .    .    0.47
+[14,] .    .    0.38
+[15,] .    .    0.34
+
+Thresholds
+ [1] -1.43 -0.55 -0.13 -0.72
+ [5] -1.13 -1.43 -0.55 -0.13
+ [9] -0.72 -1.13 -1.43 -0.55
+[13] -0.13 -0.72 -1.13
+
+Factor correlations
+     [,1] [,2] [,3]
+[1,]  1.0  0.2  0.3
+[2,]  0.2  1.0  0.4
+[3,]  0.3  0.4  1.0</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
 <section id="informative-sampling" class="slide level2">
 <h2>Informative sampling</h2>
 <ul>
-<li>Check bias, coverage, and SD/SE of the estimators</li>
+<li><p>Using M1: <code>1F5V</code>, generate a fixed population size of <span class="math inline">\(N\)</span>. Then, assign each unit <span class="math inline">\(h\)</span> a probability of selection as follows: <span class="math display">\[
+w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
+\]</span> Larger values of <span class="math inline">\(y_1^*\)</span> result in smaller probabilities of selection.</p></li>
+<li><p>Sample <span class="math inline">\(n\in\{500, 1000, 5000\}\)</span> units from a population of size <span class="math inline">\(N=n/0.01\)</span> which ensures no need for FPC factor <span class="citation" data-cites="lumley2004analysis">(<a href="#/references" role="doc-biblioref" onclick="">Lumley 2004</a>)</span>.</p></li>
+<li><p>In repeated sampling (<span class="math inline">\(B=1000\)</span>), interested in</p>
+<ul>
+<li>Bias</li>
+<li>Coverage for 95% CI</li>
+<li>SD/SE ratio</li>
+</ul></li>
 </ul>
 </section>
-<section id="lavaan" class="slide level2">
-<h2><code>{lavaan}</code></h2>
+<section id="informative-sampling-results" class="slide level2 scrollable">
+<h2>Informative sampling (results)</h2>
+<h3 id="bias">Bias</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div id="wbvoeiimxn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wbvoeiimxn table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#wbvoeiimxn thead, #wbvoeiimxn tbody, #wbvoeiimxn tfoot, #wbvoeiimxn tr, #wbvoeiimxn td, #wbvoeiimxn th {
+  border-style: none;
+}
+
+#wbvoeiimxn p {
+  margin: 0;
+  padding: 0;
+}
+
+#wbvoeiimxn .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 30px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#wbvoeiimxn .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#wbvoeiimxn .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#wbvoeiimxn .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#wbvoeiimxn .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#wbvoeiimxn .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wbvoeiimxn .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#wbvoeiimxn .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#wbvoeiimxn .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#wbvoeiimxn .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#wbvoeiimxn .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#wbvoeiimxn .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#wbvoeiimxn .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#wbvoeiimxn .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#wbvoeiimxn .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#wbvoeiimxn .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#wbvoeiimxn .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#wbvoeiimxn .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#wbvoeiimxn .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wbvoeiimxn .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#wbvoeiimxn .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#wbvoeiimxn .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#wbvoeiimxn .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wbvoeiimxn .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#wbvoeiimxn .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#wbvoeiimxn .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wbvoeiimxn .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wbvoeiimxn .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#wbvoeiimxn .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wbvoeiimxn .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#wbvoeiimxn .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wbvoeiimxn .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#wbvoeiimxn .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wbvoeiimxn .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#wbvoeiimxn .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wbvoeiimxn .gt_left {
+  text-align: left;
+}
+
+#wbvoeiimxn .gt_center {
+  text-align: center;
+}
+
+#wbvoeiimxn .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#wbvoeiimxn .gt_font_normal {
+  font-weight: normal;
+}
+
+#wbvoeiimxn .gt_font_bold {
+  font-weight: bold;
+}
+
+#wbvoeiimxn .gt_font_italic {
+  font-style: italic;
+}
+
+#wbvoeiimxn .gt_super {
+  font-size: 65%;
+}
+
+#wbvoeiimxn .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#wbvoeiimxn .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#wbvoeiimxn .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#wbvoeiimxn .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#wbvoeiimxn .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#wbvoeiimxn .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#wbvoeiimxn .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table" data-quarto-postprocess="true" style="table-layout: fixed;" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings gt_spanner_row">
+<th rowspan="2" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
+<th rowspan="2" id="True values" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">True values</th>
+<th colspan="2" id="\(n = 500\)" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner">\(n = 500\)</span></th>
+<th colspan="2" id="\(n = 1000\)" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner">\(n = 1000\)</span></th>
+<th colspan="2" id="\(n = 5000\)" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner">\(n = 5000\)</span></th>
+</tr>
+<tr class="odd gt_col_headings">
+<th id="PML" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">PML</th>
+<th id="PMLW" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">PMLW</th>
+<th id="PML" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">PML</th>
+<th id="PMLW" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">PMLW</th>
+<th id="PML" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">PML</th>
+<th id="PMLW" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">PMLW</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd gt_group_heading_row">
+<td colspan="8" id="<strong>Loadings</strong>" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup"><strong>Loadings</strong></td>
+</tr>
+<tr class="even gt_row_group_first">
+<td id="stub_1_1" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
+<p>\(\lambda_1\)</p>
+</div></td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 truth">0.80</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 PML_500">−0.03</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 PMLW_500">0.00</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 PML_1000">−0.03</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 PMLW_1000">−0.01</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 PML_5000">−0.02</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 PMLW_5000">0.00</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_2" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
+<p>\(\lambda_2\)</p>
+</div></td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 truth">0.70</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 PML_500">−0.03</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 PMLW_500">−0.01</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 PML_1000">−0.02</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 PMLW_1000">0.00</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 PML_5000">−0.03</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 PMLW_5000">−0.01</td>
+</tr>
+<tr class="even">
+<td id="stub_1_3" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
+<p>\(\lambda_3\)</p>
+</div></td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 truth">0.47</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 PML_500">−0.02</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 PMLW_500">0.00</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 PML_1000">−0.02</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 PMLW_1000">0.00</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 PML_5000">−0.02</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 PMLW_5000">0.00</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_4" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
+<p>\(\lambda_4\)</p>
+</div></td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 truth">0.38</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 PML_500">−0.02</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 PMLW_500">0.00</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 PML_1000">−0.02</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 PMLW_1000">0.00</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 PML_5000">−0.02</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 PMLW_5000">0.00</td>
+</tr>
+<tr class="even">
+<td id="stub_1_5" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
+<p>\(\lambda_5\)</p>
+</div></td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 truth">0.34</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 PML_500">0.00</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 PMLW_500">0.01</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 PML_1000">−0.02</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 PMLW_1000">0.00</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 PML_5000">−0.02</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 PMLW_5000">−0.01</td>
+</tr>
+<tr class="odd gt_group_heading_row">
+<td colspan="8" id="<strong>Thresholds</strong>" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup"><strong>Thresholds</strong></td>
+</tr>
+<tr class="even gt_row_group_first">
+<td id="stub_1_6" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
+<p>\(\tau_1\)</p>
+</div></td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 truth">-1.43</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 PML_500">0.31</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 PMLW_500">0.00</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 PML_1000">0.31</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 PMLW_1000">0.00</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 PML_5000">0.30</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 PMLW_5000">−0.01</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_7" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
+<p>\(\tau_2\)</p>
+</div></td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 truth">-0.55</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 PML_500">0.22</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 PMLW_500">−0.01</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 PML_1000">0.22</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 PMLW_1000">0.00</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 PML_5000">0.21</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 PMLW_5000">−0.01</td>
+</tr>
+<tr class="even">
+<td id="stub_1_8" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
+<p>\(\tau_3\)</p>
+</div></td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 truth">-0.13</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 PML_500">0.15</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 PMLW_500">−0.01</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 PML_1000">0.16</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 PMLW_1000">0.01</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 PML_5000">0.15</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 PMLW_5000">0.00</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_9" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
+<p>\(\tau_4\)</p>
+</div></td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 truth">-0.72</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 PML_500">0.12</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 PMLW_500">0.00</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 PML_1000">0.12</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 PMLW_1000">0.00</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 PML_5000">0.12</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 PMLW_5000">0.00</td>
+</tr>
+<tr class="even">
+<td id="stub_1_10" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
+<p>\(\tau_5\)</p>
+</div></td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 truth">-1.13</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 PML_500">0.11</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 PMLW_500">0.01</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 PML_1000">0.11</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 PMLW_1000">0.01</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 PML_5000">0.11</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 PMLW_5000">0.00</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="informative-sampling-results-1" class="slide level2 scrollable">
+<h2>Informative sampling (results)</h2>
+<h3 id="coverage-and-sdse-ratio">Coverage and SD/SE ratio</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div id="zwawlyqfka" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zwawlyqfka table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#zwawlyqfka thead, #zwawlyqfka tbody, #zwawlyqfka tfoot, #zwawlyqfka tr, #zwawlyqfka td, #zwawlyqfka th {
+  border-style: none;
+}
+
+#zwawlyqfka p {
+  margin: 0;
+  padding: 0;
+}
+
+#zwawlyqfka .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 30px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#zwawlyqfka .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#zwawlyqfka .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#zwawlyqfka .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#zwawlyqfka .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zwawlyqfka .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zwawlyqfka .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zwawlyqfka .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#zwawlyqfka .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#zwawlyqfka .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#zwawlyqfka .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#zwawlyqfka .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#zwawlyqfka .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#zwawlyqfka .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#zwawlyqfka .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#zwawlyqfka .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#zwawlyqfka .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#zwawlyqfka .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#zwawlyqfka .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zwawlyqfka .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#zwawlyqfka .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#zwawlyqfka .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#zwawlyqfka .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zwawlyqfka .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#zwawlyqfka .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#zwawlyqfka .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zwawlyqfka .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zwawlyqfka .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#zwawlyqfka .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zwawlyqfka .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#zwawlyqfka .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zwawlyqfka .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zwawlyqfka .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zwawlyqfka .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zwawlyqfka .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zwawlyqfka .gt_left {
+  text-align: left;
+}
+
+#zwawlyqfka .gt_center {
+  text-align: center;
+}
+
+#zwawlyqfka .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#zwawlyqfka .gt_font_normal {
+  font-weight: normal;
+}
+
+#zwawlyqfka .gt_font_bold {
+  font-weight: bold;
+}
+
+#zwawlyqfka .gt_font_italic {
+  font-style: italic;
+}
+
+#zwawlyqfka .gt_super {
+  font-size: 65%;
+}
+
+#zwawlyqfka .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#zwawlyqfka .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#zwawlyqfka .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#zwawlyqfka .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#zwawlyqfka .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#zwawlyqfka .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#zwawlyqfka .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table" style="width:100%;" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header gt_col_headings gt_spanner_row">
+<th data-quarto-table-cell-role="th" scope="col"></th>
+<th colspan="2" id="Coverage" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner">Coverage</span></th>
+<th colspan="2" id="SD/SE" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner">SD/SE</span></th>
+<th colspan="2" id="Coverage" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner">Coverage</span></th>
+<th colspan="2" id="SD/SE" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner">SD/SE</span></th>
+<th colspan="2" id="Coverage" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner">Coverage</span></th>
+<th colspan="2" id="SD/SE" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner">SD/SE</span></th>
+</tr>
+<tr class="odd gt_col_headings gt_spanner_row">
+<th rowspan="2" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
+<th colspan="4" id="\(n = 500\)" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner">\(n = 500\)</span></th>
+<th colspan="4" id="\(n = 1000\)" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner">\(n = 1000\)</span></th>
+<th colspan="4" id="\(n = 5000\)" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner">\(n = 5000\)</span></th>
+</tr>
+<tr class="header gt_col_headings">
+<th id="PML" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">PML</th>
+<th id="PMLW" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">PMLW</th>
+<th id="PML" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">PML</th>
+<th id="PMLW" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">PMLW</th>
+<th id="PML" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">PML</th>
+<th id="PMLW" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">PMLW</th>
+<th id="PML" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">PML</th>
+<th id="PMLW" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">PMLW</th>
+<th id="PML" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">PML</th>
+<th id="PMLW" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">PMLW</th>
+<th id="PML" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">PML</th>
+<th id="PMLW" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">PMLW</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd gt_group_heading_row">
+<td colspan="13" id="<strong>Loadings</strong>" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup"><strong>Loadings</strong></td>
+</tr>
+<tr class="even gt_row_group_first">
+<td id="stub_1_1" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
+<p>\(\lambda_1\)</p>
+</div></td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 cov_PML_500">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 cov_PMLW_500">0.96</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 ratio_PML_500">1.01</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 ratio_PMLW_500">0.99</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 cov_PML_1000">0.94</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 cov_PMLW_1000">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 ratio_PML_1000">1.04</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 ratio_PMLW_1000">1.01</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 cov_PML_5000">0.89</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 cov_PMLW_5000">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 ratio_PML_5000">1.22</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 ratio_PMLW_5000">1.01</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_2" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
+<p>\(\lambda_2\)</p>
+</div></td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 cov_PML_500">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 cov_PMLW_500">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 ratio_PML_500">1.03</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 ratio_PMLW_500">0.99</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 cov_PML_1000">0.93</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 cov_PMLW_1000">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 ratio_PML_1000">1.09</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 ratio_PMLW_1000">1.01</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 cov_PML_5000">0.85</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 cov_PMLW_5000">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 ratio_PML_5000">1.31</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 ratio_PMLW_5000">0.99</td>
+</tr>
+<tr class="even">
+<td id="stub_1_3" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
+<p>\(\lambda_3\)</p>
+</div></td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 cov_PML_500">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 cov_PMLW_500">0.96</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 ratio_PML_500">1.02</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 ratio_PMLW_500">0.97</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 cov_PML_1000">0.94</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 cov_PMLW_1000">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 ratio_PML_1000">1.06</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 ratio_PMLW_1000">0.97</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 cov_PML_5000">0.85</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 cov_PMLW_5000">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 ratio_PML_5000">1.35</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 ratio_PMLW_5000">0.99</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_4" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
+<p>\(\lambda_4\)</p>
+</div></td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 cov_PML_500">0.94</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 cov_PMLW_500">0.94</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 ratio_PML_500">1.04</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 ratio_PMLW_500">1.03</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 cov_PML_1000">0.94</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 cov_PMLW_1000">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 ratio_PML_1000">1.05</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 ratio_PMLW_1000">1.00</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 cov_PML_5000">0.88</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 cov_PMLW_5000">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 ratio_PML_5000">1.25</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 ratio_PMLW_5000">1.01</td>
+</tr>
+<tr class="even">
+<td id="stub_1_5" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
+<p>\(\lambda_5\)</p>
+</div></td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 cov_PML_500">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 cov_PMLW_500">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 ratio_PML_500">0.99</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 ratio_PMLW_500">0.98</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 cov_PML_1000">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 cov_PMLW_1000">0.96</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 ratio_PML_1000">1.02</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 ratio_PMLW_1000">1.00</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 cov_PML_5000">0.90</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 cov_PMLW_5000">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 ratio_PML_5000">1.19</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 ratio_PMLW_5000">1.01</td>
+</tr>
+<tr class="odd gt_group_heading_row">
+<td colspan="13" id="<strong>Thresholds</strong>" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup"><strong>Thresholds</strong></td>
+</tr>
+<tr class="even gt_row_group_first">
+<td id="stub_1_6" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
+<p>\(\tau_1\)</p>
+</div></td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 cov_PML_500">0.01</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 cov_PMLW_500">0.96</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 ratio_PML_500">4.38</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 ratio_PMLW_500">0.98</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 cov_PML_1000">0.00</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 cov_PMLW_1000">0.96</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 ratio_PML_1000">6.24</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 ratio_PMLW_1000">0.97</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 cov_PML_5000">0.00</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 cov_PMLW_5000">0.96</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 ratio_PML_5000">13.81</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 ratio_PMLW_5000">0.97</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_7" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
+<p>\(\tau_2\)</p>
+</div></td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 cov_PML_500">0.04</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 cov_PMLW_500">0.95</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 ratio_PML_500">3.91</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 ratio_PMLW_500">1.05</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 cov_PML_1000">0.00</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 cov_PMLW_1000">0.94</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 ratio_PML_1000">5.47</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 ratio_PMLW_1000">1.01</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 cov_PML_5000">0.00</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 cov_PMLW_5000">0.94</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 ratio_PML_5000">12.03</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 ratio_PMLW_5000">1.06</td>
+</tr>
+<tr class="even">
+<td id="stub_1_8" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
+<p>\(\tau_3\)</p>
+</div></td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 cov_PML_500">0.22</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 cov_PMLW_500">0.96</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 ratio_PML_500">2.93</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 ratio_PMLW_500">1.02</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 cov_PML_1000">0.03</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 cov_PMLW_1000">0.94</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 ratio_PML_1000">4.03</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 ratio_PMLW_1000">1.02</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 cov_PML_5000">0.00</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 cov_PMLW_5000">0.96</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 ratio_PML_5000">8.76</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 ratio_PMLW_5000">0.96</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_9" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
+<p>\(\tau_4\)</p>
+</div></td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 cov_PML_500">0.49</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 cov_PMLW_500">0.94</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 ratio_PML_500">2.22</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 ratio_PMLW_500">1.03</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 cov_PML_1000">0.20</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 cov_PMLW_1000">0.95</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 ratio_PML_1000">2.97</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 ratio_PMLW_1000">1.03</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 cov_PML_5000">0.00</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 cov_PMLW_5000">0.95</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 ratio_PML_5000">6.40</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 ratio_PMLW_5000">1.04</td>
+</tr>
+<tr class="even">
+<td id="stub_1_10" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
+<p>\(\tau_5\)</p>
+</div></td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 cov_PML_500">0.61</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 cov_PMLW_500">0.94</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 ratio_PML_500">1.88</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 ratio_PMLW_500">1.02</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 cov_PML_1000">0.42</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 cov_PMLW_1000">0.95</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 ratio_PML_1000">2.39</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 ratio_PMLW_1000">1.01</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 cov_PML_5000">0.00</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 cov_PMLW_5000">0.95</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 ratio_PML_5000">5.13</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 ratio_PMLW_5000">1.04</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="educational-survey" class="slide level2">
 <h2>Educational survey</h2>
+<p>Simulate a population of <span class="math inline">\(1e6\)</span> students clustered within classrooms and stratified by school type (correlating with abilities).</p>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/pop_byregion_vars-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:40%;">
+<p><br> <!-- | Type | $N$  | Avg. Classes | Avg. class size | --> <!-- |------|------|--------------|-----------------| --> <!-- | A    | 400  | 33.0         | 15.2            | --> <!-- | B    | 1000 | 19.6         | 25.7            | --> <!-- | C    | 600  | 24.9         | 20.4            | --> <!-- | --> <!-- : {.table-ubd} --></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div id="frmurgdrxf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#frmurgdrxf table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#frmurgdrxf thead, #frmurgdrxf tbody, #frmurgdrxf tfoot, #frmurgdrxf tr, #frmurgdrxf td, #frmurgdrxf th {
+  border-style: none;
+}
+
+#frmurgdrxf p {
+  margin: 0;
+  padding: 0;
+}
+
+#frmurgdrxf .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 30px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#frmurgdrxf .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#frmurgdrxf .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#frmurgdrxf .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#frmurgdrxf .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#frmurgdrxf .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#frmurgdrxf .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#frmurgdrxf .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#frmurgdrxf .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#frmurgdrxf .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#frmurgdrxf .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#frmurgdrxf .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#frmurgdrxf .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#frmurgdrxf .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#frmurgdrxf .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#frmurgdrxf .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#frmurgdrxf .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#frmurgdrxf .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#frmurgdrxf .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#frmurgdrxf .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#frmurgdrxf .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#frmurgdrxf .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#frmurgdrxf .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#frmurgdrxf .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#frmurgdrxf .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#frmurgdrxf .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#frmurgdrxf .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#frmurgdrxf .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#frmurgdrxf .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#frmurgdrxf .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#frmurgdrxf .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#frmurgdrxf .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#frmurgdrxf .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#frmurgdrxf .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#frmurgdrxf .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#frmurgdrxf .gt_left {
+  text-align: left;
+}
+
+#frmurgdrxf .gt_center {
+  text-align: center;
+}
+
+#frmurgdrxf .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#frmurgdrxf .gt_font_normal {
+  font-weight: normal;
+}
+
+#frmurgdrxf .gt_font_bold {
+  font-weight: bold;
+}
+
+#frmurgdrxf .gt_font_italic {
+  font-style: italic;
+}
+
+#frmurgdrxf .gt_super {
+  font-size: 65%;
+}
+
+#frmurgdrxf .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#frmurgdrxf .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#frmurgdrxf .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#frmurgdrxf .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#frmurgdrxf .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#frmurgdrxf .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#frmurgdrxf .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="Type" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Type</th>
+<th id="\(N\)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">\(N\)</th>
+<th id="Classes" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Classes</th>
+<th id="Avg. class size" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Avg. class size</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="type">A</td>
+<td class="gt_row gt_right" headers="N">400</td>
+<td class="gt_row gt_right" headers="Classes">33.0</td>
+<td class="gt_row gt_right" headers="Avg. class size">15.2</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="type">B</td>
+<td class="gt_row gt_right" headers="N">1000</td>
+<td class="gt_row gt_right" headers="Classes">19.6</td>
+<td class="gt_row gt_right" headers="Avg. class size">25.6</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="type">C</td>
+<td class="gt_row gt_right" headers="N">600</td>
+<td class="gt_row gt_right" headers="Classes">24.9</td>
+<td class="gt_row gt_right" headers="Avg. class size">20.4</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <ul>
-<li>Inspect Type I error rates</li>
-<li>Power of tests</li>
+<li><strong>Cluster sample:</strong> Sample <span class="math inline">\(n_C\)</span> schools using PPS, then sample 1 classroom via SRS, then select all students in classroom.</li>
+<li><strong>Stratified cluster sample:</strong> For each stratum, sample <span class="math inline">\(n_S\)</span> schools using SRS, then sample 1 classroom via SRS, then select all students in classroom.</li>
 </ul>
+</section>
+<section id="educational-survey-results" class="slide level2">
+<h2>Educational survey (results)</h2>
+<h3 id="type-i-error-rates-5-level-n5000">Type I error rates (5% level, <span class="math inline">\(n=5000\)</span>)</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-16-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="educational-survey-results-1" class="slide level2">
+<h2>Educational survey (results)</h2>
+<h3 id="power-analysis">Power analysis</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-17-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="lavaan" class="slide level2">
+<h2><code>{lavaan}</code></h2>
 </section></section>
 <section>
 <section id="summary" class="title-slide slide level1 center">
@@ -1370,11 +3560,32 @@ X^2 \xrightarrow{\text D} \sum_{s=1}^S \delta_s\chi^2_1 \quad \text{as} \quad n\
 </div>
 </div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-agresti2012categorical" class="csl-entry" role="listitem">
+Agresti, Alan. 2012. <em>Categorical Data Analysis</em>. Vol. 792. John Wiley &amp; Sons.
+</div>
+<div id="ref-asparouhov2005sampling" class="csl-entry" role="listitem">
+Asparouhov, Tihomir. 2005. <span>“Sampling Weights in Latent Variable Modeling.”</span> <em>Structural Equation Modeling</em> 12 (3): 411–34.
+</div>
 <div id="ref-bartholomew2002goodness" class="csl-entry" role="listitem">
 Bartholomew, David J, and Shing On Leung. 2002. <span>“A Goodness of Fit Test for Sparse 2p Contingency Tables.”</span> <em>British Journal of Mathematical and Statistical Psychology</em> 55 (1): 1–15.
 </div>
+<div id="ref-cai2006limited" class="csl-entry" role="listitem">
+Cai, Li., Albert. Maydeu‐Olivares, Donna L. Coffman, and David. Thissen. 2006. <span>“Limited‐information Goodness‐of‐fit Testing of Item Response Theory Models for Sparse 2 <span> <sup></sup> </span><span><sup><em>P</em></sup></span><span> <sup></sup> </span> Tables.”</span> <em>British Journal of Mathematical and Statistical Psychology</em> 59 (1): 173–94. <a href="https://doi.org/10.1348/000711005X66419">https://doi.org/10.1348/000711005X66419</a>.
+</div>
+<div id="ref-fuller2009introduction" class="csl-entry" role="listitem">
+Fuller, Wayne A. 2009. <em>Introduction to Statistical Time Series</em>. John Wiley &amp; Sons.
+</div>
 <div id="ref-katsikatsou2012pairwise" class="csl-entry" role="listitem">
 Katsikatsou, Myrsini, Irini Moustaki, Fan Yang-Wallentin, and Karl G Jöreskog. 2012. <span>“Pairwise Likelihood Estimation for Factor Analysis Models with Ordinal Data.”</span> <em>Computational Statistics &amp; Data Analysis</em> 56 (12): 4243–58.
+</div>
+<div id="ref-lindsay1988composite" class="csl-entry" role="listitem">
+Lindsay, Bruce G. 1988. <span>“Composite Likelihood Methods.”</span> In <em>Contemporary <span>Mathematics</span></em>, edited by N. U. Prabhu, 80:221–39. Providence, Rhode Island: American Mathematical Society. <a href="https://doi.org/10.1090/conm/080/999014">https://doi.org/10.1090/conm/080/999014</a>.
+</div>
+<div id="ref-lumley2004analysis" class="csl-entry" role="listitem">
+Lumley, Thomas. 2004. <span>“Analysis of <span>Complex Survey Samples</span>.”</span> <em>Journal of Statistical Software</em> 9 (April): 1–19. <a href="https://doi.org/10.18637/jss.v009.i08">https://doi.org/10.18637/jss.v009.i08</a>.
+</div>
+<div id="ref-mathai1992quadratic" class="csl-entry" role="listitem">
+Mathai, Arakaparampil M, and Serge B Provost. 1992. <em>Quadratic Forms in Random Variables: Theory and Applications</em>. Dekker.
 </div>
 <div id="ref-maydeu2005limited" class="csl-entry" role="listitem">
 Maydeu-Olivares, Alberto, and Harry Joe. 2005. <span>“Limited- and Full-Information Estimation and Goodness-of-Fit Testing in <span class="math inline">\(2^n\)</span> Contingency Tables: A Unified Framework.”</span> <em>Journal of the American Statistical Association</em> 100 (471): 1009–20.
@@ -1393,6 +3604,9 @@ Skinner, C. J. 1989. <span>“Domain Means, Regression and Multivariate Analysis
 </div>
 <div id="ref-varin2011overview" class="csl-entry" role="listitem">
 Varin, Cristiano, Nancy Reid, and David Firth. 2011. <span>“An Overview of Composite Likelihood Methods.”</span> <em>Statistica Sinica</em>, 5–42.
+</div>
+<div id="ref-zhao.joe05" class="csl-entry" role="listitem">
+Zhao, Y, and H. Joe. 2005. <span>“Composite Likelihood Estimation in Multivariate Data Analysis.”</span> <em>Tha Canadian Journal of Statistics</em> 33 (3): 335–56.
 </div>
 </div>
 </section></section>
@@ -1554,7 +3768,7 @@ Varin, Cristiano, Nancy Reid, and David Firth. 2011. <span>“An Overview of Com
         previewLinks: false,
 
         // Transition style (none/fade/slide/convex/concave/zoom)
-        transition: 'none',
+        transition: 'fade',
 
         // Transition speed (default/fast/slow)
         transitionSpeed: 'default',

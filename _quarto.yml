@@ -6,18 +6,20 @@ project:
 
 format:
   ubd-revealjs:
+    transition: fade
+    auto-stretch: false
     width: 1250  # 1050
     height: 760  # 700
     self-contained: false
     chalkboard: true
     toc: true
     toc-depth: 1
-    html-table-processing: none
+    # html-table-processing: none
     
 bibliography: refs.bib
 # csl: apa.csl
 
 execute:
   freeze: auto
-
+  cache: true
 

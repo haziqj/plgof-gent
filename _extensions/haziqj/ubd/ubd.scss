@@ -19,7 +19,7 @@ $white: #fff;
 }
 
 .ubdteal {
-  color: $ubdteal;
+  color: #52ba99;
 }
 
 .ubdyellow {
@@ -530,4 +530,21 @@ div.quarto-figure.quarto-figure-center {
   width: auto !important; /* Return to default width */
   max-width: 100% !important; /* Ensure it can grow beyond 100% of its container */
   // transform: scale(1.2) !important; /* Enforce scaling; adjust as needed */
+}
+
+// Nudge
+.nudge-up-xxl {
+  transform: translateY(-110px);
+}
+
+.nudge-up-xl {
+  transform: translateY(-75px);
+}
+
+.nudge-up-large {
+  transform: translateY(-50px);
+}
+
+.nudge-up {
+  transform: translateY(-25px);
 }

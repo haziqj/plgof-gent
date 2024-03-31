@@ -8,14 +8,18 @@ author:
       - 'Assistant Professor in Statistics, Universiti Brunei Darussalam<br>Visiting Fellow, London School of Economics and Political Science'
       - '<span style="font-style:normal;">[`https://haziqj.ml/pligof-gent/`](https://haziqj.ml/pligof-gent/)</span>'
 date: "15 April 2024"
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r}
 #| echo: false
 library(lavaan.bingof)
 library(lavaan)
+library(semPlot)
 library(gt)
 library(tidyverse)
+library(Matrix)
 
 load("R/p_mult_bern_fig.RData")
 ```
@@ -206,17 +210,205 @@ Photo credits: Unsplash
 :::
 :::::
 
-
-
 ## Definitions
+
+- Let $\by = (y_1, \ldots, y_p)^\top \in\{0,1\}^p$ be a vector of Bernoulli random variables.
+
+- The joint probability of observing any response pattern $\bc_r=(c_{r1},\dots,c_{rp})^\top$, for any $r=1,\dots,R:=2^p$, is given by
+$$
+\pi_r = \Pr(\by = \bc_r) = \Pr(y_1=c_{r1},\dots,y_p=c_{rp}).
+$${#eq-joint-bern-prob}
+and $\sum_{r=1}^R \pi_r = 1$.
+
+- Suppose $h=1,\dots,n$ observations of $\by=\by^{(h)}$ are recorded, and each unit has a probability of selection $1/w_h$. 
+
+- Out of convenience, sampling weights are (typically) normalised so that $\sum_{h=1}^n w_h = n$.
+  - Simple random sampling (SRS): $w_h=1, \forall h$.
+  - Stratified sampling: $w_h = N_s(h)/N$, the stratum fractions.
+  - Etc.
+
+## Multinomial distribution
+
+- Let $p_r = \hat n_r \big/ \sum_h w_h$ be the the $r$th entry of the $R$-vector of proportions $\bp$, with $\hspace{1.4cm}$
+$$
+\hat n_r = \sum_{h=1}^n w_h [\by^{(h)} = \bc_r].
+$${#eq-obs-freq}
+
+::: {.nudge-up-large}
+- The random vector $\hat\bn = (\hat n_1,\dots,\hat n_R)^\top$ follows a multinomial distribution with parameters $n$, $R$, and $\bpi:=(\pi_1,\dots,\pi_R)^\top$.
+:::
+
+::: {.nudge-up-xxl}
+$$
+\E(\hat\bn) = n\bp = n\bpi \hspace{2em}\text{and}\hspace{2em} \Var(\hat\bn) = n\big( \ \myoverbrace{\diag(\bpi) - \bpi\bpi^\top}{\bSigma} \ \big)
+$$
+:::
+
+::: {.nudge-up-xxl}
+- It is widely known that [@agresti2012categorical] for IID samples that
+$$
+\sqrt n (\bp - \bpi) \xrightarrow{\text D} {\N}_R(\bzero, \bSigma)
+$${#eq-multin-clt}
+as $n\to\infty$. This also works for complex sampling [@fuller2009introduction], but $\bSigma$ may take a different form.
+
+:::
 
 ## Parametric models
 
-## Maximum likelihood estimation
+
+::: {.columns}
+
+::: {.column width=37%}
+
+![](figures/sem_path.png)
+
+:::
+
+::: {.column width=63%}
+
+::: {.absolute top=25}
+- E.g. binary factor model with underlying variable approach (s.t. constraints)
+$$
+\begin{gathered}
+y_i = \begin{cases}
+1 & y_i^* > \tau_i \\
+0 & y_i^* \leq \tau_i
+\end{cases} \\
+\by^* = \bLambda\bfeta + \bepsilon \\
+\bfeta \sim {\N}_q(\bzero, \bPsi), \hspace{3pt}
+\bepsilon \sim {\N}_p(\bzero, \bTheta_{\epsilon})
+\end{gathered}
+$${#eq-facmod}
+:::
+
+::: {.fragment fragment-index=1 .absolute top=355}
+- The log-likelihood for 
+$\btheta^\top = ($[$\blambda$]{.ubdred}$,$[$\brho$]{.ubdteal}$,$[$\btau$]{.ubdblue}$)$ is $\hspace{3.8cm}$
+$$
+\log L(\btheta \mid \by) = \sum_{r=1}^R \hat n_r \log \pi_r(\btheta)
+$${#eq-facmod-loglik}
+where $\pi_r(\btheta) = \int \phi_p(\by^* \mid \bzero, \bLambda\bPsi\bLambda^\top + \bTheta_\epsilon) \dint \by^*$.
+:::
+
+<!-- ::: {.fragment fragment-index=2} -->
+::: {.fragment .fade-in .absolute top=643}
+- \normalsize FIML may be difficult (high-dimensional integral; perfect separation).
+:::
+<!-- ::: -->
+
+:::
+
+:::
+
+## Composite likelihood {.scrollable}
+
+- Composite likelihood is an inference function derived by multiplying a collection of component likelihoods
+
+- Because each individual component is a conditional or marginal density, the resulting estimating equation obtained from the derivative of the composite log-likelihood is an unbiased estimating equation
+
+- Because the components are multiplied, whether or not they are independent, the inference function has the properties of likelihood from a misspeciﬁed model
+
+- Terminology
+  - Pseudo-likelihood: Function of parameter and data that behaves in "some respect" as a likelihood
+  - Composite likelihood: An example of pseudo-likelihood, based on terms that are marginal or conditional densities
+  - Quasi-likelihood: Wedderburn's likelihood which is not a pdf or misspecified likelihoods
+  - Limited information methods: Inference procedures based on low-dimensional margins.
+
+- Let $\{\cA_1,\dots,\cA_K\}$ a set of marginal or conditional events (partitioning the variable space). Each set $\cA_k$ is associated with a component likelihood $L(\btheta \mid \by \in \cA_k)$. The composite likelihood is defined as [@lindsay1988composite]
+$$
+\cL(\btheta \mid \by) = \prod_{k=1}^K L(\btheta \mid \by \in \cA_k)
+$$
+
+- Some history
+  - Besag (1974) introduced the idea of composite likelihood for spatial data
+  - Liang (1987) studies composite conditional likelihoods
+  - Molenberghs and Verbeke (2005) in the context of longitudinal studies
+  - Independence likelihood
+  - Pairwise likelihood
+  
+- Conceptually
+
+## An analogy 
+
+::: {.fragment .fade-out fragment-index=1 .absolute top=30 left=125}
+![](figures/Jigsaw.png){width=85%}
+:::
+
+::: {.fragment .fade-in fragment-index=1 .absolute top=30 left=125}
+![](figures/stage1.png){width=85%}
+:::
+
+::: {.fragment .fade-in .absolute top=30 left=125}
+![](figures/stage2.png){width=85%}
+:::
+
+::: {.fragment .fade-in .absolute top=30 left=125}
+![](figures/stage3.png){width=85%}
+:::
+
+::: {.fragment .fade-in .absolute top=30 left=125}
+![](figures/stage4.png){width=85%}
+:::
+
+::: {.fragment .fade-in .absolute top=30 left=125}
+![](figures/stage5.png){width=85%}
+:::
+
+::: {.fragment .fade-in .absolute top=30 left=125}
+![](figures/stage6.png){width=85%}
+:::
+
+::: {.fragment }
+
+::: {.absolute top=30 left=125}
+![](figures/full_jigsaw2.png){width=85%}
+:::
+
+::: {.absolute left=235 top=300}
+[**_Enjoy the approximate picture instead of worrying<br>not being able to see every blade of grass._**]{.ubdtealbg}
+:::
+
+:::
 
 ## Pairwise likelihood estimation
 
-## Pairs of variables and pairwise probabilities
+- For pairs of variables $y_i$ and $y_j$, $i,j=1,\dots,n$, and $i<j$, define $\hspace{5cm}$ 
+$$
+\pi_{cc'}^{(ij)}(\btheta) = \Pr_{\btheta}(y_i = c, y_i = c'), \hspace{2em} c,c'\in\{0,1\}.
+$${#eq-pairwise}
+There are $\tilde R = 4 \times \binom{p}{2}$ such probabilities, with $\sum_{y_i,y_j} \pi_{y_iy_j}^{(ij)}(\btheta) = 1$.
+
+- The pairwise log-likelihood takes the form [@katsikatsou2012pairwise]
+$$
+\log \pL(\btheta \mid \by) = \sum_{i<j} \sum_{c}\sum_{c'} \hat n_{cc'}^{(ij)} \log \pi_{y_iy_j}^{(ij)}(\btheta),
+$${#eq-pairwise-loglik}
+where $\hat n_{cc'}^{(ij)} = \sum_h w_h [\by^{(h)}_i = c, \by^{(h)}_j = c']$.
+
+- Evaluation of @eq-pairwise-loglik involves only bivariate normal integrals:
+$$
+\pi_{cc'}^{(ij)}(\btheta) = \int\int \phi_2\big(\by^*_{ij} \mid \bzero, \bSigma_{y^*}^{(ij)} (\btheta)\big) \dint \by^*_{ij},
+$$
+
+## MPLE properties
+
+- Let $\mlepl = \argmax_{\btheta} \pL(\btheta \mid \by)$. Under certain regularity conditions, [@varin2011overview]
+$$
+\sqrt n (\mlepl - \btheta) \xrightarrow{\text D} {\N}_m
+\left(
+\bzero, 
+\left\{ \cH(\btheta)\cJ(\btheta)^{-1}\cH(\btheta) \right\}^{-1}
+\right),\hspace{1em} \text{where}
+$${#eq-asymptotic-mple}
+   - $\cH(\btheta)=-\E\nabla^2\log \pL(\btheta \mid \by^{(h)})$ is the *sensitivity matrix*; and
+   - $\cJ(\btheta)=\Var\big(\nabla\log\pL(\btheta \mid \by^{(h)})\big)$ is the *variability matrix*.
+
+- Estimators of these matrices are given by [@zhao.joe05;@asparouhov2005sampling]
+$$
+\begin{aligned}
+\bH &= - \frac{1}{\sum_h w_h} \sum_h \nabla^2\log \pL(\btheta \mid \by^{(h)}) \Bigg|_{\btheta = \mlepl} \hspace{2em}\text{and} \\
+\bJ &= \frac{1}{\sum_h w_h} \sum_h \nabla\log \pL(\btheta \mid \by^{(h)}) \nabla\log \pL(\btheta \mid \by^{(h)})^T \Bigg|_{\btheta = \mlepl}.
+\end{aligned}
+$${#eq-hessian}
 
 # Limited information GOF tests
 
@@ -414,7 +606,7 @@ $$
 $$
 
 ::: {.aside}
-See @reiser1996analysis and @maydeu2005limited.
+See @reiser1996analysis and @maydeu2005limited for further details.
 :::
 
 ## Some theory {.scrollable}
@@ -453,14 +645,14 @@ $$
 X^2  = n \hat\be_2^\top \hat\bXi \hat\be_2,
 $$
 where $\bXi(\hat\btheta) =: \hat\bXi \xrightarrow{\text P} \bXi$ is some $S\times S$ weight matrix. 
-Generally, $X^2$ is reffered to a chi square distribution under $H_0$, because
+Generally, $X^2$ is reffered to a chi square distribution under $H_0$, because [@mathai1992quadratic]
 $$
 X^2 \xrightarrow{\text D} \sum_{s=1}^S \delta_s\chi^2_1 \quad \text{as} \quad n\to\infty,
 $$
-where the $\delta_s$ are the eigenvalues of $\bM = \bOmega_2\bXi$. 
+where the $\delta_s$ are the eigenvalues of $\bM = \bOmega_2\bXi$. Two cases:
 
 1. If $\bM$ is idempotent, then the chi square is exact.
-2. Otherwise, it is a sum of scaled chi squares.
+2. Otherwise, it is a sum of scaled chi squares. Can be *approximated* by a chi square with degrees of freedom needing estimation [@cai2006limited].
 
 
 <!-- - **Wald test**. Set $\bXi=\bOmega_2^+$, the Moore-Penrose generalised inverse of $\bOmega_2$. Then $X^2$ -->
@@ -500,27 +692,439 @@ where the $\delta_s$ are the eigenvalues of $\bM = \bOmega_2\bXi$.
 
 :::
 
-
-
-
-
-
 ::: aside
 1--@reiser1996analysis; 2--@maydeu2005limited; 4--@bartholomew2002goodness;<br>5,6--@maydeu2008overview.
 :::
 
 # Simulation results
 
+## Factor models
+
+<!-- Five factor models with varying number of items and latent factors are considered. -->
+
+::: {.panel-tabset}
+
+### M1: `1F5V`
+
+::::: {.columns}
+
+:::: {.column width=60%}
+```{r sem_path_mod1}
+#| out-width: 100%
+#| fig-height: 8
+mod <- "
+eta1  =~ y1 + y2 + y3 + y4 + y5
+extra =~ y1  + y3 + y5
+"
+dat <- gen_data_bin(1, seed = 197)
+fit <- sem(mod, dat, std.lv = TRUE) %>% suppressWarnings()
+
+semPaths(fit, intercepts = FALSE, #residuals = TRUE, whatLabels = "est",  
+         groups = list(c("eta1", paste0("y", c(2, 4))), c("extra")),
+         manifests = paste0("y", 5:1),
+         latents = c("extra", "eta1"),
+         # color = c("#28BBECFF", "#7A0403FF"),
+         color = c("#00A5CF", "#DE1A1A"),
+         node.width = 0.9, nCharNodes = 0, sizeMan = 12, sizeLat = 12, 
+         thresholds = FALSE, rotation = 3, exoCov = FALSE)
+```
+::::
+
+:::: {.column width=40%}
+```{r}
+print_theta_vals <- function(model_no) {
+  # Lambda
+  cat("Loadings\n")
+  Lambda <- lavaan.bingof:::get_Lambda(model_no)
+  Lambda <- as(Lambda, "sparseMatrix")
+  print(Lambda)
+  cat("\n")
+  # tau
+  cat("Thresholds\n")
+  print(lavaan.bingof:::get_tau(model_no))
+  cat("\n")
+  # rho
+  cat("Factor correlations\n")
+  Psi <- lavaan.bingof:::get_Psi(model_no)
+  # Psi <- as(Psi, "sparseMatrix")
+  print(Psi)
+}
+options(width=30)
+print_theta_vals(1)
+```
+::::
+
+:::::
+
+### M2: `1F8V`
+
+::::: {.columns}
+
+:::: {.column width=60%}
+```{r sem_path_mod2}
+#| out-width: 100%
+#| fig-height: 8
+mod <- "
+eta1  =~ y1 + y2 + y3 + y4 + y5 + y6 + y7 + y8
+extra =~ y1 + y3 + y4 + y5 + y7 + y8
+# eta1 ~~ 0*extra
+# eta1 ~~ 1*eta1
+"
+dat <- gen_data_bin(2, seed = 197)
+fit <- sem(mod, dat, std.lv = TRUE) %>% suppressWarnings()
+
+semPaths(fit, intercepts = FALSE, #residuals = TRUE, whatLabels = "est",  
+         groups = list(c("eta1", paste0("y", c(2, 6))), c("extra")),
+         manifests = paste0("y", 8:1),
+         latents = c("extra", "eta1"),
+         # color = c("#28BBECFF", "#7A0403FF"),
+         color = c("#00A5CF", "#DE1A1A"),
+         node.width = 0.9, nCharNodes = 0, sizeMan = 10, sizeLat = 12, 
+         thresholds = FALSE, rotation = 3, exoCov = FALSE)
+# "#30123BFF" "#28BBECFF" "#A2FC3CFF" "#FB8022FF" "#7A0403FF"
+```
+::::
+
+:::: {.column width=40%}
+```{r}
+options(width=30)
+print_theta_vals(2)
+```
+::::
+
+:::::
+
+### M3: `1F15V`
+
+::::: {.columns}
+
+:::: {.column width=60%}
+```{r sem_path_mod3}
+#| out-width: 100%
+#| fig-height: 8
+mod <- "
+eta1  =~ y1 +  y2 +  y3 +  y4 +  y5 + 
+         y6 +  y7 +  y8 +  y9 + y10 +
+        y11 + y12 + y13 + y14 + y15
+extra =~ y1 +  y3 +  y4 +  y5 + 
+         y6 +  y7 +  y9 + y10 +
+        y11 + y12 + y13 + y15
+# eta1 ~~ 0*extra
+# eta1 ~~ 1*eta1
+"
+dat <- gen_data_bin(3, seed = 197)
+fit <- sem(mod, dat, std.lv = TRUE) %>% suppressWarnings()
+
+semPaths(fit, intercepts = FALSE, #residuals = TRUE, whatLabels = "est",  
+         groups = list(c("eta1", paste0("y", c(2, 8, 14))), c("extra")),
+         manifests = paste0("y", 15:1),
+         latents = c("extra", "eta1"),
+         # color = c("#28BBECFF", "#7A0403FF"),
+         color = c("#00A5CF", "#DE1A1A"),
+         nCharNodes = 0, sizeMan = 4, sizeLat = 12, 
+         thresholds = FALSE, rotation = 3, exoCov = FALSE)
+# "#30123BFF" "#28BBECFF" "#A2FC3CFF" "#FB8022FF" "#7A0403FF"
+```
+::::
+
+:::: {.column width=40%}
+```{r}
+print_theta_vals(3)
+```
+::::
+
+:::::
+
+### M4: `2F10V`
+
+::::: {.columns}
+
+:::: {.column width=60%}
+
+```{r sem_path_mod4}
+#| out-width: 100%
+#| fig-height: 8
+mod <- "
+eta1  =~ y1 +  y2 +  y3 +  y4 +  y5 
+eta2  =~ y6 +  y7 +  y8 +  y9 + y10 
+extra  =~ y1 +  y2 +  y3 +  y4 +  y5 + 
+         y6 +  y7 +  y8 +  y9 + y10
+eta1 ~~ 0*extra
+eta2 ~~ 0*extra
+# eta1 ~~ 0.3*eta2
+"
+dat <- gen_data_bin(4, seed = 197)
+fit <- sem(mod, dat, std.lv = TRUE) %>% suppressWarnings()
+
+semPaths(fit, intercepts = FALSE, what = "par", 
+         whatLabels = "hide", #residuals = TRUE, whatLabels = "est",  
+         groups = list(c("eta1", paste0("y", 1:5)), 
+                       c("eta2", paste0("y", 6:10)), 
+                       c("extra")),
+         manifests = paste0("y", 10:1),
+         latents = c("extra", "eta2", "eta1"),
+         # color = c("#30123BFF", "#A2FC3CFF", "#7A0403FF"),
+         color = c("#00A5CF", "#29BF12", "#DE1A1A"),
+         node.width = 0.9, nCharNodes = 0, sizeMan = 6, sizeLat = 9, 
+         thresholds = FALSE, rotation = 3, weighted = FALSE)
+```
+::::
+
+:::: {.column width=40%}
+```{r}
+print_theta_vals(4)
+```
+::::
+
+:::::
+
+### M5: `3F15V`
+
+::::: {.columns}
+
+:::: {.column width=60%}
+```{r sem_path_mod5}
+#| out-width: 100%
+#| fig-height: 8
+mod <- "
+eta1  =~  y1 +  y2 +  y3 +  y4 +  y5 
+eta2  =~  y6 +  y7 +  y8 +  y9 + y10 
+eta3  =~ y11 + y12 + y13 + y14 + y15
+extra  =~ y1 +  y2 +  y3 +  y4 +  y5 + 
+          y6 +  y7 +  y8 +  y9 + y10 +
+         y11 + y12 + y13 + y14 + y15
+eta1 ~~ 0*extra
+eta2 ~~ 0*extra
+eta3 ~~ 0*extra
+"
+dat <- gen_data_bin(5, seed = 197)
+fit <- sem(mod, dat, std.lv = TRUE) %>% suppressWarnings()
+
+semPaths(fit, intercepts = FALSE, what = "par", 
+         whatLabels = "hide", #residuals = TRUE, whatLabels = "est",  
+         groups = list(c("eta1", paste0("y", 1:5)), 
+                       c("eta2", paste0("y", 6:10)), 
+                       c("eta3", paste0("y", 11:15)), 
+                       c("extra")),
+         manifests = paste0("y", 15:1),
+         latents = c("extra", "eta3", "eta2", "eta1"),
+         # color = c("#30123BFF", "#1AE4B6FF", "#FABA39FF", "#7A0403FF"),
+         color = c("#00A5CF", "#29BF12", "#FFBF00", "#DE1A1A"),
+         node.width = 0.9, nCharNodes = 0, sizeMan = 5, sizeLat = 9, 
+         thresholds = FALSE, rotation = 3, weighted = FALSE)
+```
+::::
+
+:::: {.column width=40%}
+```{r}
+print_theta_vals(5)
+```
+::::
+
+:::::
+
+:::
+
 ## Informative sampling
 
-- Check bias, coverage, and SD/SE of the estimators
+- Using M1: `1F5V`, generate a fixed population size of $N$. Then, assign each unit $h$ a probability of selection as follows:
+$$
+w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
+$$
+Larger values of $y_1^*$ result in smaller probabilities of selection.
 
-## `{lavaan}`
+- Sample $n\in\{500, 1000, 5000\}$ units from a population of size $N=n/0.01$ which ensures no need for FPC factor [@lumley2004analysis].
+
+- In repeated sampling ($B=1000$), interested in
+  - Bias
+  - Coverage for 95% CI
+  - SD/SE ratio
+
+## Informative sampling (results) {.scrollable}
+
+### Bias
+
+```{r}
+load("R/sims_uneq_samp.RData")
+tab_bias_gt |>
+  fmt_number(columns = -"truth", decimals = 2) |>
+  tab_options(
+    table.font.size = "30px"
+  )
+```
+
+## Informative sampling (results) {.scrollable}
+
+### Coverage and SD/SE ratio
+
+```{r}
+tab_se_gt |>
+  tab_options(
+    table.font.size = "30px"
+  )
+```
 
 ## Educational survey
 
-- Inspect Type I error rates
-- Power of tests
+Simulate a population of $1e6$ students clustered within classrooms and stratified by school type (correlating with abilities). 
+
+::: {.columns}
+
+::: {.column width=60%}
+```{r}
+#| label: pop_byregion_vars
+#| out-width: 100%
+#| fig-height: 2.3
+#| fig-width: 5
+pop <- make_population(model_no = 1, seed = 123)
+prop1 <- summarise(pop, across(starts_with("y"), mean)) %>% unlist()
+
+pop %>%
+  select(type, starts_with("y")) %>%
+  pivot_longer(-type) %>%
+  mutate(value = factor(value),
+         type = factor(type, levels = c("C", "B", "A"))) %>%
+  ggplot(aes(type, fill = value)) +
+  geom_bar(position = "fill") +
+  geom_hline(data = tibble(y = prop1, name = names(prop1)),
+             aes(yintercept = prop1, linetype = "Pop. Avg.")) +
+  scale_linetype_manual(values = "dashed", name = NULL) +
+  facet_grid(~ name, scales = "free_y") +
+  coord_flip() +
+  labs(x = "School type", y = "Population proportion", fill = "Response") +
+  theme_bw() +
+  theme(legend.position = "top", 
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.title = element_text(size = 9)) +
+  scale_fill_manual(values = c("#00A5CF", "#DE1A1A"))
+```
+:::
+
+::: {.column width=40%}
+<br>
+<!-- | Type | $N$  | Avg. Classes | Avg. class size | -->
+<!-- |------|------|--------------|-----------------| -->
+<!-- | A    | 400  | 33.0         | 15.2            | -->
+<!-- | B    | 1000 | 19.6         | 25.7            | -->
+<!-- | C    | 600  | 24.9         | 20.4            | -->
+<!-- | -->
+<!-- : {.table-ubd} -->
+
+```{r}
+n_schools <-
+  pop |>
+  summarise(
+    N = n_distinct(school),
+    .by = c(type)
+  )
+
+n_classes <-
+  pop |>
+  summarise(
+    Classes = n_distinct(class),
+    .by = c(type, school)
+  ) |>
+  summarise(Classes = mean(Classes), .by = type)
+
+class_size <-
+  pop |>
+  summarise(
+    class_size = n(),
+    .by = c(type, school, class)
+  ) |>
+  summarise(`Avg. class size` = mean(class_size), .by = type)
+
+n_schools |>
+  left_join(n_classes) |>
+  left_join(class_size) |>
+  gt() |>
+  fmt_number(columns = -"N", decimals = 1) |>
+  cols_label(N = md("$N$"), type = "Type") |>
+  tab_options(
+    table.font.size = "30px"
+  )
+```
+
+:::
+
+:::
+
+- **Cluster sample:** Sample $n_C$ schools using PPS, then sample 1 classroom via SRS, then select all students in classroom.
+- **Stratified cluster sample:** For each stratum, sample $n_S$ schools using SRS, then sample 1 classroom via SRS, then select all students in classroom.
+
+## Educational survey (results) 
+
+### Type I error rates (5% level, $n=5000$)
+
+```{r}
+#| out-width: 100%
+#| fig-width: 7
+#| fig-height: 3.8
+bind_rows(
+  res_srs_type1,
+  res_complex_type1
+) |>
+  select(name, sim, n, rej_rate = rej_rate5, crit = crit5, sampling) |>
+  # filter(name %in% c("Wald", "WaldDiag,MM3", "Pearson,MM3")) |>
+  filter(n == 5000) |>
+  mutate(sampling = case_when(
+    is.na(sampling) ~ "SRS",
+    TRUE ~ sampling
+    ),
+    sampling = factor(sampling, levels = c("SRS", "Cluster", "Strat-clust"))
+  ) |>
+  mutate(
+    name = factor(name, labels = c("Wald", "WaldVCF", "WaldDiag", "Pearson", "RSS", "Multn")),
+    name = factor(name, levels = rev(levels(name)))
+  ) |>
+  filter(sampling != "Stratified") |>
+  ggplot(aes(rej_rate, name, col = sampling)) +
+  geom_vline(aes(xintercept = 5 / 100), linetype = "dashed") +
+  geom_pointrange(
+    aes(xmin = rej_rate - crit, xmax = rej_rate + crit),
+    position = position_dodge(width = 0.5)
+  ) +
+  facet_grid(. ~ sim) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(y = NULL, x = expression("Rejection rate"), col = "Sampling\ndesign")
+```
+
+## Educational survey (results) 
+
+### Power analysis
+
+```{r}
+#| out-width: 100%
+#| fig-width: 7
+#| fig-height: 3.8
+bind_rows(
+  res_srs_power,
+  res_complex_power
+) |>
+  select(name, sim, n, rej_rate = rej_rate5, crit = crit5, sampling) |>
+  filter(name %in% c("Wald", "WaldDiag,MM3", "Pearson,MM3")) |>
+  mutate(sampling = case_when(
+    is.na(sampling) ~ "SRS",
+    TRUE ~ sampling
+    ),
+    sampling = factor(sampling, levels = c("SRS", "Cluster", "Strat-clust"))
+  ) |>
+  # mutate(
+  #   name = factor(name, labels = c("Wald", "WaldVCF", "WaldDiag", "Pearson", "RSS", "Multn")),
+  #   name = factor(name, levels = rev(levels(name)))
+  # ) |>
+  filter(sampling != "Stratified") |>
+  ggplot(aes(n, rej_rate, col = sampling)) +
+  geom_line() +
+  facet_grid(name ~ sim) +
+  theme_bw() +
+  theme(legend.position = "top") +
+  labs(x = "Sample size (n)", y = "Rejection rate", col = "Sampling design")
+```
+
+
+## `{lavaan}`
 
 # Summary
 
