@@ -1,5 +1,8 @@
 project:
   title: "Pl-ligof-gent"
+  output-dir: "docs"
+  render:
+    - index.qmd
 
 format:
   ubd-revealjs:
@@ -10,8 +13,10 @@ format:
     toc: true
     toc-depth: 1
     html-table-processing: none
+    
 bibliography: refs.bib
 csl: apa.csl
+
 execute:
   freeze: auto
 
