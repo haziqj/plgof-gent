@@ -103,10 +103,15 @@ Photo credits: Unsplash
 | 2 | 1 | 1 | 0 | 1 | 1 | 11011 | 153 |
 | 3 | 1 | 0 | 1 | 1 | 1 | 10111 | 71 |
 | $\vdots$ |  |  | $\vdots$ |  |  | $\vdots$ | $\vdots$ |
-| $R$ | 0 | 1 | 1 | 1 | 0 | 01110 | 1 |
+| [$R$]{.ubdbluebg} | 0 | 1 | 1 | 1 | 0 | 01110 | 1 |
 |  |  |  |  |  |  |  |  |
 : {.table-ubd }
 :::
+
+::: {.fragment .fade-in-then-out fragment-index=2 .absolute left=250 top=500}
+[$R = 2^p$]{.ubdbluebg}
+:::
+
 
 ::: {.fragment .fade-in-then-out fragment-index=3 .absolute left=0 top=80}
 | $r$ | Pattern | Obs. freq |
@@ -115,7 +120,7 @@ Photo credits: Unsplash
 | 2 | 11011 | 153 |
 | 3 | 10111 | 71 |
 | $\vdots$ | $\vdots$ | $\vdots$ |
-| 32 | 01110 | 1 |
+| [32]{.ubdblue} | 01110 | 1 |
 |  |  |  |
 : {.table-ubd }
 :::
@@ -132,43 +137,76 @@ Photo credits: Unsplash
 : {.table-ubd }
 :::
 
-::: {.fragment .fade-in fragment-index=5 .absolute left=0 top=80}
+::: {.fragment .fade-in-then-out fragment-index=5 .absolute left=0 top=80}
 | $r$ | Pattern | Obs. freq | Exp. freq |
 |:---:|:---:|:---:|:---:|
 | 1 | 11111 | 343 | 342.1 |
 | 2 | 11011 | 153 | 151.3 |
 | 3 | 10111 | 71 | 62.81 |
 | $\vdots$ | $\vdots$ | $\vdots$ | $\vdots$ |
-| 28 | 01110 | [**1**]{.ubdred} | 1.831 |
-| 29 | 01110 | [**1**]{.ubdred} | 3.276 |
-| 30 | 01110 | [**1**]{.ubdred} | 0.948 |
-| 31 | 01110 | [**0**]{.ubdred} | 0.013 |
-| 32 | 01110 | [**0**]{.ubdred} | 0.009 |
+| 28 | 01110 | [**1**]{.ubdredbg} | 1.831 |
+| 29 | 01110 | [**1**]{.ubdredbg} | 3.276 |
+| 30 | 01110 | [**1**]{.ubdredbg} | 0.948 |
+| 31 | 01110 | [**0**]{.ubdredbg} | 0.013 |
+| 32 | 01110 | [**0**]{.ubdredbg} | 0.009 |
 |  |  |  |  |
 : {.table-ubd }
 :::
 
-::: {.absolute left="600px"}
+::: {.fragment .fade-in-then-out fragment-index=6 .absolute left=0 top=80}
+| $r$ | Pattern | Obs. freq | [Exp. freq]{.ubdyellowbg} |
+|:---:|:---:|:---:|:---:|
+| 1 | 11111 | 343 | 342.1 |
+| 2 | 11011 | 153 | 151.3 |
+| 3 | 10111 | 71 | 62.81 |
+| $\vdots$ | $\vdots$ | $\vdots$ | $\vdots$ |
+| 28 | 01110 | 1 | 1.831 |
+| 29 | 01110 | 1 | 3.276 |
+| 30 | 01110 | 1 | 0.948 |
+| 31 | 01110 | 0 | 0.013 |
+| 32 | 01110 | 0 | 0.009 |
+|  |  |  |  |
+: {.table-ubd }
+:::
 
+::: {.fragment .fade-in fragment-index=7 .absolute left=0 top=80}
+| $r$ | Pattern | [Obs. freq]{.ubdtealbg} | Exp. freq |
+|:---:|:---:|:---:|:---:|
+| 1 | 11111 | 360.9 | 342.1 |
+| 2 | 11011 | 181.2 | 151.3 |
+| 3 | 10111 | 68.05 | 62.81 |
+| $\vdots$ | $\vdots$ | $\vdots$ | $\vdots$ |
+| 28 | 01110 | 1.716 | 1.831 |
+| 29 | 01110 | 1.120 | 3.276 |
+| 30 | 01110 | 0.591 | 0.948 |
+| 31 | 01110 | 0 | 0.013 |
+| 32 | 01110 | 0 | 0.009 |
+|  |  |  |  |
+: {.table-ubd }
+:::
+
+::::: {.absolute left=600}
 ::: {.fragment fragment-index=5}
-- [**Sparsity**]{.ubdred} affects reliability of goodness-of-fit tests.
-  - Limited information tests
+- [**Sparsity**]{.ubdredbg} affects reliability of goodness-of-fit tests.
+  - Limited information tests [@reiser1996analysis; @bartholomew2002goodness;  @maydeu2005limited]
 :::
+:::::
 
+::::: {.absolute left=600 top=315}
 ::: {.fragment fragment-index=6}
-
-- Computational burden of likelihood-based models.
-  - Pairwise likelihood
-
+- [**Computational burden**]{.ubdyellowbg} of likelihood-based models.
+  - Pairwise likelihood [@varin2011overview; @katsikatsou2012pairwise]
 :::
+:::::
 
+::::: {.absolute left=600 top=532}
 ::: {.fragment fragment-index=7}
-
-- Unequal probability sampling (e.g. due to a complex design)
-  - Incorporate design weights
+- [**Unequal probability sampling**]{.ubdtealbg} (e.g. due to a complex design)
+  - Incorporate design weights [@skinner1989domain; @muthen1995complexa]
 :::
+:::::
 
-:::
+
 
 ## Definitions
 

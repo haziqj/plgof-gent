@@ -12,6 +12,8 @@ $ubdblack: #230C0F;
 $ubdgray: #999;
 $white: #fff;
 
+// Colour text
+
 .ubdblue {
   color: $ubdblue;
 }
@@ -32,29 +34,34 @@ $white: #fff;
   color: $ubdgray;
 }
 
+// Background text fill
 
-.bg-ubdblue {
+.ubdbluebg {
+  color: $white;
   background-color: $ubdblue;
-  padding: 0.1em;
+  padding-left: 0.2em;
+  padding-right: 0.2em;
   border-radius: 5px;
   display: inline-block;
 }
 
-.bg-ubdred {
+.ubdredbg {
+  color: $white;
   background-color: $ubdred;
-  padding: 0.1em;
+  padding-left: 0.2em;
+  padding-right: 0.2em;
   border-radius: 5px;
   display: inline-block;
 }
 
-.bg-ubdyellow {
+.ubdyellowbg {
   background-color: $ubdyellow;
   padding: 0.1em;
   border-radius: 5px;
   display: inline-block;
 }
 
-.bg-ubdteal {
+.ubdtealbg {
   background-color: $ubdteal;
   padding: 0.1em;
   border-radius: 5px;
@@ -223,9 +230,9 @@ $selection-bg: $ubdblue !default;
     content: $whitecircle;
     color: mix($ubdblue, white, 60%);
     display: inline-block;
-    width: 1em;
-    margin-left: -1em;
-    margin-right: 0.5em;
+    width: 0.3em;
+    margin-left: -1.2em;
+    margin-right: 0.8em;
   }
 }
 

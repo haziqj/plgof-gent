@@ -15,7 +15,7 @@ format:
     html-table-processing: none
     
 bibliography: refs.bib
-csl: apa.csl
+# csl: apa.csl
 
 execute:
   freeze: auto
