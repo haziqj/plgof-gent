@@ -45,7 +45,7 @@ power_sim <- function(i = 1, samp_size = 1000, model_no = 1) {
 res <-
   expand_grid(
     samp_size = c(500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000),
-    model_no = 2
+    model_no = 1:5
   ) |>
   mutate(res = list(NA))
 
