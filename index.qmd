@@ -34,10 +34,27 @@ load("R/p_mult_bern_fig.RData")
 cat(readr::read_file("maths_shortcuts.tex"))
 ``` 
 
-Some notes
+<!-- - Check how to identify source of misfit (I think there's a reference in Olivares paper) -->
 
-- Check how to identify source of misfit (I think there's a reference in Olivares paper)
-- Note nomenclature: Pseudo-likelihood, composite likelihood, pairwise likelihood, etc.
+
+
+::: {.columns}
+
+::: {.column width="50%"}
+![Irini Moustaki<br>*London School of Economics and Political Science*](https://irmoustaki.github.io/Irini2022.jpg){height=350px}
+:::
+
+::: {.column width="50%"}
+![Chris Skinner (1954-2020)<br>*London School of Economics and Political Science*](https://blogs.city.ac.uk/addresponse/files/2014/09/Christopher_Skinner_4431-1sqbwwa-200x300.jpg){height=350px}
+:::
+
+:::
+
+<br>
+
+::: {.nudge-up-large}
+> H Jamil, I Moustaki, C Skinner. 2023+. *Pairwise likelihood estimation and limited information goodness-of-fit test statistics for binary factor analysis models under complex survey sampling.* Manuscript under revision.
+:::
 
 # Introduction 
 
@@ -300,33 +317,46 @@ where $\pi_r(\btheta) = \int \phi_p(\by^* \mid \bzero, \bLambda\bPsi\bLambda^\to
 
 :::
 
-## Composite likelihood {.scrollable}
+## Composite likelihood
 
-- Composite likelihood is an inference function derived by multiplying a collection of component likelihoods
+- Terminology: Pseudo-likelihood, quasi-likelihood (a la Wedderburn or misspecified models), limited information methods.
 
-- Because each individual component is a conditional or marginal density, the resulting estimating equation obtained from the derivative of the composite log-likelihood is an unbiased estimating equation
-
-- Because the components are multiplied, whether or not they are independent, the inference function has the properties of likelihood from a misspeciﬁed model
-
-- Terminology
-  - Pseudo-likelihood: Function of parameter and data that behaves in "some respect" as a likelihood
-  - Composite likelihood: An example of pseudo-likelihood, based on terms that are marginal or conditional densities
-  - Quasi-likelihood: Wedderburn's likelihood which is not a pdf or misspecified likelihoods
-  - Limited information methods: Inference procedures based on low-dimensional margins.
-
-- Let $\{\cA_1,\dots,\cA_K\}$ a set of marginal or conditional events (partitioning the variable space). Each set $\cA_k$ is associated with a component likelihood $L(\btheta \mid \by \in \cA_k)$. The composite likelihood is defined as [@lindsay1988composite]
+- Let $\{\cA_1,\dots,\cA_K\}$ a set of marginal or conditional events (partitioning the variable space). The composite likelihood is defined as [@lindsay1988composite]
 $$
 \cL(\btheta \mid \by) = \prod_{k=1}^K L(\btheta \mid \by \in \cA_k)
 $$
 
-- Some history
-  - Besag (1974) introduced the idea of composite likelihood for spatial data
-  - Liang (1987) studies composite conditional likelihoods
-  - Molenberghs and Verbeke (2005) in the context of longitudinal studies
-  - Independence likelihood
-  - Pairwise likelihood
-  
-- Conceptually
+::: {.nudge-up-large}
+
+- Component likelihoods $L(\btheta \mid \by \in \cA_k)$ are either *conditional* [@besag1974spatial] or *marginal* densities.
+
+- Composite likelihood enjoys nice features [@varin2011overview]: relatively efficient, robust, and easier to maximise (smoother surface).
+
+:::
+
+<!-- - Composite likelihood is an inference function derived by multiplying a collection of component likelihoods -->
+
+<!-- - Because each individual component is a conditional or marginal density, the resulting estimating equation obtained from the derivative of the composite log-likelihood is an unbiased estimating equation -->
+
+<!-- - Because the components are multiplied, whether or not they are independent, the inference function has the properties of likelihood from a misspeciﬁed model -->
+
+<!-- - Terminology -->
+<!--   - Pseudo-likelihood: Function of parameter and data that behaves in "some respect" as a likelihood -->
+<!--   - Composite likelihood: An example of pseudo-likelihood, based on terms that are marginal or conditional densities -->
+<!--   - Quasi-likelihood: Wedderburn's likelihood which is not a pdf or misspecified likelihoods -->
+<!--   - Limited information methods: Inference procedures based on low-dimensional margins. -->
+
+
+
+<!-- - Some history -->
+<!--   - Besag (1974) introduced the idea of composite likelihood for spatial data -->
+<!--   - Liang (1987) studies composite conditional likelihoods -->
+<!--   - Molenberghs and Verbeke (2005) in the context of longitudinal studies -->
+
+
+<!--   - Independence likelihood -->
+<!--   - Pairwise likelihood -->
+
 
 ## An analogy 
 
@@ -364,8 +394,8 @@ $$
 ![](figures/full_jigsaw2.png){width=85%}
 :::
 
-::: {.absolute left=235 top=300}
-[**_Enjoy the approximate picture instead of worrying<br>not being able to see every blade of grass._**]{.ubdtealbg}
+::: {.absolute left=240 top=300}
+[**_One may enjoy the approximate picture despite<br>not being able to see every blade of grass._**]{.ubdtealbg}
 :::
 
 :::
@@ -386,7 +416,7 @@ where $\hat n_{cc'}^{(ij)} = \sum_h w_h [\by^{(h)}_i = c, \by^{(h)}_j = c']$.
 
 - Evaluation of @eq-pairwise-loglik involves only bivariate normal integrals:
 $$
-\pi_{cc'}^{(ij)}(\btheta) = \int\int \phi_2\big(\by^*_{ij} \mid \bzero, \bSigma_{y^*}^{(ij)} (\btheta)\big) \dint \by^*_{ij},
+\pi_{cc'}^{(ij)}(\btheta) = \iint \phi_2\big(\by^*_{ij} \mid \bzero, \bSigma_{y^*}^{(ij)} (\btheta)\big) \dint \by^*_{ij},
 $$
 
 ## MPLE properties
@@ -406,7 +436,7 @@ $${#eq-asymptotic-mple}
 $$
 \begin{aligned}
 \bH &= - \frac{1}{\sum_h w_h} \sum_h \nabla^2\log \pL(\btheta \mid \by^{(h)}) \Bigg|_{\btheta = \mlepl} \hspace{2em}\text{and} \\
-\bJ &= \frac{1}{\sum_h w_h} \sum_h \nabla\log \pL(\btheta \mid \by^{(h)}) \nabla\log \pL(\btheta \mid \by^{(h)})^T \Bigg|_{\btheta = \mlepl}.
+\bJ &= \frac{1}{\sum_h w_h} \sum_h \nabla\log \pL(\btheta \mid \by^{(h)}) \nabla\log \pL(\btheta \mid \by^{(h)})^\top \Bigg|_{\btheta = \mlepl}.
 \end{aligned}
 $${#eq-hessian}
 
@@ -465,8 +495,8 @@ knitr::include_graphics("figures/mult_bern2.png")
 ::: {.fragment}
 - E.g.
 
-   - LR: $X^2 = 2N\sum_r \hat p_r\log(\hat p_r/\hat\pi_r)$;
-   - Pearson: $X^2 = N\sum_r (\hat p_r - \hat\pi_r)^2 / \hat\pi_r$,
+   - LR: $X^2 = 2n\sum_r  p_r\log( p_r/\hat\pi_r)$;
+   - Pearson: $X^2 = n\sum_r ( p_r - \hat\pi_r)^2 / \hat\pi_r$,
    
   These tests are asymptotically distributed as chi square.
 :::
@@ -490,10 +520,10 @@ knitr::include_graphics("figures/mult_bern2.png")
 ```
 :::
 
-:::: {.absolute left=580 top=70}
+:::: {.absolute left=575 top=70}
 
 ::: {.fragment fragment-index=1 .fade-out}
-Consider instead the fit of the lower dimensional marginals.
+Consider instead the fit of the lower order marginals.
 
 - **Univariate**:  $\ \dot\pi_i := \Pr(y_i = 1)$
 
@@ -511,7 +541,7 @@ $$
 \big(\dot\pi_{ij}\big)_{i<j} \\
 \end{pmatrix}
 $$
-This is of dimensions $S=p + p(p-1)/2$.
+This is of dimensions $S=p(p+1)/2 \ll R$.
 
 :::
 
@@ -534,9 +564,9 @@ knitr::include_graphics("figures/mult_bern4.png")
 
 :::
 
-## Transformation
+## Transformation matrix
 
-Define $T_2: \mathbb{R}^R \to \mathbb{R}^S$ such that $\bpi \mapsto \bpi_2$.
+Define $\bT_2: \mathbb{R}^R \to \mathbb{R}^S$ such that $\bpi \mapsto \bpi_2$.
 To illustrate, consider $p=3$ ($R=2^3=8$ and $S=3+3=6$):
 
 $$
@@ -609,34 +639,50 @@ $$
 See @reiser1996analysis and @maydeu2005limited for further details.
 :::
 
-## Some theory {.scrollable}
+## Asymptotic distribution of residuals
 
-Consider the residuals $\hat\be_2 = \bp_2 - \bpi_2(\mlepl)$. What is its distribution?
+::: {#thm-dist-of-residuals .callout-note icon=false title="Theorem"}
+Consider the residuals $\hat\be_2 = \bp_2 - \bpi_2(\mlepl) = \bT_2\big(\bp - \bpi(\mlepl)\big)$.
+Then as $n\to\infty$,
+$$
+\sqrt n \hat\be_2 \xrightarrow{\text D} {\N}_S\left(\bzero, \bOmega_2\right)
+$$ 
+where $\bOmega_2 = \left( \bI - \bDelta_2\cH(\btheta)^{-1} \bB(\btheta)  \right) \bSigma_2 \left( \bI - \bDelta_2\cH(\btheta)^{-1} \bB(\btheta)  \right)^\top$, and
+
+::: {.nudge-down}
+
+- $\bSigma_2 = \bT_2\bSigma\bT_2^\top$ (uni \& bivariate multinomial matrix);
+- $\bDelta_2 = \bT_2 \big(\partial\pi_r(\btheta) / \partial\theta_k \big)_{r,k}$ (uni \& bivariate derivatives);
+- $\cH(\btheta)$ is the sensitivity matrix; and
+- $\bB(\btheta)$ is some transformation matrix dependent on $\btheta$.
+
+:::
+
+:::
+
+<!-- Using usual Taylor expansion arguments, we can show -->
 
 <!-- $\sqrt n (\bp - \bpi) \xrightarrow{\text D} \N_R(\bzero, \bSigma)$ [CLT].  -->
 
 <!-- - $\sqrt n (\bp_2 - \bpi_2) \xrightarrow{\text D} \N_S(\bzero, \bSigma_2)$ follows from the CLT, where $\bSigma_2 = T_2\bSigma T_2^\top$.  -->
 
 <!-- - Taylor expand MPLE and score function: -->
-$$
-\begin{aligned}
-\hat\be_2 
-= \bp_2 - \bpi_2(\mlepl) 
-&\approx \bp_2 - \bpi_2(\btheta) - \bDelta_2(\mlepl - \btheta) \\
-&\approx \bp_2 - \bpi_2(\btheta) - \bDelta_2\cH(\btheta)^{-1}\nabla\pl(\btheta)  \\
-&= \bp_2 - \bpi_2(\btheta) - \bDelta_2 \cH(\btheta)^{-1} \bB(\btheta)  \big(\bp_2 - \bpi_2(\btheta) \big) \\
-&= \left( \bI - \bDelta_2\cH(\btheta)^{-1} \bB(\btheta)  \right) \left( \bp_2 - \bpi_2(\btheta) \right) 
-\end{aligned}
-$$
-Therefore, $\sqrt n \hat\be_2 \xrightarrow{\text D} {\N}_S\left(\bzero, \bOmega_2\right)$ as $n\to\infty$, where
-$$
-\bOmega_2 = \left( \bI - \bDelta_2\cH(\btheta)^{-1} \bB(\btheta)  \right) \bSigma_2 \left( \bI - \bDelta_2\cH(\btheta)^{-1} \bB(\btheta)  \right)^\top
-$$
+<!-- $$ -->
+<!-- \begin{aligned} -->
+<!-- \hat\be_2  -->
+<!-- = \bp_2 - \bpi_2(\mlepl)  -->
+<!-- &\approx \bp_2 - \bpi_2(\btheta) - \bDelta_2(\mlepl - \btheta) \\ -->
+<!-- &\approx \bp_2 - \bpi_2(\btheta) - \bDelta_2\cH(\btheta)^{-1}\nabla\pl(\btheta)  \\ -->
+<!-- &= \bp_2 - \bpi_2(\btheta) - \bDelta_2 \cH(\btheta)^{-1} \bB(\btheta)  \big(\bp_2 - \bpi_2(\btheta) \big) \\ -->
+<!-- &= \left( \bI - \bDelta_2\cH(\btheta)^{-1} \bB(\btheta)  \right) \left( \bp_2 - \bpi_2(\btheta) \right)  -->
+<!-- \end{aligned} -->
+<!-- $$ -->
+<!-- Therefore, $\sqrt n \hat\be_2 \xrightarrow{\text D} {\N}_S\left(\bzero, \bOmega_2\right)$ as $n\to\infty$, where -->
+<!-- $$ -->
+<!-- \bOmega_2 = \left( \bI - \bDelta_2\cH(\btheta)^{-1} \bB(\btheta)  \right) \bSigma_2 \left( \bI - \bDelta_2\cH(\btheta)^{-1} \bB(\btheta)  \right)^\top -->
+<!-- $$ -->
 
-- $\bSigma_2 = \bT_2\bSigma\bT_2^\top$ (uni \& bivariate multinomial matrix);
-- $\bDelta_2 = \bT_2 \big(\partial\pi_r(\btheta) / \partial\theta_k \big)_{r,k}$ (uni \& bivariate derivatives);
-- $\cH(\btheta)$ is the sensitivity matrix; and
-- $\bB(\btheta)$ is some transformation matrix dependent on $\btheta$.
+
 
 ## Distribution of test statistics
 
@@ -929,13 +975,13 @@ print_theta_vals(5)
 
 - Using M1: `1F5V`, generate a fixed population size of $N$. Then, assign each unit $h$ a probability of selection as follows:
 $$
-w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
+w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
 $$
 Larger values of $y_1^*$ result in smaller probabilities of selection.
 
 - Sample $n\in\{500, 1000, 5000\}$ units from a population of size $N=n/0.01$ which ensures no need for FPC factor [@lumley2004analysis].
 
-- In repeated sampling ($B=1000$), interested in
+- In repeated sampling ($B=1000$), interested in performance of PMLE vis-à-vis
   - Bias
   - Coverage for 95% CI
   - SD/SE ratio
@@ -946,10 +992,25 @@ Larger values of $y_1^*$ result in smaller probabilities of selection.
 
 ```{r}
 load("R/sims_uneq_samp.RData")
+tab_bias_gt$`_data`$PML_500a <- abs(tab_bias_gt$`_data`$PML_500)
+tab_bias_gt$`_data`$PMLW_500a <- abs(tab_bias_gt$`_data`$PMLW_500)
+tab_bias_gt$`_data`$PML_1000a <- abs(tab_bias_gt$`_data`$PML_1000)
+tab_bias_gt$`_data`$PMLW_1000a <- abs(tab_bias_gt$`_data`$PMLW_1000)
+tab_bias_gt$`_data`$PML_5000a <- abs(tab_bias_gt$`_data`$PML_5000)
+tab_bias_gt$`_data`$PMLW_5000a <- abs(tab_bias_gt$`_data`$PMLW_5000)
+
 tab_bias_gt |>
   fmt_number(columns = -"truth", decimals = 2) |>
   tab_options(
     table.font.size = "30px"
+  ) |>
+  data_color(
+    columns = c("PML_500a", "PMLW_500a", "PML_1000a", "PMLW_1000a", "PML_5000a", "PMLW_5000a"),
+    target_columns = c("PML_500", "PMLW_500", "PML_1000", "PMLW_1000", "PML_5000", "PMLW_5000"),
+    method = "numeric",
+    palette = "viridis",
+    domain = c(0, 0.32),
+    alpha = 0.9
   )
 ```
 
@@ -958,9 +1019,40 @@ tab_bias_gt |>
 ### Coverage and SD/SE ratio
 
 ```{r}
+tab_se_gt$`_data`$cov_PML_500a <- abs(tab_se_gt$`_data`$cov_PML_500 - 0.95)
+tab_se_gt$`_data`$cov_PMLW_500a <- abs(tab_se_gt$`_data`$cov_PMLW_500 - 0.95)
+tab_se_gt$`_data`$cov_PML_1000a <- abs(tab_se_gt$`_data`$cov_PML_1000 - 0.95)
+tab_se_gt$`_data`$cov_PMLW_1000a <- abs(tab_se_gt$`_data`$cov_PMLW_1000 - 0.95)
+tab_se_gt$`_data`$cov_PML_5000a <- abs(tab_se_gt$`_data`$cov_PML_5000 - 0.95)
+tab_se_gt$`_data`$cov_PMLW_5000a <- abs(tab_se_gt$`_data`$cov_PMLW_5000 - 0.95)
+
+tab_se_gt$`_data`$ratio_PML_500a <- log(tab_se_gt$`_data`$ratio_PML_500) |> abs()
+tab_se_gt$`_data`$ratio_PMLW_500a <- log(tab_se_gt$`_data`$ratio_PMLW_500) |> abs()
+tab_se_gt$`_data`$ratio_PML_1000a <- log(tab_se_gt$`_data`$ratio_PML_1000) |> abs()
+tab_se_gt$`_data`$ratio_PMLW_1000a <- log(tab_se_gt$`_data`$ratio_PMLW_1000) |> abs()
+tab_se_gt$`_data`$ratio_PML_5000a <- log(tab_se_gt$`_data`$ratio_PML_5000) |> abs()
+tab_se_gt$`_data`$ratio_PML_5000a[1:5] <- tab_se_gt$`_data`$ratio_PML_5000a[1:5] + 0.8
+tab_se_gt$`_data`$ratio_PMLW_5000a <- log(tab_se_gt$`_data`$ratio_PMLW_5000) |> abs()
+
 tab_se_gt |>
   tab_options(
     table.font.size = "30px"
+  ) |>
+  data_color(
+    columns = c("cov_PML_500a", "cov_PMLW_500a", "cov_PML_1000a", "cov_PMLW_1000a", "cov_PML_5000a", "cov_PMLW_5000a"),
+    target_columns = c("cov_PML_500", "cov_PMLW_500", "cov_PML_1000", "cov_PMLW_1000", "cov_PML_5000", "cov_PMLW_5000"),
+    method = "numeric",
+    palette = "viridis",
+    domain = c(0, 0.95),
+    alpha = 0.9
+  ) |>
+  data_color(
+    columns = c("ratio_PML_500a", "ratio_PMLW_500a", "ratio_PML_1000a", "ratio_PMLW_1000a", "ratio_PML_5000a", "ratio_PMLW_5000a"),
+    target_columns = c("ratio_PML_500", "ratio_PMLW_500", "ratio_PML_1000", "ratio_PMLW_1000", "ratio_PML_5000", "ratio_PMLW_5000"),
+    method = "numeric",
+    palette = "viridis",
+    domain = c(0, 2.65),
+    alpha = 0.9
   )
 ```
 
@@ -1124,10 +1216,32 @@ bind_rows(
 ```
 
 
-## `{lavaan}`
-
 # Summary
 
 ## Conclusions
+
+## Software
+
+::: {.nudge-up-small}
+R software implementation in `{lavaan}` (PML weights) and a separate package `{lavaan.bingof}` for the LIGOF tests.
+
+```{r}
+#| echo: true
+fit <- lavaan::sem(
+  model = "eta1 =~ y1 + y2 + y3 + y4 + y5",
+  data = lavaan.bingof::gen_data_bin_wt(n = 1000),
+  std.lv = TRUE,
+  estimator = "PML",
+  sampling.weights = "wt"
+)
+all_tests(fit)
+```
+:::
+
+::: aside
+{{< fa brands github  >}} https://github.com/haziqj/lavaan.bingof
+:::
+
+# Thanks! {.transition-slide-ubdblue}
 
 ## References {.appendix}

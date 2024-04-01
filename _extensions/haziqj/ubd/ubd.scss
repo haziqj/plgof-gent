@@ -418,6 +418,10 @@ div.cell-output.cell-output-stdout > pre > code {
   background-color: $ubdteal;
 }
 
+.reveal .transition-slide-ubdblue {
+  background-color: $ubdblue;
+}
+
 // Make math fonts smaller
 
 span.math.inline, span.math.display {
@@ -517,9 +521,12 @@ div.quarto-figure.quarto-figure-center {
 
       // Adjust the font size for content inside the callout block
       .callout-content {
-        font-size: 1.2em; 
+        font-size: 1.3em; 
         .math.inline {
           font-size: 1em; 
+        }
+        .math.display {
+          font-size: 1.1em; 
         }
       }
     }
@@ -547,4 +554,12 @@ div.quarto-figure.quarto-figure-center {
 
 .nudge-up {
   transform: translateY(-25px);
+}
+
+.nudge-up-small {
+  transform: translateY(-12.5px);
+}
+
+.nudge-down {
+  transform: translateY(25px);
 }

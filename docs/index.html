@@ -7,7 +7,9 @@
 <link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="index_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="index_files/libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="index_files/libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.550">
 
   <meta name="author" content="Haziq Jamil">
@@ -30,6 +32,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     /* CSS for citations */
     div.csl-bib-body { }
     div.csl-entry {
@@ -367,24 +434,33 @@ Haziq Jamil <a href="https://orcid.org/0000-0003-3298-1010" class="quarto-title-
 </div>
 
   <p class="date">April 15, 2024</p>
-</section><section id="TOC">
-<nav role="doc-toc"> 
-<h2 id="toc-title">Table of contents</h2>
-<ul>
-<li><a href="#/introduction" id="/toc-introduction">Introduction</a></li>
-<li><a href="#/limited-information-gof-tests" id="/toc-limited-information-gof-tests">Limited information GOF tests</a></li>
-<li><a href="#/simulation-results" id="/toc-simulation-results">Simulation results</a></li>
-<li><a href="#/summary" id="/toc-summary">Summary</a></li>
-</ul>
-</nav>
 </section>
 <section class="slide level2">
 
-<p>Some notes</p>
-<ul>
-<li>Check how to identify source of misfit (I think there’s a reference in Olivares paper)</li>
-<li>Note nomenclature: Pseudo-likelihood, composite likelihood, pairwise likelihood, etc.</li>
-</ul>
+<!-- - Check how to identify source of misfit (I think there's a reference in Olivares paper) -->
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://irmoustaki.github.io/Irini2022.jpg" height="350"></p>
+<figcaption>Irini Moustaki<br><em>London School of Economics and Political Science</em></figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://blogs.city.ac.uk/addresponse/files/2014/09/Christopher_Skinner_4431-1sqbwwa-200x300.jpg" height="350"></p>
+<figcaption>Chris Skinner (1954-2020)<br><em>London School of Economics and Political Science</em></figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+<div class="nudge-up-large">
+<blockquote>
+<p>H Jamil, I Moustaki, C Skinner. 2023+. <em>Pairwise likelihood estimation and limited information goodness-of-fit test statistics for binary factor analysis models under complex survey sampling.</em> Manuscript under revision.</p>
+</blockquote>
+</div>
 </section>
 <section>
 <section id="introduction" class="title-slide slide level1 center">
@@ -1078,32 +1154,34 @@ y_i = \begin{cases}
 </div>
 </div>
 </section>
-<section id="composite-likelihood" class="slide level2 scrollable">
+<section id="composite-likelihood" class="slide level2">
 <h2>Composite likelihood</h2>
 <ul>
-<li><p>Composite likelihood is an inference function derived by multiplying a collection of component likelihoods</p></li>
-<li><p>Because each individual component is a conditional or marginal density, the resulting estimating equation obtained from the derivative of the composite log-likelihood is an unbiased estimating equation</p></li>
-<li><p>Because the components are multiplied, whether or not they are independent, the inference function has the properties of likelihood from a misspeciﬁed model</p></li>
-<li><p>Terminology</p>
-<ul>
-<li>Pseudo-likelihood: Function of parameter and data that behaves in “some respect” as a likelihood</li>
-<li>Composite likelihood: An example of pseudo-likelihood, based on terms that are marginal or conditional densities</li>
-<li>Quasi-likelihood: Wedderburn’s likelihood which is not a pdf or misspecified likelihoods</li>
-<li>Limited information methods: Inference procedures based on low-dimensional margins.</li>
-</ul></li>
-<li><p>Let <span class="math inline">\(\{{\mathcal A}_1,\dots,{\mathcal A}_K\}\)</span> a set of marginal or conditional events (partitioning the variable space). Each set <span class="math inline">\({\mathcal A}_k\)</span> is associated with a component likelihood <span class="math inline">\(L({\boldsymbol\theta}\mid {\mathbf y}\in {\mathcal A}_k)\)</span>. The composite likelihood is defined as <span class="citation" data-cites="lindsay1988composite">(<a href="#/references" role="doc-biblioref" onclick="">Lindsay 1988</a>)</span> <span class="math display">\[
+<li><p>Terminology: Pseudo-likelihood, quasi-likelihood (a la Wedderburn or misspecified models), limited information methods.</p></li>
+<li><p>Let <span class="math inline">\(\{{\mathcal A}_1,\dots,{\mathcal A}_K\}\)</span> a set of marginal or conditional events (partitioning the variable space). The composite likelihood is defined as <span class="citation" data-cites="lindsay1988composite">(<a href="#/references" role="doc-biblioref" onclick="">Lindsay 1988</a>)</span> <span class="math display">\[
 {\mathcal L}({\boldsymbol\theta}\mid {\mathbf y}) = \prod_{k=1}^K L({\boldsymbol\theta}\mid {\mathbf y}\in {\mathcal A}_k)
 \]</span></p></li>
-<li><p>Some history</p>
-<ul>
-<li>Besag (1974) introduced the idea of composite likelihood for spatial data</li>
-<li>Liang (1987) studies composite conditional likelihoods</li>
-<li>Molenberghs and Verbeke (2005) in the context of longitudinal studies</li>
-<li>Independence likelihood</li>
-<li>Pairwise likelihood</li>
-</ul></li>
-<li><p>Conceptually</p></li>
 </ul>
+<div class="nudge-up-large">
+<ul>
+<li><p>Component likelihoods <span class="math inline">\(L({\boldsymbol\theta}\mid {\mathbf y}\in {\mathcal A}_k)\)</span> are either <em>conditional</em> <span class="citation" data-cites="besag1974spatial">(<a href="#/references" role="doc-biblioref" onclick="">Besag 1974</a>)</span> or <em>marginal</em> densities.</p></li>
+<li><p>Composite likelihood enjoys nice features <span class="citation" data-cites="varin2011overview">(<a href="#/references" role="doc-biblioref" onclick="">Varin, Reid, and Firth 2011</a>)</span>: relatively efficient, robust, and easier to maximise (smoother surface).</p></li>
+</ul>
+</div>
+<!-- - Composite likelihood is an inference function derived by multiplying a collection of component likelihoods -->
+<!-- - Because each individual component is a conditional or marginal density, the resulting estimating equation obtained from the derivative of the composite log-likelihood is an unbiased estimating equation -->
+<!-- - Because the components are multiplied, whether or not they are independent, the inference function has the properties of likelihood from a misspeciﬁed model -->
+<!-- - Terminology -->
+<!--   - Pseudo-likelihood: Function of parameter and data that behaves in "some respect" as a likelihood -->
+<!--   - Composite likelihood: An example of pseudo-likelihood, based on terms that are marginal or conditional densities -->
+<!--   - Quasi-likelihood: Wedderburn's likelihood which is not a pdf or misspecified likelihoods -->
+<!--   - Limited information methods: Inference procedures based on low-dimensional margins. -->
+<!-- - Some history -->
+<!--   - Besag (1974) introduced the idea of composite likelihood for spatial data -->
+<!--   - Liang (1987) studies composite conditional likelihoods -->
+<!--   - Molenberghs and Verbeke (2005) in the context of longitudinal studies -->
+<!--   - Independence likelihood -->
+<!--   - Pairwise likelihood -->
 </section>
 <section id="an-analogy" class="slide level2">
 <h2>An analogy</h2>
@@ -1132,8 +1210,8 @@ y_i = \begin{cases}
 <div class="absolute" style="top: 30px; left: 125px; ">
 <p><img data-src="figures/full_jigsaw2.png" style="width:85.0%"></p>
 </div>
-<div class="absolute" style="top: 300px; left: 235px; ">
-<p><span class="ubdtealbg"><strong><em>Enjoy the approximate picture instead of worrying<br>not being able to see every blade of grass.</em></strong></span></p>
+<div class="absolute" style="top: 300px; left: 240px; ">
+<p><span class="ubdtealbg"><strong><em>One may enjoy the approximate picture despite<br>not being able to see every blade of grass.</em></strong></span></p>
 </div>
 </div>
 </section>
@@ -1147,7 +1225,7 @@ y_i = \begin{cases}
 \log \operatorname{\mathcal L_{\text P}}({\boldsymbol\theta}\mid {\mathbf y}) = \sum_{i&lt;j} \sum_{c}\sum_{c'} \hat n_{cc'}^{(ij)} \log \pi_{y_iy_j}^{(ij)}({\boldsymbol\theta}),
 \tag{7}\]</span></span> where <span class="math inline">\(\hat n_{cc'}^{(ij)} = \sum_h w_h [{\mathbf y}^{(h)}_i = c, {\mathbf y}^{(h)}_j = c']\)</span>.</p></li>
 <li><p>Evaluation of <a href="#/pairwise-likelihood-estimation" class="quarto-xref">Equation&nbsp;7</a> involves only bivariate normal integrals: <span class="math display">\[
-\pi_{cc'}^{(ij)}({\boldsymbol\theta}) = \int\int \phi_2\big({\mathbf y}^*_{ij} \mid {\mathbf 0}, {\boldsymbol\Sigma}_{y^*}^{(ij)} ({\boldsymbol\theta})\big) \mathop{\mathrm{d}}\hspace{0.5pt}\!{\mathbf y}^*_{ij},
+\pi_{cc'}^{(ij)}({\boldsymbol\theta}) = \iint \phi_2\big({\mathbf y}^*_{ij} \mid {\mathbf 0}, {\boldsymbol\Sigma}_{y^*}^{(ij)} ({\boldsymbol\theta})\big) \mathop{\mathrm{d}}\hspace{0.5pt}\!{\mathbf y}^*_{ij},
 \]</span></p></li>
 </ul>
 </section>
@@ -1168,7 +1246,7 @@ y_i = \begin{cases}
 <li>Estimators of these matrices are given by <span class="citation" data-cites="zhao.joe05 asparouhov2005sampling">(<a href="#/references" role="doc-biblioref" onclick="">Zhao and Joe 2005</a>; <a href="#/references" role="doc-biblioref" onclick="">Asparouhov 2005</a>)</span> <span id="eq-hessian"><span class="math display">\[
 \begin{aligned}
 {\mathbf H}&amp;= - \frac{1}{\sum_h w_h} \sum_h \nabla^2\log \operatorname{\mathcal L_{\text P}}({\boldsymbol\theta}\mid {\mathbf y}^{(h)}) \Bigg|_{{\boldsymbol\theta}= \hat{\boldsymbol\theta}_{\text{PL}}} \hspace{2em}\text{and} \\
-{\mathbf J}&amp;= \frac{1}{\sum_h w_h} \sum_h \nabla\log \operatorname{\mathcal L_{\text P}}({\boldsymbol\theta}\mid {\mathbf y}^{(h)}) \nabla\log \operatorname{\mathcal L_{\text P}}({\boldsymbol\theta}\mid {\mathbf y}^{(h)})^T \Bigg|_{{\boldsymbol\theta}= \hat{\boldsymbol\theta}_{\text{PL}}}.
+{\mathbf J}&amp;= \frac{1}{\sum_h w_h} \sum_h \nabla\log \operatorname{\mathcal L_{\text P}}({\boldsymbol\theta}\mid {\mathbf y}^{(h)}) \nabla\log \operatorname{\mathcal L_{\text P}}({\boldsymbol\theta}\mid {\mathbf y}^{(h)})^\top \Bigg|_{{\boldsymbol\theta}= \hat{\boldsymbol\theta}_{\text{PL}}}.
 \end{aligned}
 \tag{9}\]</span></span></li>
 </ul>
@@ -1230,8 +1308,8 @@ y_i = \begin{cases}
 <ul>
 <li><p>E.g.</p>
 <ul>
-<li>LR: <span class="math inline">\(X^2 = 2N\sum_r \hat p_r\log(\hat p_r/\hat\pi_r)\)</span>;</li>
-<li>Pearson: <span class="math inline">\(X^2 = N\sum_r (\hat p_r - \hat\pi_r)^2 / \hat\pi_r\)</span>,</li>
+<li>LR: <span class="math inline">\(X^2 = 2n\sum_r  p_r\log( p_r/\hat\pi_r)\)</span>;</li>
+<li>Pearson: <span class="math inline">\(X^2 = n\sum_r ( p_r - \hat\pi_r)^2 / \hat\pi_r\)</span>,</li>
 </ul>
 <p>These tests are asymptotically distributed as chi square.</p></li>
 </ul>
@@ -1258,9 +1336,9 @@ y_i = \begin{cases}
 </div>
 </div>
 </div>
-<div class="absolute" style="top: 70px; left: 580px; ">
+<div class="absolute" style="top: 70px; left: 575px; ">
 <div class="fragment fade-out" data-fragment-index="1">
-<p>Consider instead the fit of the lower dimensional marginals.</p>
+<p>Consider instead the fit of the lower order marginals.</p>
 <ul>
 <li><p><strong>Univariate</strong>: <span class="math inline">\(\ \dot\pi_i := \operatorname{P}(y_i = 1)\)</span></p></li>
 <li><p><strong>Bivariate</strong>: <span class="math inline">\(\ \dot\pi_{ij} := \operatorname{P}(y_i = 1, y_j=1)\)</span></p></li>
@@ -1274,7 +1352,7 @@ y_i = \begin{cases}
 (\dot\pi_1, \dots, \dot\pi_p)^\top \\
 \big(\dot\pi_{ij}\big)_{i&lt;j} \\
 \end{pmatrix}
-\]</span> This is of dimensions <span class="math inline">\(S=p + p(p-1)/2\)</span>.</p></li>
+\]</span> This is of dimensions <span class="math inline">\(S=p(p+1)/2 \ll R\)</span>.</p></li>
 </ul>
 </div>
 </div>
@@ -1302,9 +1380,9 @@ y_i = \begin{cases}
 </div>
 </div>
 </section>
-<section id="transformation" class="slide level2">
-<h2>Transformation</h2>
-<p>Define <span class="math inline">\(T_2: \mathbb{R}^R \to \mathbb{R}^S\)</span> such that <span class="math inline">\({\boldsymbol\pi}\mapsto {\boldsymbol\pi}_2\)</span>. To illustrate, consider <span class="math inline">\(p=3\)</span> (<span class="math inline">\(R=2^3=8\)</span> and <span class="math inline">\(S=3+3=6\)</span>):</p>
+<section id="transformation-matrix" class="slide level2">
+<h2>Transformation matrix</h2>
+<p>Define <span class="math inline">\({\mathbf T}_2: \mathbb{R}^R \to \mathbb{R}^S\)</span> such that <span class="math inline">\({\boldsymbol\pi}\mapsto {\boldsymbol\pi}_2\)</span>. To illustrate, consider <span class="math inline">\(p=3\)</span> (<span class="math inline">\(R=2^3=8\)</span> and <span class="math inline">\(S=3+3=6\)</span>):</p>
 <p><span class="math display">\[
 {\color{lightgray}\overbrace{\color{black}
 \left(
@@ -1374,30 +1452,48 @@ y_i = \begin{cases}
 <aside><div>
 <p>See <span class="citation" data-cites="reiser1996analysis">Reiser (<a href="#/references" role="doc-biblioref" onclick="">1996</a>)</span> and <span class="citation" data-cites="maydeu2005limited">Maydeu-Olivares and Joe (<a href="#/references" role="doc-biblioref" onclick="">2005</a>)</span> for further details.</p>
 </div></aside></section>
-<section id="some-theory" class="slide level2 scrollable">
-<h2>Some theory</h2>
-<p>Consider the residuals <span class="math inline">\(\hat{\mathbf e}_2 = {\mathbf p}_2 - {\boldsymbol\pi}_2(\hat{\boldsymbol\theta}_{\text{PL}})\)</span>. What is its distribution?</p>
-<!-- $\sqrt n (\bp - \bpi) \xrightarrow{\text D} \N_R(\bzero, \bSigma)$ [CLT].  -->
-<!-- - $\sqrt n (\bp_2 - \bpi_2) \xrightarrow{\text D} \N_S(\bzero, \bSigma_2)$ follows from the CLT, where $\bSigma_2 = T_2\bSigma T_2^\top$.  -->
-<!-- - Taylor expand MPLE and score function: -->
-<p><span class="math display">\[
-\begin{aligned}
-\hat{\mathbf e}_2
-= {\mathbf p}_2 - {\boldsymbol\pi}_2(\hat{\boldsymbol\theta}_{\text{PL}})
-&amp;\approx {\mathbf p}_2 - {\boldsymbol\pi}_2({\boldsymbol\theta}) - {\boldsymbol\Delta}_2(\hat{\boldsymbol\theta}_{\text{PL}}- {\boldsymbol\theta}) \\
-&amp;\approx {\mathbf p}_2 - {\boldsymbol\pi}_2({\boldsymbol\theta}) - {\boldsymbol\Delta}_2{\mathcal H}({\boldsymbol\theta})^{-1}\nabla\operatorname{\ell_P}({\boldsymbol\theta})  \\
-&amp;= {\mathbf p}_2 - {\boldsymbol\pi}_2({\boldsymbol\theta}) - {\boldsymbol\Delta}_2 {\mathcal H}({\boldsymbol\theta})^{-1} {\mathbf B}({\boldsymbol\theta})  \big({\mathbf p}_2 - {\boldsymbol\pi}_2({\boldsymbol\theta}) \big) \\
-&amp;= \left( {\mathbf I}- {\boldsymbol\Delta}_2{\mathcal H}({\boldsymbol\theta})^{-1} {\mathbf B}({\boldsymbol\theta})  \right) \left( {\mathbf p}_2 - {\boldsymbol\pi}_2({\boldsymbol\theta}) \right)
-\end{aligned}
-\]</span> Therefore, <span class="math inline">\(\sqrt n \hat{\mathbf e}_2 \xrightarrow{\text D} {\mathop{\mathrm{N}}}_S\left({\mathbf 0}, {\boldsymbol\Omega}_2\right)\)</span> as <span class="math inline">\(n\to\infty\)</span>, where <span class="math display">\[
-{\boldsymbol\Omega}_2 = \left( {\mathbf I}- {\boldsymbol\Delta}_2{\mathcal H}({\boldsymbol\theta})^{-1} {\mathbf B}({\boldsymbol\theta})  \right) {\boldsymbol\Sigma}_2 \left( {\mathbf I}- {\boldsymbol\Delta}_2{\mathcal H}({\boldsymbol\theta})^{-1} {\mathbf B}({\boldsymbol\theta})  \right)^\top
-\]</span></p>
+<section id="asymptotic-distribution-of-residuals" class="slide level2">
+<h2>Asymptotic distribution of residuals</h2>
+<div id="thm-dist-of-residuals" title="Theorem">
+<div id="thm-dist-of-residuals" class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Theorem</strong></p>
+</div>
+<div class="callout-content">
+<p>Consider the residuals <span class="math inline">\(\hat{\mathbf e}_2 = {\mathbf p}_2 - {\boldsymbol\pi}_2(\hat{\boldsymbol\theta}_{\text{PL}}) = {\mathbf T}_2\big({\mathbf p}- {\boldsymbol\pi}(\hat{\boldsymbol\theta}_{\text{PL}})\big)\)</span>. Then as <span class="math inline">\(n\to\infty\)</span>, <span class="math display">\[
+\sqrt n \hat{\mathbf e}_2 \xrightarrow{\text D} {\mathop{\mathrm{N}}}_S\left({\mathbf 0}, {\boldsymbol\Omega}_2\right)
+\]</span> where <span class="math inline">\({\boldsymbol\Omega}_2 = \left( {\mathbf I}- {\boldsymbol\Delta}_2{\mathcal H}({\boldsymbol\theta})^{-1} {\mathbf B}({\boldsymbol\theta})  \right) {\boldsymbol\Sigma}_2 \left( {\mathbf I}- {\boldsymbol\Delta}_2{\mathcal H}({\boldsymbol\theta})^{-1} {\mathbf B}({\boldsymbol\theta})  \right)^\top\)</span>, and</p>
+<div class="nudge-down">
 <ul>
 <li><span class="math inline">\({\boldsymbol\Sigma}_2 = {\mathbf T}_2{\boldsymbol\Sigma}{\mathbf T}_2^\top\)</span> (uni &amp; bivariate multinomial matrix);</li>
 <li><span class="math inline">\({\boldsymbol\Delta}_2 = {\mathbf T}_2 \big(\partial\pi_r({\boldsymbol\theta}) / \partial\theta_k \big)_{r,k}\)</span> (uni &amp; bivariate derivatives);</li>
 <li><span class="math inline">\({\mathcal H}({\boldsymbol\theta})\)</span> is the sensitivity matrix; and</li>
 <li><span class="math inline">\({\mathbf B}({\boldsymbol\theta})\)</span> is some transformation matrix dependent on <span class="math inline">\({\boldsymbol\theta}\)</span>.</li>
 </ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Using usual Taylor expansion arguments, we can show -->
+<!-- $\sqrt n (\bp - \bpi) \xrightarrow{\text D} \N_R(\bzero, \bSigma)$ [CLT].  -->
+<!-- - $\sqrt n (\bp_2 - \bpi_2) \xrightarrow{\text D} \N_S(\bzero, \bSigma_2)$ follows from the CLT, where $\bSigma_2 = T_2\bSigma T_2^\top$.  -->
+<!-- - Taylor expand MPLE and score function: -->
+<!-- $$ -->
+<!-- \begin{aligned} -->
+<!-- \hat\be_2  -->
+<!-- = \bp_2 - \bpi_2(\mlepl)  -->
+<!-- &\approx \bp_2 - \bpi_2(\btheta) - \bDelta_2(\mlepl - \btheta) \\ -->
+<!-- &\approx \bp_2 - \bpi_2(\btheta) - \bDelta_2\cH(\btheta)^{-1}\nabla\pl(\btheta)  \\ -->
+<!-- &= \bp_2 - \bpi_2(\btheta) - \bDelta_2 \cH(\btheta)^{-1} \bB(\btheta)  \big(\bp_2 - \bpi_2(\btheta) \big) \\ -->
+<!-- &= \left( \bI - \bDelta_2\cH(\btheta)^{-1} \bB(\btheta)  \right) \left( \bp_2 - \bpi_2(\btheta) \right)  -->
+<!-- \end{aligned} -->
+<!-- $$ -->
+<!-- Therefore, $\sqrt n \hat\be_2 \xrightarrow{\text D} {\N}_S\left(\bzero, \bOmega_2\right)$ as $n\to\infty$, where -->
+<!-- $$ -->
+<!-- \bOmega_2 = \left( \bI - \bDelta_2\cH(\btheta)^{-1} \bB(\btheta)  \right) \bSigma_2 \left( \bI - \bDelta_2\cH(\btheta)^{-1} \bB(\btheta)  \right)^\top -->
+<!-- $$ -->
 </section>
 <section id="distribution-of-test-statistics" class="slide level2">
 <h2>Distribution of test statistics</h2>
@@ -1722,10 +1818,10 @@ Factor correlations
 <h2>Informative sampling</h2>
 <ul>
 <li><p>Using M1: <code>1F5V</code>, generate a fixed population size of <span class="math inline">\(N\)</span>. Then, assign each unit <span class="math inline">\(h\)</span> a probability of selection as follows: <span class="math display">\[
-w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
+w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
 \]</span> Larger values of <span class="math inline">\(y_1^*\)</span> result in smaller probabilities of selection.</p></li>
 <li><p>Sample <span class="math inline">\(n\in\{500, 1000, 5000\}\)</span> units from a population of size <span class="math inline">\(N=n/0.01\)</span> which ensures no need for FPC factor <span class="citation" data-cites="lumley2004analysis">(<a href="#/references" role="doc-biblioref" onclick="">Lumley 2004</a>)</span>.</p></li>
-<li><p>In repeated sampling (<span class="math inline">\(B=1000\)</span>), interested in</p>
+<li><p>In repeated sampling (<span class="math inline">\(B=1000\)</span>), interested in performance of PMLE vis-à-vis</p>
 <ul>
 <li>Bias</li>
 <li>Coverage for 95% CI</li>
@@ -1739,23 +1835,23 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<div id="wbvoeiimxn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#wbvoeiimxn table {
+<div id="bvoeiimxnl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bvoeiimxnl table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#wbvoeiimxn thead, #wbvoeiimxn tbody, #wbvoeiimxn tfoot, #wbvoeiimxn tr, #wbvoeiimxn td, #wbvoeiimxn th {
+#bvoeiimxnl thead, #bvoeiimxnl tbody, #bvoeiimxnl tfoot, #bvoeiimxnl tr, #bvoeiimxnl td, #bvoeiimxnl th {
   border-style: none;
 }
 
-#wbvoeiimxn p {
+#bvoeiimxnl p {
   margin: 0;
   padding: 0;
 }
 
-#wbvoeiimxn .gt_table {
+#bvoeiimxnl .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1781,12 +1877,12 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   border-left-color: #D3D3D3;
 }
 
-#wbvoeiimxn .gt_caption {
+#bvoeiimxnl .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#wbvoeiimxn .gt_title {
+#bvoeiimxnl .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1798,7 +1894,7 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   border-bottom-width: 0;
 }
 
-#wbvoeiimxn .gt_subtitle {
+#bvoeiimxnl .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1810,7 +1906,7 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   border-top-width: 0;
 }
 
-#wbvoeiimxn .gt_heading {
+#bvoeiimxnl .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1822,13 +1918,13 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   border-right-color: #D3D3D3;
 }
 
-#wbvoeiimxn .gt_bottom_border {
+#bvoeiimxnl .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wbvoeiimxn .gt_col_headings {
+#bvoeiimxnl .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1843,7 +1939,7 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   border-right-color: #D3D3D3;
 }
 
-#wbvoeiimxn .gt_col_heading {
+#bvoeiimxnl .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1863,7 +1959,7 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   overflow-x: hidden;
 }
 
-#wbvoeiimxn .gt_column_spanner_outer {
+#bvoeiimxnl .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1875,15 +1971,15 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   padding-right: 4px;
 }
 
-#wbvoeiimxn .gt_column_spanner_outer:first-child {
+#bvoeiimxnl .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wbvoeiimxn .gt_column_spanner_outer:last-child {
+#bvoeiimxnl .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wbvoeiimxn .gt_column_spanner {
+#bvoeiimxnl .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1895,11 +1991,11 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   width: 100%;
 }
 
-#wbvoeiimxn .gt_spanner_row {
+#bvoeiimxnl .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#wbvoeiimxn .gt_group_heading {
+#bvoeiimxnl .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1925,7 +2021,7 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   text-align: left;
 }
 
-#wbvoeiimxn .gt_empty_group_heading {
+#bvoeiimxnl .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1940,15 +2036,15 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   vertical-align: middle;
 }
 
-#wbvoeiimxn .gt_from_md > :first-child {
+#bvoeiimxnl .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wbvoeiimxn .gt_from_md > :last-child {
+#bvoeiimxnl .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wbvoeiimxn .gt_row {
+#bvoeiimxnl .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1967,7 +2063,7 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   overflow-x: hidden;
 }
 
-#wbvoeiimxn .gt_stub {
+#bvoeiimxnl .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1980,7 +2076,7 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   padding-right: 5px;
 }
 
-#wbvoeiimxn .gt_stub_row_group {
+#bvoeiimxnl .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1994,15 +2090,15 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   vertical-align: top;
 }
 
-#wbvoeiimxn .gt_row_group_first td {
+#bvoeiimxnl .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#wbvoeiimxn .gt_row_group_first th {
+#bvoeiimxnl .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#wbvoeiimxn .gt_summary_row {
+#bvoeiimxnl .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2012,16 +2108,16 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   padding-right: 5px;
 }
 
-#wbvoeiimxn .gt_first_summary_row {
+#bvoeiimxnl .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#wbvoeiimxn .gt_first_summary_row.thick {
+#bvoeiimxnl .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#wbvoeiimxn .gt_last_summary_row {
+#bvoeiimxnl .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2031,7 +2127,7 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   border-bottom-color: #D3D3D3;
 }
 
-#wbvoeiimxn .gt_grand_summary_row {
+#bvoeiimxnl .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2041,7 +2137,7 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   padding-right: 5px;
 }
 
-#wbvoeiimxn .gt_first_grand_summary_row {
+#bvoeiimxnl .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2051,7 +2147,7 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   border-top-color: #D3D3D3;
 }
 
-#wbvoeiimxn .gt_last_grand_summary_row_top {
+#bvoeiimxnl .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2061,11 +2157,11 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   border-bottom-color: #D3D3D3;
 }
 
-#wbvoeiimxn .gt_striped {
+#bvoeiimxnl .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wbvoeiimxn .gt_table_body {
+#bvoeiimxnl .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2074,7 +2170,7 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   border-bottom-color: #D3D3D3;
 }
 
-#wbvoeiimxn .gt_footnotes {
+#bvoeiimxnl .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2088,7 +2184,7 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   border-right-color: #D3D3D3;
 }
 
-#wbvoeiimxn .gt_footnote {
+#bvoeiimxnl .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2097,7 +2193,7 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   padding-right: 5px;
 }
 
-#wbvoeiimxn .gt_sourcenotes {
+#bvoeiimxnl .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2111,7 +2207,7 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   border-right-color: #D3D3D3;
 }
 
-#wbvoeiimxn .gt_sourcenote {
+#bvoeiimxnl .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2119,63 +2215,63 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   padding-right: 5px;
 }
 
-#wbvoeiimxn .gt_left {
+#bvoeiimxnl .gt_left {
   text-align: left;
 }
 
-#wbvoeiimxn .gt_center {
+#bvoeiimxnl .gt_center {
   text-align: center;
 }
 
-#wbvoeiimxn .gt_right {
+#bvoeiimxnl .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wbvoeiimxn .gt_font_normal {
+#bvoeiimxnl .gt_font_normal {
   font-weight: normal;
 }
 
-#wbvoeiimxn .gt_font_bold {
+#bvoeiimxnl .gt_font_bold {
   font-weight: bold;
 }
 
-#wbvoeiimxn .gt_font_italic {
+#bvoeiimxnl .gt_font_italic {
   font-style: italic;
 }
 
-#wbvoeiimxn .gt_super {
+#bvoeiimxnl .gt_super {
   font-size: 65%;
 }
 
-#wbvoeiimxn .gt_footnote_marks {
+#bvoeiimxnl .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#wbvoeiimxn .gt_asterisk {
+#bvoeiimxnl .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#wbvoeiimxn .gt_indent_1 {
+#bvoeiimxnl .gt_indent_1 {
   text-indent: 5px;
 }
 
-#wbvoeiimxn .gt_indent_2 {
+#bvoeiimxnl .gt_indent_2 {
   text-indent: 10px;
 }
 
-#wbvoeiimxn .gt_indent_3 {
+#bvoeiimxnl .gt_indent_3 {
   text-indent: 15px;
 }
 
-#wbvoeiimxn .gt_indent_4 {
+#bvoeiimxnl .gt_indent_4 {
   text-indent: 20px;
 }
 
-#wbvoeiimxn .gt_indent_5 {
+#bvoeiimxnl .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2207,60 +2303,60 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
 <p>\(\lambda_1\)</p>
 </div></td>
 <td class="gt_row gt_right" headers="**Loadings** stub_1_1 truth">0.80</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_1 PML_500">−0.03</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_1 PMLW_500">0.00</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_1 PML_1000">−0.03</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_1 PMLW_1000">−0.01</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_1 PML_5000">−0.02</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_1 PMLW_5000">0.00</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 PML_500" style="background-color: rgba(72,31,112,0.9); color: #FFFFFF">−0.03</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 PMLW_500" style="background-color: rgba(69,3,87,0.9); color: #FFFFFF">0.00</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 PML_1000" style="background-color: rgba(72,35,116,0.9); color: #FFFFFF">−0.03</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 PMLW_1000" style="background-color: rgba(70,8,91,0.9); color: #FFFFFF">−0.01</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 PML_5000" style="background-color: rgba(72,22,104,0.9); color: #FFFFFF">−0.02</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 PMLW_5000" style="background-color: rgba(70,6,90,0.9); color: #FFFFFF">0.00</td>
 </tr>
 <tr class="odd">
 <td id="stub_1_2" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
 <p>\(\lambda_2\)</p>
 </div></td>
 <td class="gt_row gt_right" headers="**Loadings** stub_1_2 truth">0.70</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_2 PML_500">−0.03</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_2 PMLW_500">−0.01</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_2 PML_1000">−0.02</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_2 PMLW_1000">0.00</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_2 PML_5000">−0.03</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_2 PMLW_5000">−0.01</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 PML_500" style="background-color: rgba(72,31,112,0.9); color: #FFFFFF">−0.03</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 PMLW_500" style="background-color: rgba(70,10,93,0.9); color: #FFFFFF">−0.01</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 PML_1000" style="background-color: rgba(72,24,106,0.9); color: #FFFFFF">−0.02</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 PMLW_1000" style="background-color: rgba(68,3,86,0.9); color: #FFFFFF">0.00</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 PML_5000" style="background-color: rgba(72,33,115,0.9); color: #FFFFFF">−0.03</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 PMLW_5000" style="background-color: rgba(70,7,91,0.9); color: #FFFFFF">−0.01</td>
 </tr>
 <tr class="even">
 <td id="stub_1_3" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
 <p>\(\lambda_3\)</p>
 </div></td>
 <td class="gt_row gt_right" headers="**Loadings** stub_1_3 truth">0.47</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_3 PML_500">−0.02</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_3 PMLW_500">0.00</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_3 PML_1000">−0.02</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_3 PMLW_1000">0.00</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_3 PML_5000">−0.02</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_3 PMLW_5000">0.00</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 PML_500" style="background-color: rgba(72,25,107,0.9); color: #FFFFFF">−0.02</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 PMLW_500" style="background-color: rgba(68,1,85,0.9); color: #FFFFFF">0.00</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 PML_1000" style="background-color: rgba(72,28,110,0.9); color: #FFFFFF">−0.02</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 PMLW_1000" style="background-color: rgba(69,6,89,0.9); color: #FFFFFF">0.00</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 PML_5000" style="background-color: rgba(72,28,110,0.9); color: #FFFFFF">−0.02</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 PMLW_5000" style="background-color: rgba(69,5,88,0.9); color: #FFFFFF">0.00</td>
 </tr>
 <tr class="odd">
 <td id="stub_1_4" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
 <p>\(\lambda_4\)</p>
 </div></td>
 <td class="gt_row gt_right" headers="**Loadings** stub_1_4 truth">0.38</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_4 PML_500">−0.02</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_4 PMLW_500">0.00</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_4 PML_1000">−0.02</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_4 PMLW_1000">0.00</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_4 PML_5000">−0.02</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_4 PMLW_5000">0.00</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 PML_500" style="background-color: rgba(72,21,104,0.9); color: #FFFFFF">−0.02</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 PMLW_500" style="background-color: rgba(68,2,85,0.9); color: #FFFFFF">0.00</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 PML_1000" style="background-color: rgba(72,23,105,0.9); color: #FFFFFF">−0.02</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 PMLW_1000" style="background-color: rgba(69,3,87,0.9); color: #FFFFFF">0.00</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 PML_5000" style="background-color: rgba(72,21,104,0.9); color: #FFFFFF">−0.02</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 PMLW_5000" style="background-color: rgba(69,4,88,0.9); color: #FFFFFF">0.00</td>
 </tr>
 <tr class="even">
 <td id="stub_1_5" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
 <p>\(\lambda_5\)</p>
 </div></td>
 <td class="gt_row gt_right" headers="**Loadings** stub_1_5 truth">0.34</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_5 PML_500">0.00</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_5 PMLW_500">0.01</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_5 PML_1000">−0.02</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_5 PMLW_1000">0.00</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_5 PML_5000">−0.02</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_5 PMLW_5000">−0.01</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 PML_500" style="background-color: rgba(69,4,87,0.9); color: #FFFFFF">0.00</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 PMLW_500" style="background-color: rgba(71,13,96,0.9); color: #FFFFFF">0.01</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 PML_1000" style="background-color: rgba(72,23,105,0.9); color: #FFFFFF">−0.02</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 PMLW_1000" style="background-color: rgba(69,3,87,0.9); color: #FFFFFF">0.00</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 PML_5000" style="background-color: rgba(72,27,109,0.9); color: #FFFFFF">−0.02</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 PMLW_5000" style="background-color: rgba(70,8,91,0.9); color: #FFFFFF">−0.01</td>
 </tr>
 <tr class="odd gt_group_heading_row">
 <td colspan="8" id="<strong>Thresholds</strong>" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup"><strong>Thresholds</strong></td>
@@ -2270,60 +2366,60 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
 <p>\(\tau_1\)</p>
 </div></td>
 <td class="gt_row gt_right" headers="**Thresholds** stub_1_6 truth">-1.43</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 PML_500">0.31</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 PMLW_500">0.00</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 PML_1000">0.31</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 PMLW_1000">0.00</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 PML_5000">0.30</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 PMLW_5000">−0.01</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 PML_500" style="background-color: rgba(232,228,25,0.9); color: #000000">0.31</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 PMLW_500" style="background-color: rgba(69,5,89,0.9); color: #FFFFFF">0.00</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 PML_1000" style="background-color: rgba(235,229,27,0.9); color: #000000">0.31</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 PMLW_1000" style="background-color: rgba(68,1,84,0.9); color: #FFFFFF">0.00</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 PML_5000" style="background-color: rgba(222,227,24,0.9); color: #000000">0.30</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 PMLW_5000" style="background-color: rgba(70,8,92,0.9); color: #FFFFFF">−0.01</td>
 </tr>
 <tr class="odd">
 <td id="stub_1_7" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
 <p>\(\tau_2\)</p>
 </div></td>
 <td class="gt_row gt_right" headers="**Thresholds** stub_1_7 truth">-0.55</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 PML_500">0.22</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 PMLW_500">−0.01</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 PML_1000">0.22</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 PMLW_1000">0.00</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 PML_5000">0.21</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 PMLW_5000">−0.01</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 PML_500" style="background-color: rgba(55,184,120,0.9); color: #000000">0.22</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 PMLW_500" style="background-color: rgba(70,8,92,0.9); color: #FFFFFF">−0.01</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 PML_1000" style="background-color: rgba(59,187,117,0.9); color: #000000">0.22</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 PMLW_1000" style="background-color: rgba(69,3,87,0.9); color: #FFFFFF">0.00</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 PML_5000" style="background-color: rgba(53,183,121,0.9); color: #FFFFFF">0.21</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 PMLW_5000" style="background-color: rgba(70,10,93,0.9); color: #FFFFFF">−0.01</td>
 </tr>
 <tr class="even">
 <td id="stub_1_8" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
 <p>\(\tau_3\)</p>
 </div></td>
 <td class="gt_row gt_right" headers="**Thresholds** stub_1_8 truth">-0.13</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 PML_500">0.15</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 PMLW_500">−0.01</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 PML_1000">0.16</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 PMLW_1000">0.01</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 PML_5000">0.15</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 PMLW_5000">0.00</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 PML_500" style="background-color: rgba(37,133,142,0.9); color: #FFFFFF">0.15</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 PMLW_500" style="background-color: rgba(70,8,91,0.9); color: #FFFFFF">−0.01</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 PML_1000" style="background-color: rgba(33,145,140,0.9); color: #FFFFFF">0.16</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 PMLW_1000" style="background-color: rgba(70,11,94,0.9); color: #FFFFFF">0.01</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 PML_5000" style="background-color: rgba(34,139,141,0.9); color: #FFFFFF">0.15</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 PMLW_5000" style="background-color: rgba(68,2,85,0.9); color: #FFFFFF">0.00</td>
 </tr>
 <tr class="odd">
 <td id="stub_1_9" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
 <p>\(\tau_4\)</p>
 </div></td>
 <td class="gt_row gt_right" headers="**Thresholds** stub_1_9 truth">-0.72</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 PML_500">0.12</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 PMLW_500">0.00</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 PML_1000">0.12</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 PMLW_1000">0.00</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 PML_5000">0.12</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 PMLW_5000">0.00</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 PML_500" style="background-color: rgba(43,116,142,0.9); color: #FFFFFF">0.12</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 PMLW_500" style="background-color: rgba(69,5,88,0.9); color: #FFFFFF">0.00</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 PML_1000" style="background-color: rgba(45,113,142,0.9); color: #FFFFFF">0.12</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 PMLW_1000" style="background-color: rgba(68,2,86,0.9); color: #FFFFFF">0.00</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 PML_5000" style="background-color: rgba(44,114,142,0.9); color: #FFFFFF">0.12</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 PMLW_5000" style="background-color: rgba(68,3,86,0.9); color: #FFFFFF">0.00</td>
 </tr>
 <tr class="even">
 <td id="stub_1_10" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
 <p>\(\tau_5\)</p>
 </div></td>
 <td class="gt_row gt_right" headers="**Thresholds** stub_1_10 truth">-1.13</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 PML_500">0.11</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 PMLW_500">0.01</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 PML_1000">0.11</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 PMLW_1000">0.01</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 PML_5000">0.11</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 PMLW_5000">0.00</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 PML_500" style="background-color: rgba(47,108,142,0.9); color: #FFFFFF">0.11</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 PMLW_500" style="background-color: rgba(70,11,94,0.9); color: #FFFFFF">0.01</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 PML_1000" style="background-color: rgba(46,110,142,0.9); color: #FFFFFF">0.11</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 PMLW_1000" style="background-color: rgba(71,12,95,0.9); color: #FFFFFF">0.01</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 PML_5000" style="background-color: rgba(49,103,142,0.9); color: #FFFFFF">0.11</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 PMLW_5000" style="background-color: rgba(69,3,87,0.9); color: #FFFFFF">0.00</td>
 </tr>
 </tbody>
 </table>
@@ -2339,23 +2435,23 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<div id="zwawlyqfka" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#zwawlyqfka table {
+<div id="awlyqfkaih" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#awlyqfkaih table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#zwawlyqfka thead, #zwawlyqfka tbody, #zwawlyqfka tfoot, #zwawlyqfka tr, #zwawlyqfka td, #zwawlyqfka th {
+#awlyqfkaih thead, #awlyqfkaih tbody, #awlyqfkaih tfoot, #awlyqfkaih tr, #awlyqfkaih td, #awlyqfkaih th {
   border-style: none;
 }
 
-#zwawlyqfka p {
+#awlyqfkaih p {
   margin: 0;
   padding: 0;
 }
 
-#zwawlyqfka .gt_table {
+#awlyqfkaih .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2381,12 +2477,12 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   border-left-color: #D3D3D3;
 }
 
-#zwawlyqfka .gt_caption {
+#awlyqfkaih .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#zwawlyqfka .gt_title {
+#awlyqfkaih .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2398,7 +2494,7 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   border-bottom-width: 0;
 }
 
-#zwawlyqfka .gt_subtitle {
+#awlyqfkaih .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2410,7 +2506,7 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   border-top-width: 0;
 }
 
-#zwawlyqfka .gt_heading {
+#awlyqfkaih .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2422,13 +2518,13 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   border-right-color: #D3D3D3;
 }
 
-#zwawlyqfka .gt_bottom_border {
+#awlyqfkaih .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zwawlyqfka .gt_col_headings {
+#awlyqfkaih .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2443,7 +2539,7 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   border-right-color: #D3D3D3;
 }
 
-#zwawlyqfka .gt_col_heading {
+#awlyqfkaih .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2463,7 +2559,7 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   overflow-x: hidden;
 }
 
-#zwawlyqfka .gt_column_spanner_outer {
+#awlyqfkaih .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2475,15 +2571,15 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   padding-right: 4px;
 }
 
-#zwawlyqfka .gt_column_spanner_outer:first-child {
+#awlyqfkaih .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zwawlyqfka .gt_column_spanner_outer:last-child {
+#awlyqfkaih .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zwawlyqfka .gt_column_spanner {
+#awlyqfkaih .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2495,11 +2591,11 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   width: 100%;
 }
 
-#zwawlyqfka .gt_spanner_row {
+#awlyqfkaih .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#zwawlyqfka .gt_group_heading {
+#awlyqfkaih .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2525,7 +2621,7 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   text-align: left;
 }
 
-#zwawlyqfka .gt_empty_group_heading {
+#awlyqfkaih .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2540,15 +2636,15 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   vertical-align: middle;
 }
 
-#zwawlyqfka .gt_from_md > :first-child {
+#awlyqfkaih .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#zwawlyqfka .gt_from_md > :last-child {
+#awlyqfkaih .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#zwawlyqfka .gt_row {
+#awlyqfkaih .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2567,7 +2663,7 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   overflow-x: hidden;
 }
 
-#zwawlyqfka .gt_stub {
+#awlyqfkaih .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2580,7 +2676,7 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   padding-right: 5px;
 }
 
-#zwawlyqfka .gt_stub_row_group {
+#awlyqfkaih .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2594,15 +2690,15 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   vertical-align: top;
 }
 
-#zwawlyqfka .gt_row_group_first td {
+#awlyqfkaih .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#zwawlyqfka .gt_row_group_first th {
+#awlyqfkaih .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#zwawlyqfka .gt_summary_row {
+#awlyqfkaih .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2612,16 +2708,16 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   padding-right: 5px;
 }
 
-#zwawlyqfka .gt_first_summary_row {
+#awlyqfkaih .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#zwawlyqfka .gt_first_summary_row.thick {
+#awlyqfkaih .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#zwawlyqfka .gt_last_summary_row {
+#awlyqfkaih .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2631,7 +2727,7 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   border-bottom-color: #D3D3D3;
 }
 
-#zwawlyqfka .gt_grand_summary_row {
+#awlyqfkaih .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2641,7 +2737,7 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   padding-right: 5px;
 }
 
-#zwawlyqfka .gt_first_grand_summary_row {
+#awlyqfkaih .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2651,7 +2747,7 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   border-top-color: #D3D3D3;
 }
 
-#zwawlyqfka .gt_last_grand_summary_row_top {
+#awlyqfkaih .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2661,11 +2757,11 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   border-bottom-color: #D3D3D3;
 }
 
-#zwawlyqfka .gt_striped {
+#awlyqfkaih .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zwawlyqfka .gt_table_body {
+#awlyqfkaih .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2674,7 +2770,7 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   border-bottom-color: #D3D3D3;
 }
 
-#zwawlyqfka .gt_footnotes {
+#awlyqfkaih .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2688,7 +2784,7 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   border-right-color: #D3D3D3;
 }
 
-#zwawlyqfka .gt_footnote {
+#awlyqfkaih .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2697,7 +2793,7 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   padding-right: 5px;
 }
 
-#zwawlyqfka .gt_sourcenotes {
+#awlyqfkaih .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2711,7 +2807,7 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   border-right-color: #D3D3D3;
 }
 
-#zwawlyqfka .gt_sourcenote {
+#awlyqfkaih .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2719,63 +2815,63 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
   padding-right: 5px;
 }
 
-#zwawlyqfka .gt_left {
+#awlyqfkaih .gt_left {
   text-align: left;
 }
 
-#zwawlyqfka .gt_center {
+#awlyqfkaih .gt_center {
   text-align: center;
 }
 
-#zwawlyqfka .gt_right {
+#awlyqfkaih .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zwawlyqfka .gt_font_normal {
+#awlyqfkaih .gt_font_normal {
   font-weight: normal;
 }
 
-#zwawlyqfka .gt_font_bold {
+#awlyqfkaih .gt_font_bold {
   font-weight: bold;
 }
 
-#zwawlyqfka .gt_font_italic {
+#awlyqfkaih .gt_font_italic {
   font-style: italic;
 }
 
-#zwawlyqfka .gt_super {
+#awlyqfkaih .gt_super {
   font-size: 65%;
 }
 
-#zwawlyqfka .gt_footnote_marks {
+#awlyqfkaih .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#zwawlyqfka .gt_asterisk {
+#awlyqfkaih .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#zwawlyqfka .gt_indent_1 {
+#awlyqfkaih .gt_indent_1 {
   text-indent: 5px;
 }
 
-#zwawlyqfka .gt_indent_2 {
+#awlyqfkaih .gt_indent_2 {
   text-indent: 10px;
 }
 
-#zwawlyqfka .gt_indent_3 {
+#awlyqfkaih .gt_indent_3 {
   text-indent: 15px;
 }
 
-#zwawlyqfka .gt_indent_4 {
+#awlyqfkaih .gt_indent_4 {
   text-indent: 20px;
 }
 
-#zwawlyqfka .gt_indent_5 {
+#awlyqfkaih .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2835,86 +2931,86 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
 <td id="stub_1_1" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
 <p>\(\lambda_1\)</p>
 </div></td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_1 cov_PML_500">0.95</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_1 cov_PMLW_500">0.96</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_1 ratio_PML_500">1.01</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_1 ratio_PMLW_500">0.99</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_1 cov_PML_1000">0.94</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_1 cov_PMLW_1000">0.95</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_1 ratio_PML_1000">1.04</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_1 ratio_PMLW_1000">1.01</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_1 cov_PML_5000">0.89</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_1 cov_PMLW_5000">0.95</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_1 ratio_PML_5000">1.22</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_1 ratio_PMLW_5000">1.01</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 cov_PML_500" style="background-color: rgba(68,2,85,0.9); color: #FFFFFF">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 cov_PMLW_500" style="background-color: rgba(69,4,87,0.9); color: #FFFFFF">0.96</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 ratio_PML_500" style="background-color: rgba(68,2,85,0.9); color: #FFFFFF">1.01</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 ratio_PMLW_500" style="background-color: rgba(68,2,85,0.9); color: #FFFFFF">0.99</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 cov_PML_1000" style="background-color: rgba(70,7,90,0.9); color: #FFFFFF">0.94</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 cov_PMLW_1000" style="background-color: rgba(68,2,85,0.9); color: #FFFFFF">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 ratio_PML_1000" style="background-color: rgba(70,7,90,0.9); color: #FFFFFF">1.04</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 ratio_PMLW_1000" style="background-color: rgba(68,2,85,0.9); color: #FFFFFF">1.01</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 cov_PML_5000" style="background-color: rgba(72,26,108,0.9); color: #FFFFFF">0.89</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 cov_PMLW_5000" style="background-color: rgba(68,2,86,0.9); color: #FFFFFF">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 ratio_PML_5000" style="background-color: rgba(44,114,142,0.9); color: #FFFFFF">1.22</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_1 ratio_PMLW_5000" style="background-color: rgba(68,2,86,0.9); color: #FFFFFF">1.01</td>
 </tr>
 <tr class="odd">
 <td id="stub_1_2" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
 <p>\(\lambda_2\)</p>
 </div></td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_2 cov_PML_500">0.95</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_2 cov_PMLW_500">0.95</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_2 ratio_PML_500">1.03</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_2 ratio_PMLW_500">0.99</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_2 cov_PML_1000">0.93</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_2 cov_PMLW_1000">0.95</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_2 ratio_PML_1000">1.09</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_2 ratio_PMLW_1000">1.01</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_2 cov_PML_5000">0.85</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_2 cov_PMLW_5000">0.95</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_2 ratio_PML_5000">1.31</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_2 ratio_PMLW_5000">0.99</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 cov_PML_500" style="background-color: rgba(68,2,86,0.9); color: #FFFFFF">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 cov_PMLW_500" style="background-color: rgba(68,2,86,0.9); color: #FFFFFF">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 ratio_PML_500" style="background-color: rgba(69,6,89,0.9); color: #FFFFFF">1.03</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 ratio_PMLW_500" style="background-color: rgba(68,2,86,0.9); color: #FFFFFF">0.99</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 cov_PML_1000" style="background-color: rgba(70,10,93,0.9); color: #FFFFFF">0.93</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 cov_PMLW_1000" style="background-color: rgba(68,2,85,0.9); color: #FFFFFF">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 ratio_PML_1000" style="background-color: rgba(71,13,96,0.9); color: #FFFFFF">1.09</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 ratio_PMLW_1000" style="background-color: rgba(68,3,86,0.9); color: #FFFFFF">1.01</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 cov_PML_5000" style="background-color: rgba(72,37,118,0.9); color: #FFFFFF">0.85</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 cov_PMLW_5000" style="background-color: rgba(68,2,86,0.9); color: #FFFFFF">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 ratio_PML_5000" style="background-color: rgba(41,121,142,0.9); color: #FFFFFF">1.31</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_2 ratio_PMLW_5000" style="background-color: rgba(68,2,85,0.9); color: #FFFFFF">0.99</td>
 </tr>
 <tr class="even">
 <td id="stub_1_3" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
 <p>\(\lambda_3\)</p>
 </div></td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_3 cov_PML_500">0.95</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_3 cov_PMLW_500">0.96</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_3 ratio_PML_500">1.02</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_3 ratio_PMLW_500">0.97</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_3 cov_PML_1000">0.94</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_3 cov_PMLW_1000">0.95</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_3 ratio_PML_1000">1.06</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_3 ratio_PMLW_1000">0.97</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_3 cov_PML_5000">0.85</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_3 cov_PMLW_5000">0.95</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_3 ratio_PML_5000">1.35</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_3 ratio_PMLW_5000">0.99</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 cov_PML_500" style="background-color: rgba(68,1,85,0.9); color: #FFFFFF">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 cov_PMLW_500" style="background-color: rgba(69,5,89,0.9); color: #FFFFFF">0.96</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 ratio_PML_500" style="background-color: rgba(69,4,87,0.9); color: #FFFFFF">1.02</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 ratio_PMLW_500" style="background-color: rgba(69,6,89,0.9); color: #FFFFFF">0.97</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 cov_PML_1000" style="background-color: rgba(69,5,89,0.9); color: #FFFFFF">0.94</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 cov_PMLW_1000" style="background-color: rgba(68,1,84,0.9); color: #FFFFFF">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 ratio_PML_1000" style="background-color: rgba(70,10,93,0.9); color: #FFFFFF">1.06</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 ratio_PMLW_1000" style="background-color: rgba(69,6,89,0.9); color: #FFFFFF">0.97</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 cov_PML_5000" style="background-color: rgba(72,38,119,0.9); color: #FFFFFF">0.85</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 cov_PMLW_5000" style="background-color: rgba(68,2,86,0.9); color: #FFFFFF">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 ratio_PML_5000" style="background-color: rgba(40,124,142,0.9); color: #FFFFFF">1.35</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_3 ratio_PMLW_5000" style="background-color: rgba(68,2,86,0.9); color: #FFFFFF">0.99</td>
 </tr>
 <tr class="odd">
 <td id="stub_1_4" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
 <p>\(\lambda_4\)</p>
 </div></td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_4 cov_PML_500">0.94</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_4 cov_PMLW_500">0.94</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_4 ratio_PML_500">1.04</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_4 ratio_PMLW_500">1.03</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_4 cov_PML_1000">0.94</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_4 cov_PMLW_1000">0.95</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_4 ratio_PML_1000">1.05</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_4 ratio_PMLW_1000">1.00</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_4 cov_PML_5000">0.88</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_4 cov_PMLW_5000">0.95</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_4 ratio_PML_5000">1.25</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_4 ratio_PMLW_5000">1.01</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 cov_PML_500" style="background-color: rgba(70,7,90,0.9); color: #FFFFFF">0.94</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 cov_PMLW_500" style="background-color: rgba(70,7,90,0.9); color: #FFFFFF">0.94</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 ratio_PML_500" style="background-color: rgba(70,7,90,0.9); color: #FFFFFF">1.04</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 ratio_PMLW_500" style="background-color: rgba(69,5,89,0.9); color: #FFFFFF">1.03</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 cov_PML_1000" style="background-color: rgba(70,7,90,0.9); color: #FFFFFF">0.94</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 cov_PMLW_1000" style="background-color: rgba(68,2,85,0.9); color: #FFFFFF">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 ratio_PML_1000" style="background-color: rgba(70,8,91,0.9); color: #FFFFFF">1.05</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 ratio_PMLW_1000" style="background-color: rgba(68,1,85,0.9); color: #FFFFFF">1.00</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 cov_PML_5000" style="background-color: rgba(72,27,109,0.9); color: #FFFFFF">0.88</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 cov_PMLW_5000" style="background-color: rgba(68,1,85,0.9); color: #FFFFFF">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 ratio_PML_5000" style="background-color: rgba(43,117,142,0.9); color: #FFFFFF">1.25</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_4 ratio_PMLW_5000" style="background-color: rgba(68,2,86,0.9); color: #FFFFFF">1.01</td>
 </tr>
 <tr class="even">
 <td id="stub_1_5" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
 <p>\(\lambda_5\)</p>
 </div></td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_5 cov_PML_500">0.95</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_5 cov_PMLW_500">0.95</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_5 ratio_PML_500">0.99</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_5 ratio_PMLW_500">0.98</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_5 cov_PML_1000">0.95</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_5 cov_PMLW_1000">0.96</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_5 ratio_PML_1000">1.02</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_5 ratio_PMLW_1000">1.00</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_5 cov_PML_5000">0.90</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_5 cov_PMLW_5000">0.95</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_5 ratio_PML_5000">1.19</td>
-<td class="gt_row gt_right" headers="**Loadings** stub_1_5 ratio_PMLW_5000">1.01</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 cov_PML_500" style="background-color: rgba(68,3,86,0.9); color: #FFFFFF">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 cov_PMLW_500" style="background-color: rgba(68,1,85,0.9); color: #FFFFFF">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 ratio_PML_500" style="background-color: rgba(68,2,85,0.9); color: #FFFFFF">0.99</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 ratio_PMLW_500" style="background-color: rgba(69,3,87,0.9); color: #FFFFFF">0.98</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 cov_PML_1000" style="background-color: rgba(68,1,84,0.9); color: #FFFFFF">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 cov_PMLW_1000" style="background-color: rgba(69,4,87,0.9); color: #FFFFFF">0.96</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 ratio_PML_1000" style="background-color: rgba(69,4,87,0.9); color: #FFFFFF">1.02</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 ratio_PMLW_1000" style="background-color: rgba(68,1,84,0.9); color: #FFFFFF">1.00</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 cov_PML_5000" style="background-color: rgba(72,21,104,0.9); color: #FFFFFF">0.90</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 cov_PMLW_5000" style="background-color: rgba(68,1,84,0.9); color: #FFFFFF">0.95</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 ratio_PML_5000" style="background-color: rgba(45,113,142,0.9); color: #FFFFFF">1.19</td>
+<td class="gt_row gt_right" headers="**Loadings** stub_1_5 ratio_PMLW_5000" style="background-color: rgba(68,2,86,0.9); color: #FFFFFF">1.01</td>
 </tr>
 <tr class="odd gt_group_heading_row">
 <td colspan="13" id="<strong>Thresholds</strong>" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup"><strong>Thresholds</strong></td>
@@ -2923,86 +3019,86 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
 <td id="stub_1_6" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
 <p>\(\tau_1\)</p>
 </div></td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 cov_PML_500">0.01</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 cov_PMLW_500">0.96</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 ratio_PML_500">4.38</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 ratio_PMLW_500">0.98</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 cov_PML_1000">0.00</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 cov_PMLW_1000">0.96</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 ratio_PML_1000">6.24</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 ratio_PMLW_1000">0.97</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 cov_PML_5000">0.00</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 cov_PMLW_5000">0.96</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 ratio_PML_5000">13.81</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 ratio_PMLW_5000">0.97</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 cov_PML_500" style="background-color: rgba(246,230,32,0.9); color: #000000">0.01</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 cov_PMLW_500" style="background-color: rgba(69,4,87,0.9); color: #FFFFFF">0.96</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 ratio_PML_500" style="background-color: rgba(31,158,137,0.9); color: #FFFFFF">4.38</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 ratio_PMLW_500" style="background-color: rgba(69,3,87,0.9); color: #FFFFFF">0.98</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 cov_PML_1000" style="background-color: rgba(253,231,37,0.9); color: #000000">0.00</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 cov_PMLW_1000" style="background-color: rgba(69,4,87,0.9); color: #FFFFFF">0.96</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 ratio_PML_1000" style="background-color: rgba(63,188,115,0.9); color: #000000">6.24</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 ratio_PMLW_1000" style="background-color: rgba(69,4,88,0.9); color: #FFFFFF">0.97</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 cov_PML_5000" style="background-color: rgba(253,231,37,0.9); color: #000000">0.00</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 cov_PMLW_5000" style="background-color: rgba(69,4,87,0.9); color: #FFFFFF">0.96</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 ratio_PML_5000" style="background-color: rgba(247,230,33,0.9); color: #000000">13.81</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_6 ratio_PMLW_5000" style="background-color: rgba(69,4,88,0.9); color: #FFFFFF">0.97</td>
 </tr>
 <tr class="odd">
 <td id="stub_1_7" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
 <p>\(\tau_2\)</p>
 </div></td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 cov_PML_500">0.04</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 cov_PMLW_500">0.95</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 ratio_PML_500">3.91</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 ratio_PMLW_500">1.05</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 cov_PML_1000">0.00</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 cov_PMLW_1000">0.94</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 ratio_PML_1000">5.47</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 ratio_PMLW_1000">1.01</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 cov_PML_5000">0.00</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 cov_PMLW_5000">0.94</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 ratio_PML_5000">12.03</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 ratio_PMLW_5000">1.06</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 cov_PML_500" style="background-color: rgba(228,228,25,0.9); color: #000000">0.04</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 cov_PMLW_500" style="background-color: rgba(68,2,85,0.9); color: #FFFFFF">0.95</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 ratio_PML_500" style="background-color: rgba(32,147,140,0.9); color: #FFFFFF">3.91</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 ratio_PMLW_500" style="background-color: rgba(70,8,91,0.9); color: #FFFFFF">1.05</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 cov_PML_1000" style="background-color: rgba(252,231,36,0.9); color: #000000">0.00</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 cov_PMLW_1000" style="background-color: rgba(68,3,86,0.9); color: #FFFFFF">0.94</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 ratio_PML_1000" style="background-color: rgba(44,177,126,0.9); color: #FFFFFF">5.47</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 ratio_PMLW_1000" style="background-color: rgba(68,3,86,0.9); color: #FFFFFF">1.01</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 cov_PML_5000" style="background-color: rgba(253,231,37,0.9); color: #000000">0.00</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 cov_PMLW_5000" style="background-color: rgba(69,5,89,0.9); color: #FFFFFF">0.94</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 ratio_PML_5000" style="background-color: rgba(214,226,26,0.9); color: #000000">12.03</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_7 ratio_PMLW_5000" style="background-color: rgba(70,10,93,0.9); color: #FFFFFF">1.06</td>
 </tr>
 <tr class="even">
 <td id="stub_1_8" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
 <p>\(\tau_3\)</p>
 </div></td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 cov_PML_500">0.22</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 cov_PMLW_500">0.96</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 ratio_PML_500">2.93</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 ratio_PMLW_500">1.02</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 cov_PML_1000">0.03</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 cov_PMLW_1000">0.94</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 ratio_PML_1000">4.03</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 ratio_PMLW_1000">1.02</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 cov_PML_5000">0.00</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 cov_PMLW_5000">0.96</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 ratio_PML_5000">8.76</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 ratio_PMLW_5000">0.96</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 cov_PML_500" style="background-color: rgba(103,204,92,0.9); color: #000000">0.22</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 cov_PMLW_500" style="background-color: rgba(69,4,87,0.9); color: #FFFFFF">0.96</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 ratio_PML_500" style="background-color: rgba(41,122,142,0.9); color: #FFFFFF">2.93</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 ratio_PMLW_500" style="background-color: rgba(69,3,87,0.9); color: #FFFFFF">1.02</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 cov_PML_1000" style="background-color: rgba(231,228,25,0.9); color: #000000">0.03</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 cov_PMLW_1000" style="background-color: rgba(69,5,88,0.9); color: #FFFFFF">0.94</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 ratio_PML_1000" style="background-color: rgba(31,150,139,0.9); color: #FFFFFF">4.03</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 ratio_PMLW_1000" style="background-color: rgba(69,4,87,0.9); color: #FFFFFF">1.02</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 cov_PML_5000" style="background-color: rgba(253,231,37,0.9); color: #000000">0.00</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 cov_PMLW_5000" style="background-color: rgba(69,4,88,0.9); color: #FFFFFF">0.96</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 ratio_PML_5000" style="background-color: rgba(134,213,73,0.9); color: #000000">8.76</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_8 ratio_PMLW_5000" style="background-color: rgba(70,6,90,0.9); color: #FFFFFF">0.96</td>
 </tr>
 <tr class="odd">
 <td id="stub_1_9" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
 <p>\(\tau_4\)</p>
 </div></td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 cov_PML_500">0.49</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 cov_PMLW_500">0.94</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 ratio_PML_500">2.22</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 ratio_PMLW_500">1.03</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 cov_PML_1000">0.20</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 cov_PMLW_1000">0.95</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 ratio_PML_1000">2.97</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 ratio_PMLW_1000">1.03</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 cov_PML_5000">0.00</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 cov_PMLW_5000">0.95</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 ratio_PML_5000">6.40</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 ratio_PMLW_5000">1.04</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 cov_PML_500" style="background-color: rgba(34,141,141,0.9); color: #FFFFFF">0.49</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 cov_PMLW_500" style="background-color: rgba(69,5,88,0.9); color: #FFFFFF">0.94</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 ratio_PML_500" style="background-color: rgba(52,96,141,0.9); color: #FFFFFF">2.22</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 ratio_PMLW_500" style="background-color: rgba(69,5,89,0.9); color: #FFFFFF">1.03</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 cov_PML_1000" style="background-color: rgba(113,207,87,0.9); color: #000000">0.20</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 cov_PMLW_1000" style="background-color: rgba(68,2,86,0.9); color: #FFFFFF">0.95</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 ratio_PML_1000" style="background-color: rgba(41,123,142,0.9); color: #FFFFFF">2.97</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 ratio_PMLW_1000" style="background-color: rgba(69,5,89,0.9); color: #FFFFFF">1.03</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 cov_PML_5000" style="background-color: rgba(253,231,37,0.9); color: #000000">0.00</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 cov_PMLW_5000" style="background-color: rgba(68,1,85,0.9); color: #FFFFFF">0.95</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 ratio_PML_5000" style="background-color: rgba(67,191,112,0.9); color: #000000">6.40</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_9 ratio_PMLW_5000" style="background-color: rgba(70,6,90,0.9); color: #FFFFFF">1.04</td>
 </tr>
 <tr class="even">
 <td id="stub_1_10" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"><div class="gt_from_md">
 <p>\(\tau_5\)</p>
 </div></td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 cov_PML_500">0.61</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 cov_PMLW_500">0.94</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 ratio_PML_500">1.88</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 ratio_PMLW_500">1.02</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 cov_PML_1000">0.42</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 cov_PMLW_1000">0.95</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 ratio_PML_1000">2.39</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 ratio_PMLW_1000">1.01</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 cov_PML_5000">0.00</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 cov_PMLW_5000">0.95</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 ratio_PML_5000">5.13</td>
-<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 ratio_PMLW_5000">1.04</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 cov_PML_500" style="background-color: rgba(46,109,142,0.9); color: #FFFFFF">0.61</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 cov_PMLW_500" style="background-color: rgba(68,3,86,0.9); color: #FFFFFF">0.94</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 ratio_PML_500" style="background-color: rgba(61,78,138,0.9); color: #FFFFFF">1.88</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 ratio_PMLW_500" style="background-color: rgba(69,4,88,0.9); color: #FFFFFF">1.02</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 cov_PML_1000" style="background-color: rgba(31,159,136,0.9); color: #FFFFFF">0.42</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 cov_PMLW_1000" style="background-color: rgba(68,1,84,0.9); color: #FFFFFF">0.95</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 ratio_PML_1000" style="background-color: rgba(49,103,142,0.9); color: #FFFFFF">2.39</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 ratio_PMLW_1000" style="background-color: rgba(68,2,86,0.9); color: #FFFFFF">1.01</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 cov_PML_5000" style="background-color: rgba(253,231,37,0.9); color: #000000">0.00</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 cov_PMLW_5000" style="background-color: rgba(68,2,86,0.9); color: #FFFFFF">0.95</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 ratio_PML_5000" style="background-color: rgba(37,172,130,0.9); color: #FFFFFF">5.13</td>
+<td class="gt_row gt_right" headers="**Thresholds** stub_1_10 ratio_PMLW_5000" style="background-color: rgba(69,6,89,0.9); color: #FFFFFF">1.04</td>
 </tr>
 </tbody>
 </table>
@@ -3539,9 +3635,6 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
 </div>
 </div>
 </div>
-</section>
-<section id="lavaan" class="slide level2">
-<h2><code>{lavaan}</code></h2>
 </section></section>
 <section>
 <section id="summary" class="title-slide slide level1 center">
@@ -3550,6 +3643,41 @@ w_h^{-1} = \big(1 + \exp(y_1^*) \big)^{-1}.
 </section>
 <section id="conclusions" class="slide level2">
 <h2>Conclusions</h2>
+</section>
+<section id="software" class="slide level2">
+<h2>Software</h2>
+<div class="nudge-up-small">
+<p>R software implementation in <code>{lavaan}</code> (PML weights) and a separate package <code>{lavaan.bingof}</code> for the LIGOF tests.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>fit <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">sem</span>(</span>
+<span id="cb6-2"><a href=""></a>  <span class="at">model =</span> <span class="st">"eta1 =~ y1 + y2 + y3 + y4 + y5"</span>,</span>
+<span id="cb6-3"><a href=""></a>  <span class="at">data =</span> lavaan.bingof<span class="sc">::</span><span class="fu">gen_data_bin_wt</span>(<span class="at">n =</span> <span class="dv">1000</span>),</span>
+<span id="cb6-4"><a href=""></a>  <span class="at">std.lv =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-5"><a href=""></a>  <span class="at">estimator =</span> <span class="st">"PML"</span>,</span>
+<span id="cb6-6"><a href=""></a>  <span class="at">sampling.weights =</span> <span class="st">"wt"</span></span>
+<span id="cb6-7"><a href=""></a>)</span>
+<span id="cb6-8"><a href=""></a><span class="fu">all_tests</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+     X2    df name          pval Xi_rank     S
+  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;   &lt;int&gt; &lt;int&gt;
+1  7.49  5    Wald         0.187      14    15
+2  7.05  5    WaldVCF      0.217       5    15
+3  5.39  3.24 WaldDiag,MM3 0.168      15    15
+4  4.83  3.37 Pearson,MM3  0.227      15    15
+5  5.41  3.89 RSS,MM3      0.235      15    15
+6  4.83  3.37 Multn,MM3    0.227      15    15</code></pre>
+</div>
+</div>
+</div>
+
+<aside><div>
+<p><i class="fa-brands fa-github" aria-label="github"></i> https://github.com/haziqj/lavaan.bingof</p>
+</div></aside></section></section>
+<section>
+<section id="thanks" class="title-slide slide level1 transition-slide-ubdblue center">
+<h1>Thanks!</h1>
+
 </section>
 <section id="references" class="slide level2 appendix smaller scrollable">
 <h2>References</h2>
@@ -3568,6 +3696,9 @@ Asparouhov, Tihomir. 2005. <span>“Sampling Weights in Latent Variable Modeling
 </div>
 <div id="ref-bartholomew2002goodness" class="csl-entry" role="listitem">
 Bartholomew, David J, and Shing On Leung. 2002. <span>“A Goodness of Fit Test for Sparse 2p Contingency Tables.”</span> <em>British Journal of Mathematical and Statistical Psychology</em> 55 (1): 1–15.
+</div>
+<div id="ref-besag1974spatial" class="csl-entry" role="listitem">
+Besag, Julian. 1974. <span>“Spatial <span>Interaction</span> and the <span>Statistical Analysis</span> of <span>Lattice Systems</span>.”</span> <em>Journal of the Royal Statistical Society: Series B (Methodological)</em> 36 (2): 192–225. <a href="https://doi.org/10.1111/j.2517-6161.1974.tb00999.x">https://doi.org/10.1111/j.2517-6161.1974.tb00999.x</a>.
 </div>
 <div id="ref-cai2006limited" class="csl-entry" role="listitem">
 Cai, Li., Albert. Maydeu‐Olivares, Donna L. Coffman, and David. Thissen. 2006. <span>“Limited‐information Goodness‐of‐fit Testing of Item Response Theory Models for Sparse 2 <span> <sup></sup> </span><span><sup><em>P</em></sup></span><span> <sup></sup> </span> Tables.”</span> <em>British Journal of Mathematical and Statistical Psychology</em> 59 (1): 173–94. <a href="https://doi.org/10.1348/000711005X66419">https://doi.org/10.1348/000711005X66419</a>.

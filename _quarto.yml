@@ -12,7 +12,7 @@ format:
     height: 760  # 700
     self-contained: false
     chalkboard: true
-    toc: true
+    toc: false
     toc-depth: 1
     # html-table-processing: none
     
