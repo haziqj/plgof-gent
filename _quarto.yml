@@ -14,6 +14,7 @@ format:
     chalkboard: true
     toc: false
     toc-depth: 1
+    multiplex: true
     # html-table-processing: none
     
 bibliography: refs.bib

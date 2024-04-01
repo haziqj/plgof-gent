@@ -1157,14 +1157,14 @@ y_i = \begin{cases}
 <section id="composite-likelihood" class="slide level2">
 <h2>Composite likelihood</h2>
 <ul>
-<li><p>Terminology: Pseudo-likelihood, quasi-likelihood (a la Wedderburn or misspecified models), limited information methods.</p></li>
+<li><p>Terminology: Pseudo-likelihood, quasi-likelihood (à la <span class="citation" data-cites="wedderburn1974quasilikelihood">Wedderburn (<a href="#/references" role="doc-biblioref" onclick="">1974</a>)</span> or misspecified models), limited information methods.</p></li>
 <li><p>Let <span class="math inline">\(\{{\mathcal A}_1,\dots,{\mathcal A}_K\}\)</span> a set of marginal or conditional events (partitioning the variable space). The composite likelihood is defined as <span class="citation" data-cites="lindsay1988composite">(<a href="#/references" role="doc-biblioref" onclick="">Lindsay 1988</a>)</span> <span class="math display">\[
 {\mathcal L}({\boldsymbol\theta}\mid {\mathbf y}) = \prod_{k=1}^K L({\boldsymbol\theta}\mid {\mathbf y}\in {\mathcal A}_k)
 \]</span></p></li>
 </ul>
 <div class="nudge-up-large">
 <ul>
-<li><p>Component likelihoods <span class="math inline">\(L({\boldsymbol\theta}\mid {\mathbf y}\in {\mathcal A}_k)\)</span> are either <em>conditional</em> <span class="citation" data-cites="besag1974spatial">(<a href="#/references" role="doc-biblioref" onclick="">Besag 1974</a>)</span> or <em>marginal</em> densities.</p></li>
+<li><p>Component likelihoods <span class="math inline">\(L({\boldsymbol\theta}\mid {\mathbf y}\in {\mathcal A}_k)\)</span> are either <span class="ubdbluebg"><em>conditional</em></span> <span class="citation" data-cites="besag1974spatial liang1987extended molenberghs2006models">(<a href="#/references" role="doc-biblioref" onclick="">Besag 1974</a>; <a href="#/references" role="doc-biblioref" onclick="">Liang 1987</a>; <a href="#/references" role="doc-biblioref" onclick="">Molenberghs and Verbeke 2006</a>)</span> or <span class="ubdredbg"><em>marginal</em></span> <span class="citation" data-cites="chandler2007inference cox2004note varin2008composite">(<a href="#/references" role="doc-biblioref" onclick="">Chandler and Bate 2007</a>; <a href="#/references" role="doc-biblioref" onclick="">Cox and Reid 2004</a>; <a href="#/references" role="doc-biblioref" onclick="">Varin 2008</a>)</span> densities.</p></li>
 <li><p>Composite likelihood enjoys nice features <span class="citation" data-cites="varin2011overview">(<a href="#/references" role="doc-biblioref" onclick="">Varin, Reid, and Firth 2011</a>)</span>: relatively efficient, robust, and easier to maximise (smoother surface).</p></li>
 </ul>
 </div>
@@ -1220,11 +1220,11 @@ y_i = \begin{cases}
 <ul>
 <li><p>For pairs of variables <span class="math inline">\(y_i\)</span> and <span class="math inline">\(y_j\)</span>, <span class="math inline">\(i,j=1,\dots,n\)</span>, and <span class="math inline">\(i&lt;j\)</span>, define <span class="math inline">\(\hspace{5cm}\)</span> <span id="eq-pairwise"><span class="math display">\[
 \pi_{cc'}^{(ij)}({\boldsymbol\theta}) = \operatorname{P}_{{\boldsymbol\theta}}(y_i = c, y_i = c'), \hspace{2em} c,c'\in\{0,1\}.
-\tag{6}\]</span></span> There are <span class="math inline">\(\tilde R = 4 \times \binom{p}{2}\)</span> such probabilities, with <span class="math inline">\(\sum_{y_i,y_j} \pi_{y_iy_j}^{(ij)}({\boldsymbol\theta}) = 1\)</span>.</p></li>
+\tag{6}\]</span></span> There are <span class="math inline">\(\tilde R = 4 \times \binom{p}{2}\)</span> such probabilities, with <span class="math inline">\(\sum_{c,c'} \pi_{cc'}^{(ij)}({\boldsymbol\theta}) = 1\)</span>.</p></li>
 <li><p>The pairwise log-likelihood takes the form <span class="citation" data-cites="katsikatsou2012pairwise">(<a href="#/references" role="doc-biblioref" onclick="">Katsikatsou et al. 2012</a>)</span> <span id="eq-pairwise-loglik"><span class="math display">\[
 \log \operatorname{\mathcal L_{\text P}}({\boldsymbol\theta}\mid {\mathbf y}) = \sum_{i&lt;j} \sum_{c}\sum_{c'} \hat n_{cc'}^{(ij)} \log \pi_{y_iy_j}^{(ij)}({\boldsymbol\theta}),
 \tag{7}\]</span></span> where <span class="math inline">\(\hat n_{cc'}^{(ij)} = \sum_h w_h [{\mathbf y}^{(h)}_i = c, {\mathbf y}^{(h)}_j = c']\)</span>.</p></li>
-<li><p>Evaluation of <a href="#/pairwise-likelihood-estimation" class="quarto-xref">Equation&nbsp;7</a> involves only bivariate normal integrals: <span class="math display">\[
+<li><p>Evaluation of <a href="#/pairwise-likelihood-estimation" class="quarto-xref">Equation&nbsp;7</a> now involves only bivariate normal integrals! <span class="math display">\[
 \pi_{cc'}^{(ij)}({\boldsymbol\theta}) = \iint \phi_2\big({\mathbf y}^*_{ij} \mid {\mathbf 0}, {\boldsymbol\Sigma}_{y^*}^{(ij)} ({\boldsymbol\theta})\big) \mathop{\mathrm{d}}\hspace{0.5pt}\!{\mathbf y}^*_{ij},
 \]</span></p></li>
 </ul>
@@ -1511,7 +1511,7 @@ X^2 \xrightarrow{\text D} \sum_{s=1}^S \delta_s\chi^2_1 \quad \text{as} \quad n\
 <section id="test-statistics-used" class="slide level2">
 <h2>Test statistics used</h2>
 <div class="columns">
-<div class="column" style="width:28%;">
+<div class="column" style="width:36%;">
 <p><br><br><br><br></p>
 <div class="callout callout-note callout-style-simple">
 <div class="callout-body">
@@ -1523,9 +1523,9 @@ X^2 \xrightarrow{\text D} \sum_{s=1}^S \delta_s\chi^2_1 \quad \text{as} \quad n\
 </div>
 </div>
 </div>
-</div><div class="column" style="width:6%;">
+</div><div class="column" style="width:3%;">
 
-</div><div class="column" style="width:62%;">
+</div><div class="column" style="width:61%;">
 <p><br></p>
 <table class="table-ubd">
 <thead>
@@ -1835,30 +1835,30 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<div id="wbvoeiimxn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#wbvoeiimxn table {
+<div id="bvoeiimxnl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bvoeiimxnl table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#wbvoeiimxn thead, #wbvoeiimxn tbody, #wbvoeiimxn tfoot, #wbvoeiimxn tr, #wbvoeiimxn td, #wbvoeiimxn th {
+#bvoeiimxnl thead, #bvoeiimxnl tbody, #bvoeiimxnl tfoot, #bvoeiimxnl tr, #bvoeiimxnl td, #bvoeiimxnl th {
   border-style: none;
 }
 
-#wbvoeiimxn p {
+#bvoeiimxnl p {
   margin: 0;
   padding: 0;
 }
 
-#wbvoeiimxn .gt_table {
+#bvoeiimxnl .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
-  font-size: 30px;
+  font-size: 22px;
   font-weight: normal;
   font-style: normal;
   background-color: #FFFFFF;
@@ -1877,12 +1877,12 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   border-left-color: #D3D3D3;
 }
 
-#wbvoeiimxn .gt_caption {
+#bvoeiimxnl .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#wbvoeiimxn .gt_title {
+#bvoeiimxnl .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1894,7 +1894,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   border-bottom-width: 0;
 }
 
-#wbvoeiimxn .gt_subtitle {
+#bvoeiimxnl .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1906,7 +1906,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   border-top-width: 0;
 }
 
-#wbvoeiimxn .gt_heading {
+#bvoeiimxnl .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1918,13 +1918,13 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   border-right-color: #D3D3D3;
 }
 
-#wbvoeiimxn .gt_bottom_border {
+#bvoeiimxnl .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wbvoeiimxn .gt_col_headings {
+#bvoeiimxnl .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1939,7 +1939,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   border-right-color: #D3D3D3;
 }
 
-#wbvoeiimxn .gt_col_heading {
+#bvoeiimxnl .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1959,7 +1959,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   overflow-x: hidden;
 }
 
-#wbvoeiimxn .gt_column_spanner_outer {
+#bvoeiimxnl .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1971,15 +1971,15 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   padding-right: 4px;
 }
 
-#wbvoeiimxn .gt_column_spanner_outer:first-child {
+#bvoeiimxnl .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wbvoeiimxn .gt_column_spanner_outer:last-child {
+#bvoeiimxnl .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wbvoeiimxn .gt_column_spanner {
+#bvoeiimxnl .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1991,11 +1991,11 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   width: 100%;
 }
 
-#wbvoeiimxn .gt_spanner_row {
+#bvoeiimxnl .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#wbvoeiimxn .gt_group_heading {
+#bvoeiimxnl .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2021,7 +2021,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   text-align: left;
 }
 
-#wbvoeiimxn .gt_empty_group_heading {
+#bvoeiimxnl .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2036,15 +2036,15 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   vertical-align: middle;
 }
 
-#wbvoeiimxn .gt_from_md > :first-child {
+#bvoeiimxnl .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wbvoeiimxn .gt_from_md > :last-child {
+#bvoeiimxnl .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wbvoeiimxn .gt_row {
+#bvoeiimxnl .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2063,7 +2063,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   overflow-x: hidden;
 }
 
-#wbvoeiimxn .gt_stub {
+#bvoeiimxnl .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2076,7 +2076,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   padding-right: 5px;
 }
 
-#wbvoeiimxn .gt_stub_row_group {
+#bvoeiimxnl .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2090,15 +2090,15 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   vertical-align: top;
 }
 
-#wbvoeiimxn .gt_row_group_first td {
+#bvoeiimxnl .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#wbvoeiimxn .gt_row_group_first th {
+#bvoeiimxnl .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#wbvoeiimxn .gt_summary_row {
+#bvoeiimxnl .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2108,16 +2108,16 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   padding-right: 5px;
 }
 
-#wbvoeiimxn .gt_first_summary_row {
+#bvoeiimxnl .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#wbvoeiimxn .gt_first_summary_row.thick {
+#bvoeiimxnl .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#wbvoeiimxn .gt_last_summary_row {
+#bvoeiimxnl .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2127,7 +2127,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   border-bottom-color: #D3D3D3;
 }
 
-#wbvoeiimxn .gt_grand_summary_row {
+#bvoeiimxnl .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2137,7 +2137,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   padding-right: 5px;
 }
 
-#wbvoeiimxn .gt_first_grand_summary_row {
+#bvoeiimxnl .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2147,7 +2147,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   border-top-color: #D3D3D3;
 }
 
-#wbvoeiimxn .gt_last_grand_summary_row_top {
+#bvoeiimxnl .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2157,11 +2157,11 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   border-bottom-color: #D3D3D3;
 }
 
-#wbvoeiimxn .gt_striped {
+#bvoeiimxnl .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wbvoeiimxn .gt_table_body {
+#bvoeiimxnl .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2170,7 +2170,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   border-bottom-color: #D3D3D3;
 }
 
-#wbvoeiimxn .gt_footnotes {
+#bvoeiimxnl .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2184,7 +2184,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   border-right-color: #D3D3D3;
 }
 
-#wbvoeiimxn .gt_footnote {
+#bvoeiimxnl .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2193,7 +2193,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   padding-right: 5px;
 }
 
-#wbvoeiimxn .gt_sourcenotes {
+#bvoeiimxnl .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2207,7 +2207,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   border-right-color: #D3D3D3;
 }
 
-#wbvoeiimxn .gt_sourcenote {
+#bvoeiimxnl .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2215,63 +2215,63 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   padding-right: 5px;
 }
 
-#wbvoeiimxn .gt_left {
+#bvoeiimxnl .gt_left {
   text-align: left;
 }
 
-#wbvoeiimxn .gt_center {
+#bvoeiimxnl .gt_center {
   text-align: center;
 }
 
-#wbvoeiimxn .gt_right {
+#bvoeiimxnl .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wbvoeiimxn .gt_font_normal {
+#bvoeiimxnl .gt_font_normal {
   font-weight: normal;
 }
 
-#wbvoeiimxn .gt_font_bold {
+#bvoeiimxnl .gt_font_bold {
   font-weight: bold;
 }
 
-#wbvoeiimxn .gt_font_italic {
+#bvoeiimxnl .gt_font_italic {
   font-style: italic;
 }
 
-#wbvoeiimxn .gt_super {
+#bvoeiimxnl .gt_super {
   font-size: 65%;
 }
 
-#wbvoeiimxn .gt_footnote_marks {
+#bvoeiimxnl .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#wbvoeiimxn .gt_asterisk {
+#bvoeiimxnl .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#wbvoeiimxn .gt_indent_1 {
+#bvoeiimxnl .gt_indent_1 {
   text-indent: 5px;
 }
 
-#wbvoeiimxn .gt_indent_2 {
+#bvoeiimxnl .gt_indent_2 {
   text-indent: 10px;
 }
 
-#wbvoeiimxn .gt_indent_3 {
+#bvoeiimxnl .gt_indent_3 {
   text-indent: 15px;
 }
 
-#wbvoeiimxn .gt_indent_4 {
+#bvoeiimxnl .gt_indent_4 {
   text-indent: 20px;
 }
 
-#wbvoeiimxn .gt_indent_5 {
+#bvoeiimxnl .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2429,36 +2429,36 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
 </div>
 </div>
 </section>
-<section id="informative-sampling-results-1" class="slide level2 scrollable">
+<section id="informative-sampling-results-1" class="slide level2">
 <h2>Informative sampling (results)</h2>
 <h3 id="coverage-and-sdse-ratio">Coverage and SD/SE ratio</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<div id="zwawlyqfka" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#zwawlyqfka table {
+<div id="wlyqfkaihq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wlyqfkaihq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#zwawlyqfka thead, #zwawlyqfka tbody, #zwawlyqfka tfoot, #zwawlyqfka tr, #zwawlyqfka td, #zwawlyqfka th {
+#wlyqfkaihq thead, #wlyqfkaihq tbody, #wlyqfkaihq tfoot, #wlyqfkaihq tr, #wlyqfkaihq td, #wlyqfkaihq th {
   border-style: none;
 }
 
-#zwawlyqfka p {
+#wlyqfkaihq p {
   margin: 0;
   padding: 0;
 }
 
-#zwawlyqfka .gt_table {
+#wlyqfkaihq .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
-  font-size: 30px;
+  font-size: 22px;
   font-weight: normal;
   font-style: normal;
   background-color: #FFFFFF;
@@ -2477,12 +2477,12 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   border-left-color: #D3D3D3;
 }
 
-#zwawlyqfka .gt_caption {
+#wlyqfkaihq .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#zwawlyqfka .gt_title {
+#wlyqfkaihq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2494,7 +2494,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   border-bottom-width: 0;
 }
 
-#zwawlyqfka .gt_subtitle {
+#wlyqfkaihq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2506,7 +2506,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   border-top-width: 0;
 }
 
-#zwawlyqfka .gt_heading {
+#wlyqfkaihq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2518,13 +2518,13 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   border-right-color: #D3D3D3;
 }
 
-#zwawlyqfka .gt_bottom_border {
+#wlyqfkaihq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zwawlyqfka .gt_col_headings {
+#wlyqfkaihq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2539,7 +2539,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   border-right-color: #D3D3D3;
 }
 
-#zwawlyqfka .gt_col_heading {
+#wlyqfkaihq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2559,7 +2559,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   overflow-x: hidden;
 }
 
-#zwawlyqfka .gt_column_spanner_outer {
+#wlyqfkaihq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2571,15 +2571,15 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   padding-right: 4px;
 }
 
-#zwawlyqfka .gt_column_spanner_outer:first-child {
+#wlyqfkaihq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zwawlyqfka .gt_column_spanner_outer:last-child {
+#wlyqfkaihq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zwawlyqfka .gt_column_spanner {
+#wlyqfkaihq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2591,11 +2591,11 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   width: 100%;
 }
 
-#zwawlyqfka .gt_spanner_row {
+#wlyqfkaihq .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#zwawlyqfka .gt_group_heading {
+#wlyqfkaihq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2621,7 +2621,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   text-align: left;
 }
 
-#zwawlyqfka .gt_empty_group_heading {
+#wlyqfkaihq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2636,15 +2636,15 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   vertical-align: middle;
 }
 
-#zwawlyqfka .gt_from_md > :first-child {
+#wlyqfkaihq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#zwawlyqfka .gt_from_md > :last-child {
+#wlyqfkaihq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#zwawlyqfka .gt_row {
+#wlyqfkaihq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2663,7 +2663,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   overflow-x: hidden;
 }
 
-#zwawlyqfka .gt_stub {
+#wlyqfkaihq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2676,7 +2676,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   padding-right: 5px;
 }
 
-#zwawlyqfka .gt_stub_row_group {
+#wlyqfkaihq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2690,15 +2690,15 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   vertical-align: top;
 }
 
-#zwawlyqfka .gt_row_group_first td {
+#wlyqfkaihq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#zwawlyqfka .gt_row_group_first th {
+#wlyqfkaihq .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#zwawlyqfka .gt_summary_row {
+#wlyqfkaihq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2708,16 +2708,16 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   padding-right: 5px;
 }
 
-#zwawlyqfka .gt_first_summary_row {
+#wlyqfkaihq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#zwawlyqfka .gt_first_summary_row.thick {
+#wlyqfkaihq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#zwawlyqfka .gt_last_summary_row {
+#wlyqfkaihq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2727,7 +2727,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   border-bottom-color: #D3D3D3;
 }
 
-#zwawlyqfka .gt_grand_summary_row {
+#wlyqfkaihq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2737,7 +2737,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   padding-right: 5px;
 }
 
-#zwawlyqfka .gt_first_grand_summary_row {
+#wlyqfkaihq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2747,7 +2747,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   border-top-color: #D3D3D3;
 }
 
-#zwawlyqfka .gt_last_grand_summary_row_top {
+#wlyqfkaihq .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2757,11 +2757,11 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   border-bottom-color: #D3D3D3;
 }
 
-#zwawlyqfka .gt_striped {
+#wlyqfkaihq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zwawlyqfka .gt_table_body {
+#wlyqfkaihq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2770,7 +2770,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   border-bottom-color: #D3D3D3;
 }
 
-#zwawlyqfka .gt_footnotes {
+#wlyqfkaihq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2784,7 +2784,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   border-right-color: #D3D3D3;
 }
 
-#zwawlyqfka .gt_footnote {
+#wlyqfkaihq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2793,7 +2793,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   padding-right: 5px;
 }
 
-#zwawlyqfka .gt_sourcenotes {
+#wlyqfkaihq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2807,7 +2807,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   border-right-color: #D3D3D3;
 }
 
-#zwawlyqfka .gt_sourcenote {
+#wlyqfkaihq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2815,63 +2815,63 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
   padding-right: 5px;
 }
 
-#zwawlyqfka .gt_left {
+#wlyqfkaihq .gt_left {
   text-align: left;
 }
 
-#zwawlyqfka .gt_center {
+#wlyqfkaihq .gt_center {
   text-align: center;
 }
 
-#zwawlyqfka .gt_right {
+#wlyqfkaihq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zwawlyqfka .gt_font_normal {
+#wlyqfkaihq .gt_font_normal {
   font-weight: normal;
 }
 
-#zwawlyqfka .gt_font_bold {
+#wlyqfkaihq .gt_font_bold {
   font-weight: bold;
 }
 
-#zwawlyqfka .gt_font_italic {
+#wlyqfkaihq .gt_font_italic {
   font-style: italic;
 }
 
-#zwawlyqfka .gt_super {
+#wlyqfkaihq .gt_super {
   font-size: 65%;
 }
 
-#zwawlyqfka .gt_footnote_marks {
+#wlyqfkaihq .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#zwawlyqfka .gt_asterisk {
+#wlyqfkaihq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#zwawlyqfka .gt_indent_1 {
+#wlyqfkaihq .gt_indent_1 {
   text-indent: 5px;
 }
 
-#zwawlyqfka .gt_indent_2 {
+#wlyqfkaihq .gt_indent_2 {
   text-indent: 10px;
 }
 
-#zwawlyqfka .gt_indent_3 {
+#wlyqfkaihq .gt_indent_3 {
   text-indent: 15px;
 }
 
-#zwawlyqfka .gt_indent_4 {
+#wlyqfkaihq .gt_indent_4 {
   text-indent: 20px;
 }
 
-#zwawlyqfka .gt_indent_5 {
+#wlyqfkaihq .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -3123,7 +3123,13 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
 </div>
 </div>
 </div><div class="column" style="width:40%;">
-<p><br> <!-- | Type | $N$  | Avg. Classes | Avg. class size | --> <!-- |------|------|--------------|-----------------| --> <!-- | A    | 400  | 33.0         | 15.2            | --> <!-- | B    | 1000 | 19.6         | 25.7            | --> <!-- | C    | 600  | 24.9         | 20.4            | --> <!-- | --> <!-- : {.table-ubd} --></p>
+<!-- | Type | $N$  | Avg. Classes | Avg. class size | -->
+<!-- |------|------|--------------|-----------------| -->
+<!-- | A    | 400  | 33.0         | 15.2            | -->
+<!-- | B    | 1000 | 19.6         | 25.7            | -->
+<!-- | C    | 600  | 24.9         | 20.4            | -->
+<!-- | -->
+<!-- : {.table-ubd} -->
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -3603,6 +3609,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
 </div>
 </div>
 </div>
+<p>ICC for test items range between 0.05 and 0.60. <!-- ($\frac{\sigma_u^2}{\sigma_u^2 + \sigma_\epsilon^2}$)  --></p>
 </div>
 </div>
 <ul>
@@ -3643,6 +3650,16 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
 </section>
 <section id="conclusions" class="slide level2">
 <h2>Conclusions</h2>
+<ul>
+<li><p>Pairwise likelihood estimation alleviates some issues associated with the UV approach for binary factor models.</p></li>
+<li><p>Sampling weights are easily incorporated in the PML estimation, and found to perform well in limited simulation studies.</p></li>
+<li><p>Sparsity impairs the dependability of GOF tests but are circumvented by considering lower order statistics. Wald, Pearson, and others are investigated across a variety of scenarios.</p>
+<ul>
+<li>Wald and Pearson tests perform well in most scenarios.</li>
+<li>The proposed Wald Diagonal does not.</li>
+<li>Added variability due to complex sampling designs.</li>
+</ul></li>
+</ul>
 </section>
 <section id="software" class="slide level2">
 <h2>Software</h2>
@@ -3659,16 +3676,14 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
 <span id="cb6-8"><a href=""></a><span class="fu">all_tests</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 6
-       X2    df name      pval
-    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;
-1  0.588   5    Wald     0.989
-2  0.583   5    WaldVCF  0.989
-3  0.0302  3.37 WaldDia… 0.999
-4 -0.0259  3.46 Pearson… 1    
-5  0.132   4.02 RSS,MM3  0.998
-6 -0.0257  3.45 Multn,M… 1    
-# ℹ 2 more variables:
-#   Xi_rank &lt;int&gt;, S &lt;int&gt;</code></pre>
+     X2    df name          pval Xi_rank     S
+  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;   &lt;int&gt; &lt;int&gt;
+1 2.16   5    Wald         0.827      13    15
+2 2.14   5    WaldVCF      0.830       5    15
+3 1.35   3.37 WaldDiag,MM3 0.776      15    15
+4 0.834  3.21 Pearson,MM3  0.867      15    15
+5 1.25   3.88 RSS,MM3      0.858      15    15
+6 0.836  3.21 Multn,MM3    0.866      15    15</code></pre>
 </div>
 </div>
 </div>
@@ -3679,7 +3694,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
 <section>
 <section id="thanks" class="title-slide slide level1 transition-slide-ubdblue center">
 <h1>Thanks!</h1>
-
+<p><a href="https://haziqj.ml/plgof-gent"><code>https://haziqj.ml/plgof-gent</code></a></p>
 </section>
 <section id="references" class="slide level2 appendix smaller scrollable">
 <h2>References</h2>
@@ -3705,11 +3720,20 @@ Besag, Julian. 1974. <span>“Spatial <span>Interaction</span> and the <span>Sta
 <div id="ref-cai2006limited" class="csl-entry" role="listitem">
 Cai, Li., Albert. Maydeu‐Olivares, Donna L. Coffman, and David. Thissen. 2006. <span>“Limited‐information Goodness‐of‐fit Testing of Item Response Theory Models for Sparse 2 <span> <sup></sup> </span><span><sup><em>P</em></sup></span><span> <sup></sup> </span> Tables.”</span> <em>British Journal of Mathematical and Statistical Psychology</em> 59 (1): 173–94. <a href="https://doi.org/10.1348/000711005X66419">https://doi.org/10.1348/000711005X66419</a>.
 </div>
+<div id="ref-chandler2007inference" class="csl-entry" role="listitem">
+Chandler, Richard E., and Steven Bate. 2007. <span>“Inference for <span>Clustered Data Using</span> the <span>Independence Loglikelihood</span>.”</span> <em>Biometrika</em> 94 (1): 167–83. <a href="https://www.jstor.org/stable/20441361">https://www.jstor.org/stable/20441361</a>.
+</div>
+<div id="ref-cox2004note" class="csl-entry" role="listitem">
+Cox, D. R., and N. Reid. 2004. <span>“A <span>Note</span> on <span>Pseudolikelihood Constructed</span> from <span>Marginal Densities</span>.”</span> <em>Biometrika</em> 91 (3): 729–37. <a href="https://www.jstor.org/stable/20441134">https://www.jstor.org/stable/20441134</a>.
+</div>
 <div id="ref-fuller2009introduction" class="csl-entry" role="listitem">
 Fuller, Wayne A. 2009. <em>Introduction to Statistical Time Series</em>. John Wiley &amp; Sons.
 </div>
 <div id="ref-katsikatsou2012pairwise" class="csl-entry" role="listitem">
 Katsikatsou, Myrsini, Irini Moustaki, Fan Yang-Wallentin, and Karl G Jöreskog. 2012. <span>“Pairwise Likelihood Estimation for Factor Analysis Models with Ordinal Data.”</span> <em>Computational Statistics &amp; Data Analysis</em> 56 (12): 4243–58.
+</div>
+<div id="ref-liang1987extended" class="csl-entry" role="listitem">
+Liang, Kung-Yee. 1987. <span>“Extended <span>Mantel-Haenszel Estimating Procedure</span> for <span>Multivariate Logistic Regression Models</span>.”</span> <em>Biometrics</em> 43 (2): 289–99. <a href="https://doi.org/10.2307/2531813">https://doi.org/10.2307/2531813</a>.
 </div>
 <div id="ref-lindsay1988composite" class="csl-entry" role="listitem">
 Lindsay, Bruce G. 1988. <span>“Composite Likelihood Methods.”</span> In <em>Contemporary <span>Mathematics</span></em>, edited by N. U. Prabhu, 80:221–39. Providence, Rhode Island: American Mathematical Society. <a href="https://doi.org/10.1090/conm/080/999014">https://doi.org/10.1090/conm/080/999014</a>.
@@ -3726,6 +3750,9 @@ Maydeu-Olivares, Alberto, and Harry Joe. 2005. <span>“Limited- and Full-Inform
 <div id="ref-maydeu2008overview" class="csl-entry" role="listitem">
 ———. 2008. <span>“An Overview of Limited Information Goodness-of-Fit Testing in Multidimensional Contingency Tables.”</span> <em>New Trends in Psychometrics</em>, 253–62.
 </div>
+<div id="ref-molenberghs2006models" class="csl-entry" role="listitem">
+Molenberghs, Geert, and Geert Verbeke. 2006. <em>Models for Discrete Longitudinal Data</em>. Nachdr. Springer Series in Statistics. New York, NY: Springer.
+</div>
 <div id="ref-muthen1995complexa" class="csl-entry" role="listitem">
 Muthén, Bengt O., and Albert Satorra. 1995. <span>“Complex <span>Sample Data</span> in <span>Structural Equation Modeling</span>.”</span> <em>Sociological Methodology</em> 25: 267–316. <a href="https://doi.org/10.2307/271070">https://doi.org/10.2307/271070</a>.
 </div>
@@ -3735,8 +3762,14 @@ Reiser, Mark. 1996. <span>“Analysis of Residuals for the Multionmial Item Resp
 <div id="ref-skinner1989domain" class="csl-entry" role="listitem">
 Skinner, C. J. 1989. <span>“Domain Means, Regression and Multivariate Analysis.”</span> In <em>Analysis of Complex Surveys</em>, edited by C. J. Skinner, D. Holt, and T. M. F. Smith, 59–87. Wiley Series in Probability and Mathematical Statistics. Chichester; New York: Wiley.
 </div>
+<div id="ref-varin2008composite" class="csl-entry" role="listitem">
+Varin, Cristiano. 2008. <span>“On Composite Marginal Likelihoods.”</span> <em>AStA Advances in Statistical Analysis</em> 92 (1): 1–28. <a href="https://doi.org/10.1007/s10182-008-0060-7">https://doi.org/10.1007/s10182-008-0060-7</a>.
+</div>
 <div id="ref-varin2011overview" class="csl-entry" role="listitem">
 Varin, Cristiano, Nancy Reid, and David Firth. 2011. <span>“An Overview of Composite Likelihood Methods.”</span> <em>Statistica Sinica</em>, 5–42.
+</div>
+<div id="ref-wedderburn1974quasilikelihood" class="csl-entry" role="listitem">
+Wedderburn, R. W. M. 1974. <span>“Quasi-<span>Likelihood Functions</span>, <span>Generalized Linear Models</span>, and the <span>Gauss-Newton Method</span>.”</span> <em>Biometrika</em> 61 (3): 439–47. <a href="https://doi.org/10.2307/2334725">https://doi.org/10.2307/2334725</a>.
 </div>
 <div id="ref-zhao.joe05" class="csl-entry" role="listitem">
 Zhao, Y, and H. Joe. 2005. <span>“Composite Likelihood Estimation in Multivariate Data Analysis.”</span> <em>Tha Canadian Journal of Statistics</em> 33 (3): 335–56.
@@ -3754,6 +3787,8 @@ Zhao, Y, and H. Joe. 2005. <span>“Composite Likelihood Estimation in Multivari
   <script src="index_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
   <script src="index_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="index_files/libs/revealjs/plugin/multiplex/socket.io.js"></script>
+  <script src="index_files/libs/revealjs/plugin/multiplex/multiplex.js"></script>
   <script src="index_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -3776,6 +3811,7 @@ Zhao, Y, and H. Joe. 2005. <span>“Composite Likelihood Estimation in Multivari
 'autoAnimateUnmatched': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true},
+'multiplex': {"secret":null,"id":"ccdad1192a75f910","url":"https://reveal-multiplex.glitch.me/"},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -3949,7 +3985,7 @@ Zhao, Y, and H. Joe. 2005. <span>“Composite Likelihood Estimation in Multivari
         plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
 
           RevealMath,
-          RevealNotes,
+          
           RevealSearch,
           RevealZoom
         ]

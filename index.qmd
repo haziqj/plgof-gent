@@ -319,7 +319,7 @@ where $\pi_r(\btheta) = \int \phi_p(\by^* \mid \bzero, \bLambda\bPsi\bLambda^\to
 
 ## Composite likelihood
 
-- Terminology: Pseudo-likelihood, quasi-likelihood (a la Wedderburn or misspecified models), limited information methods.
+- Terminology: Pseudo-likelihood, quasi-likelihood (à la @wedderburn1974quasilikelihood or misspecified models), limited information methods.
 
 - Let $\{\cA_1,\dots,\cA_K\}$ a set of marginal or conditional events (partitioning the variable space). The composite likelihood is defined as [@lindsay1988composite]
 $$
@@ -328,7 +328,7 @@ $$
 
 ::: {.nudge-up-large}
 
-- Component likelihoods $L(\btheta \mid \by \in \cA_k)$ are either *conditional* [@besag1974spatial] or *marginal* densities.
+- Component likelihoods $L(\btheta \mid \by \in \cA_k)$ are either [*conditional*]{.ubdbluebg} [@besag1974spatial;@liang1987extended;@molenberghs2006models] or [*marginal*]{.ubdredbg} [@chandler2007inference;@cox2004note;@varin2008composite] densities.
 
 - Composite likelihood enjoys nice features [@varin2011overview]: relatively efficient, robust, and easier to maximise (smoother surface).
 
@@ -406,7 +406,7 @@ $$
 $$
 \pi_{cc'}^{(ij)}(\btheta) = \Pr_{\btheta}(y_i = c, y_i = c'), \hspace{2em} c,c'\in\{0,1\}.
 $${#eq-pairwise}
-There are $\tilde R = 4 \times \binom{p}{2}$ such probabilities, with $\sum_{y_i,y_j} \pi_{y_iy_j}^{(ij)}(\btheta) = 1$.
+There are $\tilde R = 4 \times \binom{p}{2}$ such probabilities, with $\sum_{c,c'} \pi_{cc'}^{(ij)}(\btheta) = 1$.
 
 - The pairwise log-likelihood takes the form [@katsikatsou2012pairwise]
 $$
@@ -414,7 +414,7 @@ $$
 $${#eq-pairwise-loglik}
 where $\hat n_{cc'}^{(ij)} = \sum_h w_h [\by^{(h)}_i = c, \by^{(h)}_j = c']$.
 
-- Evaluation of @eq-pairwise-loglik involves only bivariate normal integrals:
+- Evaluation of @eq-pairwise-loglik now involves only bivariate normal integrals!
 $$
 \pi_{cc'}^{(ij)}(\btheta) = \iint \phi_2\big(\by^*_{ij} \mid \bzero, \bSigma_{y^*}^{(ij)} (\btheta)\big) \dint \by^*_{ij},
 $$
@@ -707,7 +707,7 @@ where the $\delta_s$ are the eigenvalues of $\bM = \bOmega_2\bXi$. Two cases:
 
 ::: columns
 
-::: {.column width=28%}
+::: {.column width=36%}
 <br><br><br><br>
 
 ::: {.callout-note appearance="simple"}
@@ -717,10 +717,10 @@ where the $\delta_s$ are the eigenvalues of $\bM = \bOmega_2\bXi$. Two cases:
 :::
 :::
 
-::: {.column width=6%}
+::: {.column width=3%}
 :::
 
-::: {.column width=62%}
+::: {.column width=61%}
 <br>
 
 |   | Name         | $\bXi$                              | D.f.  |
@@ -1002,7 +1002,7 @@ tab_bias_gt$`_data`$PMLW_5000a <- abs(tab_bias_gt$`_data`$PMLW_5000)
 tab_bias_gt |>
   fmt_number(columns = -"truth", decimals = 2) |>
   tab_options(
-    table.font.size = "30px"
+    table.font.size = "22px"
   ) |>
   data_color(
     columns = c("PML_500a", "PMLW_500a", "PML_1000a", "PMLW_1000a", "PML_5000a", "PMLW_5000a"),
@@ -1014,7 +1014,7 @@ tab_bias_gt |>
   )
 ```
 
-## Informative sampling (results) {.scrollable}
+## Informative sampling (results)
 
 ### Coverage and SD/SE ratio
 
@@ -1036,7 +1036,7 @@ tab_se_gt$`_data`$ratio_PMLW_5000a <- log(tab_se_gt$`_data`$ratio_PMLW_5000) |> 
 
 tab_se_gt |>
   tab_options(
-    table.font.size = "30px"
+    table.font.size = "22px"
   ) |>
   data_color(
     columns = c("cov_PML_500a", "cov_PMLW_500a", "cov_PML_1000a", "cov_PMLW_1000a", "cov_PML_5000a", "cov_PMLW_5000a"),
@@ -1068,6 +1068,7 @@ Simulate a population of $1e6$ students clustered within classrooms and stratifi
 #| out-width: 100%
 #| fig-height: 2.3
 #| fig-width: 5
+options(width = 80)
 pop <- make_population(model_no = 1, seed = 123)
 prop1 <- summarise(pop, across(starts_with("y"), mean)) %>% unlist()
 
@@ -1077,7 +1078,7 @@ pop %>%
   mutate(value = factor(value),
          type = factor(type, levels = c("C", "B", "A"))) %>%
   ggplot(aes(type, fill = value)) +
-  geom_bar(position = "fill") +
+  geom_bar(position = "fill", alpha = 0.8) +
   geom_hline(data = tibble(y = prop1, name = names(prop1)),
              aes(yintercept = prop1, linetype = "Pop. Avg.")) +
   scale_linetype_manual(values = "dashed", name = NULL) +
@@ -1089,11 +1090,12 @@ pop %>%
         axis.text.x = element_text(angle = 45, hjust = 1),
         legend.title = element_text(size = 9)) +
   scale_fill_manual(values = c("#00A5CF", "#DE1A1A"))
+  # scale_fill_manual(values = c("#b10f2e", "#325494"))
 ```
 :::
 
 ::: {.column width=40%}
-<br>
+
 <!-- | Type | $N$  | Avg. Classes | Avg. class size | -->
 <!-- |------|------|--------------|-----------------| -->
 <!-- | A    | 400  | 33.0         | 15.2            | -->
@@ -1137,6 +1139,8 @@ n_schools |>
   )
 ```
 
+ICC for test items range between 0.05 and 0.60.
+<!-- ($\frac{\sigma_u^2}{\sigma_u^2 + \sigma_\epsilon^2}$)  -->
 :::
 
 :::
@@ -1210,15 +1214,24 @@ bind_rows(
   ggplot(aes(n, rej_rate, col = sampling)) +
   geom_line() +
   facet_grid(name ~ sim) +
+  scale_y_continuous(labels = scales::percent) +
   theme_bw() +
-  theme(legend.position = "top") +
-  labs(x = "Sample size (n)", y = "Rejection rate", col = "Sampling design")
+  theme(legend.position = "top", plot.margin = unit(c(-8,0,0,0), "pt")) +
+  labs(x = "Sample size (n)", y = "Power", col = "Sampling design")
 ```
-
 
 # Summary
 
 ## Conclusions
+
+- Pairwise likelihood estimation alleviates some issues associated with the UV approach for binary factor models. 
+
+- Sampling weights are easily incorporated in the PML estimation, and found to perform well in limited simulation studies.
+
+- Sparsity impairs the dependability of GOF tests but are circumvented by considering lower order statistics. Wald, Pearson, and others are investigated across a variety of scenarios.
+  - Wald and Pearson tests perform well in most scenarios.
+  - The proposed Wald Diagonal does not.
+  - Added variability due to complex sampling designs. 
 
 ## Software
 
@@ -1243,5 +1256,7 @@ all_tests(fit)
 :::
 
 # Thanks! {.transition-slide-ubdblue}
+
+[`https://haziqj.ml/plgof-gent`](https://haziqj.ml/plgof-gent)
 
 ## References {.appendix}
