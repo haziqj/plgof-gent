@@ -66,19 +66,19 @@ Employ latent variable models (factor models) to analyse binary data $y_1,\dots,
 
 :::: {.columns}
 
-::: {.column width="12.5%"}
+<!-- ::: {.column width="12.5%"} -->
+<!-- ::: -->
+
+::: {.column width="33.3%"}
+![*(Psychometrics)*<br>Behavioural checklist](figures/eg1a.jpg)
 :::
 
-::: {.column width="25%"}
-![*(Psychometrics)*<br>Behavioural checklist](figures/eg1.jpg)
+::: {.column width="33.3%"}
+![*(Education)*<br>Achievement test](figures/eg2a.jpg)
 :::
 
-::: {.column width="25%"}
-![*(Education)*<br>Achievement test](figures/eg2.jpg)
-:::
-
-::: {.column width="25%"}
-![*(Sociology)*<br>Intergenerational support](figures/eg3.jpg)
+::: {.column width="33.3%"}
+![*(Sociology)*<br>Intergenerational support](figures/eg3a.jpg)
 :::
 
 ::::
@@ -229,8 +229,10 @@ Photo credits: Unsplash
 
 ## Definitions
 
+
 - Let $\by = (y_1, \ldots, y_p)^\top \in\{0,1\}^p$ be a vector of Bernoulli random variables.
 
+::: {.incremental .nudge-up-small}
 - The joint probability of observing any response pattern $\bc_r=(c_{r1},\dots,c_{rp})^\top$, for any $r=1,\dots,R:=2^p$, is given by
 $$
 \pi_r = \Pr(\by = \bc_r) = \Pr(y_1=c_{r1},\dots,y_p=c_{rp}).
@@ -240,34 +242,43 @@ and $\sum_{r=1}^R \pi_r = 1$.
 - Suppose $h=1,\dots,n$ observations of $\by=\by^{(h)}$ are recorded, and each unit has a probability of selection $1/w_h$. 
 
 - Out of convenience, sampling weights are (typically) normalised so that $\sum_{h=1}^n w_h = n$.
-  - Simple random sampling (SRS): $w_h=1, \forall h$.
+  - Simple random sampling (SRS): $w_h=\text{const.}, \forall h$.
   - Stratified sampling: $w_h = N_s(h)/N$, the stratum fractions.
   - Etc.
+:::
 
 ## Multinomial distribution
 
 - Let $p_r = \hat n_r \big/ \sum_h w_h$ be the the $r$th entry of the $R$-vector of proportions $\bp$, with $\hspace{1.4cm}$
+
+::: {.nudge-up-large}
 $$
 \hat n_r = \sum_{h=1}^n w_h [\by^{(h)} = \bc_r].
 $${#eq-obs-freq}
+:::
 
-::: {.nudge-up-large}
+::: {.nudge-up-small}
+::: {.fragment fragment-index=1 .nudge-up-xl}
 - The random vector $\hat\bn = (\hat n_1,\dots,\hat n_R)^\top$ follows a multinomial distribution with parameters $n$, $R$, and $\bpi:=(\pi_1,\dots,\pi_R)^\top$.
+:::
 :::
 
 ::: {.nudge-up-xxl}
+::: {.fragment fragment-index=1 .nudge-up-large}
 $$
 \E(\hat\bn) = n\bp = n\bpi \hspace{2em}\text{and}\hspace{2em} \Var(\hat\bn) = n\big( \ \myoverbrace{\diag(\bpi) - \bpi\bpi^\top}{\bSigma} \ \big)
 $$
 :::
+:::
 
-::: {.nudge-up-xxl}
+::: {.nudge-up-large}
+::: {.fragment .nudge-up-xxl}
 - It is widely known that [@agresti2012categorical] for IID samples that
 $$
 \sqrt n (\bp - \bpi) \xrightarrow{\text D} {\N}_R(\bzero, \bSigma)
 $${#eq-multin-clt}
 as $n\to\infty$. This also works for complex sampling [@fuller2009introduction], but $\bSigma$ may take a different form.
-
+:::
 :::
 
 ## Parametric models
@@ -317,21 +328,21 @@ where $\pi_r(\btheta) = \int \phi_p(\by^* \mid \bzero, \bLambda\bPsi\bLambda^\to
 
 :::
 
-## Composite likelihood
+## Composite likelihood 
 
 - Terminology: Pseudo-likelihood, quasi-likelihood (à la @wedderburn1974quasilikelihood or misspecified models), limited information methods.
 
+::: {.incremental .nudge-up}
 - Let $\{\cA_1,\dots,\cA_K\}$ a set of marginal or conditional events (partitioning the variable space). The composite likelihood is defined as [@lindsay1988composite]
 $$
 \cL(\btheta \mid \by) = \prod_{k=1}^K L(\btheta \mid \by \in \cA_k)
 $$
 
 ::: {.nudge-up-large}
-
 - Component likelihoods $L(\btheta \mid \by \in \cA_k)$ are either [*conditional*]{.ubdbluebg} [@besag1974spatial;@liang1987extended;@molenberghs2006models] or [*marginal*]{.ubdredbg} [@chandler2007inference;@cox2004note;@varin2008composite] densities.
 
 - Composite likelihood enjoys nice features [@varin2011overview]: relatively efficient, robust, and easier to maximise (smoother surface).
-
+:::
 :::
 
 <!-- - Composite likelihood is an inference function derived by multiplying a collection of component likelihoods -->
@@ -408,6 +419,7 @@ $$
 $${#eq-pairwise}
 There are $\tilde R = 4 \times \binom{p}{2}$ such probabilities, with $\sum_{c,c'} \pi_{cc'}^{(ij)}(\btheta) = 1$.
 
+::: {.incremental .nudge-up}
 - The pairwise log-likelihood takes the form [@katsikatsou2012pairwise]
 $$
 \log \pL(\btheta \mid \by) = \sum_{i<j} \sum_{c}\sum_{c'} \hat n_{cc'}^{(ij)} \log \pi_{y_iy_j}^{(ij)}(\btheta),
@@ -418,6 +430,7 @@ where $\hat n_{cc'}^{(ij)} = \sum_h w_h [\by^{(h)}_i = c, \by^{(h)}_j = c']$.
 $$
 \pi_{cc'}^{(ij)}(\btheta) = \iint \phi_2\big(\by^*_{ij} \mid \bzero, \bSigma_{y^*}^{(ij)} (\btheta)\big) \dint \by^*_{ij},
 $$
+:::
 
 ## MPLE properties
 
@@ -432,6 +445,7 @@ $${#eq-asymptotic-mple}
    - $\cH(\btheta)=-\E\nabla^2\log \pL(\btheta \mid \by^{(h)})$ is the *sensitivity matrix*; and
    - $\cJ(\btheta)=\Var\big(\nabla\log\pL(\btheta \mid \by^{(h)})\big)$ is the *variability matrix*.
 
+::: {.incremental .nudge-up-small}
 - Estimators of these matrices are given by [@zhao.joe05;@asparouhov2005sampling]
 $$
 \begin{aligned}
@@ -439,6 +453,7 @@ $$
 \bJ &= \frac{1}{\sum_h w_h} \sum_h \nabla\log \pL(\btheta \mid \by^{(h)}) \nabla\log \pL(\btheta \mid \by^{(h)})^\top \Bigg|_{\btheta = \mlepl}.
 \end{aligned}
 $${#eq-hessian}
+:::
 
 # Limited information GOF tests
 
