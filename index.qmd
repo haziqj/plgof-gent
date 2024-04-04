@@ -1206,34 +1206,47 @@ bind_rows(
 ### Power analysis
 
 ```{r}
-#| out-width: 100%
-#| fig-width: 7
-#| fig-height: 3.8
-bind_rows(
-  res_srs_power,
-  res_complex_power
-) |>
-  select(name, sim, n, rej_rate = rej_rate5, crit = crit5, sampling) |>
-  filter(name %in% c("Wald", "WaldDiag,MM3", "Pearson,MM3")) |>
-  mutate(sampling = case_when(
-    is.na(sampling) ~ "SRS",
-    TRUE ~ sampling
-    ),
-    sampling = factor(sampling, levels = c("SRS", "Cluster", "Strat-clust"))
-  ) |>
-  # mutate(
-  #   name = factor(name, labels = c("Wald", "WaldVCF", "WaldDiag", "Pearson", "RSS", "Multn")),
-  #   name = factor(name, levels = rev(levels(name)))
-  # ) |>
-  filter(sampling != "Stratified") |>
-  ggplot(aes(n, rej_rate, col = sampling)) +
-  geom_line() +
-  facet_grid(name ~ sim) +
-  scale_y_continuous(labels = scales::percent) +
-  theme_bw() +
-  theme(legend.position = "top", plot.margin = unit(c(-8,0,0,0), "pt")) +
-  labs(x = "Sample size (n)", y = "Power", col = "Sampling design")
+#| include: false
+# bind_rows(
+#   res_srs_power,
+#   res_complex_power
+# ) |>
+#   select(name, sim, n, rej_rate = rej_rate5, crit = crit5, sampling) |>
+#   filter(name %in% c("Wald", "WaldDiag,MM3", "Pearson,MM3")) |>
+#   mutate(sampling = case_when(
+#     is.na(sampling) ~ "SRS",
+#     TRUE ~ sampling
+#     ),
+#     sampling = factor(sampling, levels = c("SRS", "Cluster", "Strat-clust"))
+#   ) |>
+#   filter(sampling != "Stratified") |>
+#   ggplot(aes(n, rej_rate, col = sampling)) +
+#   geom_line() +
+#   facet_grid(name ~ sim) +
+#   scale_y_continuous(labels = scales::percent) +
+#   theme_bw() +
+#   theme(legend.position = "top", plot.margin = unit(c(-8,0,0,0), "pt")) +
+#   labs(x = "Sample size (n)", y = "Power", col = "Sampling design")
+load("R/p_power.RData")
 ```
+
+::: {.absolute .fragment .fade-out fragment-index=1 left=0 top=95}
+```{r}
+#| out-width: 100%
+#| fig-width: 8
+#| fig-height: 4.4
+p_power_samp
+```
+:::
+
+::: {.absolute .fragment .fade-in fragment-index=1 left=0 top=95}
+```{r}
+#| out-width: 100%
+#| fig-width: 8
+#| fig-height: 4.4
+p_power_tests
+```
+:::
 
 # Summary
 

@@ -3656,12 +3656,25 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
 <section id="educational-survey-results-1" class="slide level2">
 <h2>Educational survey (results)</h2>
 <h3 id="power-analysis">Power analysis</h3>
+<div class="absolute fragment fade-out" data-fragment-index="1" style="top: 95px; left: 0px; ">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-17-1.png" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-18-1.png" style="width:100.0%"></p>
 </figure>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute fragment fade-in" data-fragment-index="1" style="top: 95px; left: 0px; ">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-19-1.png" style="width:100.0%"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -3699,14 +3712,14 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
 <span id="cb6-8"><a href=""></a><span class="fu">all_tests</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 6
-       X2    df name          pval Xi_rank     S
-    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;   &lt;int&gt; &lt;int&gt;
-1  0.455   5    Wald         0.994      11    15
-2  0.451   5    WaldVCF      0.994       5    15
-3 -0.173   3.39 WaldDiag,MM3 1          15    15
-4 -0.194   3.09 Pearson,MM3  1          15    15
-5  0.0422  3.87 RSS,MM3      1.00       15    15
-6 -0.193   3.09 Multn,MM3    1          15    15</code></pre>
+     X2    df name           pval Xi_rank     S
+  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;   &lt;int&gt; &lt;int&gt;
+1 13.4   5    Wald         0.0198      13    15
+2 13.1   5    WaldVCF      0.0223       5    15
+3  4.65  3.19 WaldDiag,MM3 0.221       15    15
+4 10.1   3.48 Pearson,MM3  0.0265      15    15
+5 11.6   4.01 RSS,MM3      0.0205      15    15
+6 10.1   3.47 Multn,MM3    0.0263      15    15</code></pre>
 </div>
 </div>
 </div>

@@ -4,7 +4,7 @@ library(tidyverse)
 library(furrr)
 plan(multisession, workers = parallel::detectCores() - 2)
 
-B <- 100
+B <- 250
 power_sim <- function(i = 1, samp_size = 1000, model_no = 1) {
   
   pop <- make_population(model_no, H1 = TRUE, seed = 31324, Sigma2_attr = TRUE)
@@ -44,7 +44,7 @@ power_sim <- function(i = 1, samp_size = 1000, model_no = 1) {
 
 res <-
   expand_grid(
-    samp_size = c(500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000),
+    samp_size = c(500, 1000, 2500, 3750, 5000),
     model_no = 1:5
   ) |>
   mutate(res = list(NA))
@@ -62,9 +62,10 @@ for (k in seq_len(nrow(res))) {
   )
   cat("\n")
 }
+save(res, file = "res_power.RData")
 
-
-res |>
+plot_df <-
+  res |>
   unnest(res) |>
   unnest(res) |>
   summarise(
@@ -72,14 +73,39 @@ res |>
     crit = sd(pval < 0.05) / sqrt(B),
     .by = c(samp_size, model_no, name, sampling)
   ) |>
-  mutate(sampling = factor(sampling, levels = c("SRS", "Cluster", "Strat-clust"))) |>
-  ggplot(aes(samp_size, rej_rate)) +
-  # geom_line(aes(col = sampling)) +
-  geom_smooth(aes(col = sampling), se = FALSE) +
-  # geom_ribbon(aes(ymin = rej_rate - crit, ymax = rej_rate + crit, fill = sampling), alpha = 0.2) +
+  mutate(
+    sampling = factor(sampling, levels = c("SRS", "Cluster", "Strat-clust")),
+    name = factor(name, levels = levels(lavaan.bingof::res_srs_type1$name)),
+    model_no = factor(model_no, labels = levels(lavaan.bingof::res_srs_type1$sim))
+  )
+
+p_power_samp <-
+  ggplot(plot_df, aes(samp_size, rej_rate)) +
+  geom_line(aes(col = sampling), linewidth = 0.6) +
   facet_grid(model_no ~ name) +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
-        legend.position = "top") +
+        legend.position = "top", plot.margin = unit(c(-8,0,0,0), "pt"),
+        legend.box.spacing = unit(0, "pt")) +
   labs(x = "Sample size (n)", y = "Power", col = "Sampling method", fill = "Sampling method")
   
+p_power_tests <-
+  ggplot(plot_df, aes(samp_size, rej_rate)) +
+  geom_line(aes(col = name), position = position_jitter(w = 100, h = 0),
+            linewidth = 0.5) +
+  facet_grid(model_no ~ sampling) +
+  # scale_colour_manual(
+  #   values = c(rep("#30123BFF", 3), "#7A0403FF",  "#FABA39FF", "#1AE4B6FF")
+  # ) +
+  # scale_linetype_manual(
+  #   values = c("dashed", "dotted", "dotdash", rep("solid", 3))
+  # ) +
+  # ggsci::scale_color_ucscgb() +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "top", plot.margin = unit(c(-8,0,0,0), "pt"),
+        legend.box.spacing = unit(0, "pt")) +
+  guides(colour = guide_legend(nrow = 1)) +
+  labs(x = "Sample size (n)", y = "Power", col = "Sampling method", linetype = "Sampling method")
+
+save(p_power_samp, p_power_tests, file = "R/p_power.RData")
