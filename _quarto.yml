@@ -22,5 +22,5 @@ bibliography: refs.bib
 
 execute:
   freeze: auto
-  cache: false
+  cache: true
 

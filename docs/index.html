@@ -1080,10 +1080,10 @@ Haziq Jamil <a href="https://orcid.org/0000-0003-3298-1010" class="quarto-title-
 </ul>
 <div class="nudge-up-small">
 <ul>
-<li class="fragment"><p>The joint probability of observing any response pattern <span class="math inline">\({\mathbf c}_r=(c_{r1},\dots,c_{rp})^\top\)</span>, for any <span class="math inline">\(r=1,\dots,R:=2^p\)</span>, is given by <span id="eq-joint-bern-prob"><span class="math display">\[
-\pi_r = \operatorname{P}({\mathbf y}= {\mathbf c}_r) = \operatorname{P}(y_1=c_{r1},\dots,y_p=c_{rp}).
-\tag{1}\]</span></span> and <span class="math inline">\(\sum_{r=1}^R \pi_r = 1\)</span>.</p></li>
-<li class="fragment"><p>Suppose <span class="math inline">\(h=1,\dots,n\)</span> observations of <span class="math inline">\({\mathbf y}={\mathbf y}^{(h)}\)</span> are recorded, and each unit has a probability of selection <span class="math inline">\(1/w_h\)</span>.</p></li>
+<li class="fragment"><p>The joint probability of observing a response pattern <span class="math inline">\({\mathbf c}_r=(c_{r1},\dots,c_{rp})^\top\)</span>, for each <span class="math inline">\(r=1,\dots,R:=2^p\)</span>, is given by <span id="eq-joint-bern-prob"><span class="math display">\[
+\pi_r = \operatorname{P}({\mathbf y}= {\mathbf c}_r) = \operatorname{P}(y_1=c_{r1},\dots,y_p=c_{rp}),
+\tag{1}\]</span></span> with <span class="math inline">\(\sum_{r=1}^R \pi_r = 1\)</span>.</p></li>
+<li class="fragment"><p>Suppose observations <span class="math inline">\({\mathcal Y}:= \big\{{\mathbf y}^{(h)}\big\}_{h=1}^n\)</span> are obtained, where each unit <span class="math inline">\(h\)</span> has a probability of selection <span class="math inline">\(1/w_h\)</span>.</p></li>
 <li class="fragment"><p>Out of convenience, sampling weights are (typically) normalised so that <span class="math inline">\(\sum_{h=1}^n w_h = n\)</span>.</p>
 <ul>
 <li class="fragment">Simple random sampling (SRS): <span class="math inline">\(w_h=\text{const.}, \forall h\)</span>.</li>
@@ -1098,26 +1098,31 @@ Haziq Jamil <a href="https://orcid.org/0000-0003-3298-1010" class="quarto-title-
 <ul>
 <li>Let <span class="math inline">\(p_r = \hat n_r \big/ \sum_h w_h\)</span> be the the <span class="math inline">\(r\)</span>th entry of the <span class="math inline">\(R\)</span>-vector of proportions <span class="math inline">\({\mathbf p}\)</span>, with <span class="math inline">\(\hspace{1.4cm}\)</span></li>
 </ul>
-<div class="nudge-up-large">
+<div class="nudge-up-small">
+<div class="nudge-up-xl">
 <p><span id="eq-obs-freq"><span class="math display">\[
 \hat n_r = \sum_{h=1}^n w_h [{\mathbf y}^{(h)} = {\mathbf c}_r].
 \tag{2}\]</span></span></p>
 </div>
-<div class="nudge-up-small">
+</div>
+<div class="nudge-up-large">
 <div class="fragment nudge-up-xl" data-fragment-index="1">
 <ul>
-<li>The random vector <span class="math inline">\(\hat{\mathbf n}= (\hat n_1,\dots,\hat n_R)^\top\)</span> follows a multinomial distribution with parameters <span class="math inline">\(n\)</span>, <span class="math inline">\(R\)</span>, and <span class="math inline">\({\boldsymbol\pi}:=(\pi_1,\dots,\pi_R)^\top\)</span>.</li>
+<li>The random vector <span class="math inline">\(\hat{\mathbf n}= (\hat n_1,\dots,\hat n_R)^\top\)</span> follows a multinomial distribution with parameters <span class="math inline">\(n\)</span>, <span class="math inline">\(R\)</span>, and <span class="math inline">\({\boldsymbol\pi}:=(\pi_1,\dots,\pi_R)^\top\)</span>, with</li>
 </ul>
 </div>
 </div>
+<div class="nudge-up-small">
 <div class="nudge-up-xxl">
-<div class="fragment nudge-up-large" data-fragment-index="1">
+<div class="fragment nudge-up-xl" data-fragment-index="1">
 <p><span class="math display">\[
-\mathop{\mathrm{E}}(\hat{\mathbf n}) = n{\mathbf p}= n{\boldsymbol\pi}\hspace{2em}\text{and}\hspace{2em} \mathop{\mathrm{Var}}(\hat{\mathbf n}) = n\big( \ {\color{lightgray}\overbrace{\color{black}\mathop{\mathrm{diag}}({\boldsymbol\pi}) - {\boldsymbol\pi}{\boldsymbol\pi}^\top}^{{\boldsymbol\Sigma}}} \ \big)
+\mathop{\mathrm{E}}(\hat{\mathbf n}) = n{\mathbf p}= n{\boldsymbol\pi}\hspace{2em}\text{and}\hspace{2em} \mathop{\mathrm{Var}}(\hat{\mathbf n}) = n\big( \ {\color{lightgray}\overbrace{\color{black}\mathop{\mathrm{diag}}({\boldsymbol\pi}) - {\boldsymbol\pi}{\boldsymbol\pi}^\top}^{{\boldsymbol\Sigma}}} \ \big).
 \]</span></p>
 </div>
 </div>
-<div class="nudge-up-large">
+</div>
+<div class="nudge-up-small">
+<div class="nudge-up-xl">
 <div class="fragment nudge-up-xxl">
 <ul>
 <li>It is widely known that <span class="citation" data-cites="agresti2012categorical">(<a href="#/references" role="doc-biblioref" onclick="">Agresti 2012</a>)</span> for IID samples that <span id="eq-multin-clt"><span class="math display">\[
@@ -1126,13 +1131,14 @@ Haziq Jamil <a href="https://orcid.org/0000-0003-3298-1010" class="quarto-title-
 </ul>
 </div>
 </div>
+</div>
 </section>
 <section id="parametric-models" class="slide level2">
 <h2>Parametric models</h2>
 <div class="columns">
-<div class="column" style="width:37%;">
+<div class="column" style="width:36%;">
 <p><img data-src="figures/sem_path.png"></p>
-</div><div class="column" style="width:63%;">
+</div><div class="column" style="width:64%;">
 <div class="absolute" style="top: 25px; ">
 <ul>
 <li>E.g. binary factor model with underlying variable approach (s.t. constraints) <span id="eq-facmod"><span class="math display">\[
@@ -1150,8 +1156,8 @@ y_i = \begin{cases}
 </div>
 <div class="fragment absolute" data-fragment-index="1" style="top: 355px; ">
 <ul>
-<li>The log-likelihood for <span class="math inline">\({\boldsymbol\theta}^\top = (\)</span><span class="ubdred"><span class="math inline">\({\boldsymbol\lambda}\)</span></span><span class="math inline">\(,\)</span><span class="ubdteal"><span class="math inline">\({\boldsymbol\rho}\)</span></span><span class="math inline">\(,\)</span><span class="ubdblue"><span class="math inline">\({\boldsymbol\tau}\)</span></span><span class="math inline">\()\)</span> is <span class="math inline">\(\hspace{3.8cm}\)</span> <span id="eq-facmod-loglik"><span class="math display">\[
-\log L({\boldsymbol\theta}\mid {\mathbf y}) = \sum_{r=1}^R \hat n_r \log \pi_r({\boldsymbol\theta})
+<li>The log-likelihood for <span class="math inline">\({\boldsymbol\theta}^\top = (\)</span><span class="ubdred"><span class="math inline">\({\boldsymbol\lambda}\)</span></span><span class="math inline">\(,\,\)</span><span class="ubdteal"><span class="math inline">\({\boldsymbol\rho}\)</span></span><span class="math inline">\(,\,\)</span><span class="ubdblue"><span class="math inline">\({\boldsymbol\tau}\)</span></span><span class="math inline">\()\in\mathbb{R}^m\)</span> is <span id="eq-facmod-loglik"><span class="math display">\[
+\log L({\boldsymbol\theta}\mid {\mathcal Y}) = \sum_{r=1}^R \hat n_r \log \pi_r({\boldsymbol\theta})
 \tag{5}\]</span></span> where <span class="math inline">\(\pi_r({\boldsymbol\theta}) = \int \phi_p({\mathbf y}^* \mid {\mathbf 0}, {\boldsymbol\Lambda}{\boldsymbol\Psi}{\boldsymbol\Lambda}^\top + {\boldsymbol\Theta}_\epsilon) \mathop{\mathrm{d}}\hspace{0.5pt}\!{\mathbf y}^*\)</span>.</li>
 </ul>
 </div>
@@ -1168,7 +1174,7 @@ y_i = \begin{cases}
 <section id="composite-likelihood" class="slide level2">
 <h2>Composite likelihood</h2>
 <ul>
-<li>Terminology: Pseudo-likelihood, quasi-likelihood (à la <span class="citation" data-cites="wedderburn1974quasilikelihood">Wedderburn (<a href="#/references" role="doc-biblioref" onclick="">1974</a>)</span> or misspecified models), limited information methods.</li>
+<li><em>Terminology</em>: Pseudo-likelihood, quasi-likelihood (à la <span class="citation" data-cites="wedderburn1974quasilikelihood">Wedderburn (<a href="#/references" role="doc-biblioref" onclick="">1974</a>)</span> or misspecified models), limited information methods.</li>
 </ul>
 <div class="nudge-up">
 <ul>
@@ -1240,9 +1246,9 @@ y_i = \begin{cases}
 <div class="nudge-up">
 <ul>
 <li class="fragment"><p>The pairwise log-likelihood takes the form <span class="citation" data-cites="katsikatsou2012pairwise">(<a href="#/references" role="doc-biblioref" onclick="">Katsikatsou et al. 2012</a>)</span> <span id="eq-pairwise-loglik"><span class="math display">\[
-\log \operatorname{\mathcal L_{\text P}}({\boldsymbol\theta}\mid {\mathbf y}) = \sum_{i&lt;j} \sum_{c}\sum_{c'} \hat n_{cc'}^{(ij)} \log \pi_{y_iy_j}^{(ij)}({\boldsymbol\theta}),
+\log \operatorname{\mathcal L_{\text P}}({\boldsymbol\theta}\mid {\mathcal Y}) = \sum_{i&lt;j} \sum_{c}\sum_{c'} \hat n_{cc'}^{(ij)} \log \pi_{y_iy_j}^{(ij)}({\boldsymbol\theta}),
 \tag{7}\]</span></span> where <span class="math inline">\(\hat n_{cc'}^{(ij)} = \sum_h w_h [{\mathbf y}^{(h)}_i = c, {\mathbf y}^{(h)}_j = c']\)</span>.</p></li>
-<li class="fragment"><p>Evaluation of <a href="#/pairwise-likelihood-estimation" class="quarto-xref">Equation&nbsp;7</a> now involves only bivariate normal integrals! <span class="math display">\[
+<li class="fragment"><p>The evaluation of <a href="#/pairwise-likelihood-estimation" class="quarto-xref">Equation&nbsp;7</a> now involves only bivariate normal integrals! <span class="math display">\[
 \pi_{cc'}^{(ij)}({\boldsymbol\theta}) = \iint \phi_2\big({\mathbf y}^*_{ij} \mid {\mathbf 0}, {\boldsymbol\Sigma}_{y^*}^{(ij)} ({\boldsymbol\theta})\big) \mathop{\mathrm{d}}\hspace{0.5pt}\!{\mathbf y}^*_{ij},
 \]</span></p></li>
 </ul>
@@ -1251,7 +1257,7 @@ y_i = \begin{cases}
 <section id="mple-properties" class="slide level2">
 <h2>MPLE properties</h2>
 <ul>
-<li>Let <span class="math inline">\(\hat{\boldsymbol\theta}_{\text{PL}}= \mathop{\mathrm{argmax}}_{{\boldsymbol\theta}} \operatorname{\mathcal L_{\text P}}({\boldsymbol\theta}\mid {\mathbf y})\)</span>. Under certain regularity conditions, <span class="citation" data-cites="varin2011overview">(<a href="#/references" role="doc-biblioref" onclick="">Varin, Reid, and Firth 2011</a>)</span> <span id="eq-asymptotic-mple"><span class="math display">\[
+<li>Let <span class="math inline">\(\hat{\boldsymbol\theta}_{\text{PL}}= \mathop{\mathrm{argmax}}_{{\boldsymbol\theta}} \operatorname{\mathcal L_{\text P}}({\boldsymbol\theta}\mid {\mathcal Y})\)</span>. Under certain regularity conditions <span class="citation" data-cites="varin2011overview">(<a href="#/references" role="doc-biblioref" onclick="">Varin, Reid, and Firth 2011</a>)</span>, as <span class="math inline">\(n\to\infty\)</span>, <span id="eq-asymptotic-mple"><span class="math display">\[
 \sqrt n (\hat{\boldsymbol\theta}_{\text{PL}}- {\boldsymbol\theta}) \xrightarrow{\text D} {\mathop{\mathrm{N}}}_m
 \left(
 {\mathbf 0},
@@ -1263,15 +1269,18 @@ y_i = \begin{cases}
 <li><span class="math inline">\({\mathcal J}({\boldsymbol\theta})=\mathop{\mathrm{Var}}\big(\nabla\log\operatorname{\mathcal L_{\text P}}({\boldsymbol\theta}\mid {\mathbf y}^{(h)})\big)\)</span> is the <em>variability matrix</em>.</li>
 </ul></li>
 </ul>
-<div class="nudge-up-small">
+<div class="fragment nudge-up-small">
 <ul>
-<li class="fragment">Estimators of these matrices are given by <span class="citation" data-cites="zhao.joe05 asparouhov2005sampling">(<a href="#/references" role="doc-biblioref" onclick="">Zhao and Joe 2005</a>; <a href="#/references" role="doc-biblioref" onclick="">Asparouhov 2005</a>)</span> <span id="eq-hessian"><span class="math display">\[
-\begin{aligned}
-{\mathbf H}&amp;= - \frac{1}{\sum_h w_h} \sum_h \nabla^2\log \operatorname{\mathcal L_{\text P}}({\boldsymbol\theta}\mid {\mathbf y}^{(h)}) \Bigg|_{{\boldsymbol\theta}= \hat{\boldsymbol\theta}_{\text{PL}}} \hspace{2em}\text{and} \\
-{\mathbf J}&amp;= \frac{1}{\sum_h w_h} \sum_h \nabla\log \operatorname{\mathcal L_{\text P}}({\boldsymbol\theta}\mid {\mathbf y}^{(h)}) \nabla\log \operatorname{\mathcal L_{\text P}}({\boldsymbol\theta}\mid {\mathbf y}^{(h)})^\top \Bigg|_{{\boldsymbol\theta}= \hat{\boldsymbol\theta}_{\text{PL}}}.
-\end{aligned}
-\tag{9}\]</span></span></li>
+<li>Estimators of these matrices are given by <span class="citation" data-cites="zhao.joe05 asparouhov2005sampling">(<a href="#/references" role="doc-biblioref" onclick="">Zhao and Joe 2005</a>; <a href="#/references" role="doc-biblioref" onclick="">Asparouhov 2005</a>)</span></li>
 </ul>
+<div class="nudge-up-xl">
+<p><span id="eq-hessian"><span class="math display">\[
+\begin{aligned}
+\hat{\mathbf H}&amp;= - \frac{1}{\sum_h w_h} \sum_h \nabla^2\log \operatorname{\mathcal L_{\text P}}({\boldsymbol\theta}\mid {\mathbf y}^{(h)}) \Bigg|_{{\boldsymbol\theta}= \hat{\boldsymbol\theta}_{\text{PL}}} \hspace{2em}\text{and} \\
+\hat{\mathbf J}&amp;= \frac{1}{\sum_h w_h} \sum_h \nabla\log \operatorname{\mathcal L_{\text P}}({\boldsymbol\theta}\mid {\mathbf y}^{(h)}) \nabla\log \operatorname{\mathcal L_{\text P}}({\boldsymbol\theta}\mid {\mathbf y}^{(h)})^\top \Bigg|_{{\boldsymbol\theta}= \hat{\boldsymbol\theta}_{\text{PL}}}.
+\end{aligned}
+\tag{9}\]</span></span></p>
+</div>
 </div>
 </section></section>
 <section>
@@ -1329,10 +1338,10 @@ y_i = \begin{cases}
 </div>
 <div class="fragment">
 <ul>
-<li><p>E.g.</p>
+<li><p>Most common tests are</p>
 <ul>
 <li>LR: <span class="math inline">\(X^2 = 2n\sum_r  p_r\log( p_r/\hat\pi_r)\)</span>;</li>
-<li>Pearson: <span class="math inline">\(X^2 = n\sum_r ( p_r - \hat\pi_r)^2 / \hat\pi_r\)</span>,</li>
+<li>Pearson: <span class="math inline">\(X^2 = n\sum_r ( p_r - \hat\pi_r)^2 / \hat\pi_r\)</span>.</li>
 </ul>
 <p>These tests are asymptotically distributed as chi square.</p></li>
 </ul>
@@ -1359,13 +1368,13 @@ y_i = \begin{cases}
 </div>
 </div>
 </div>
-<div class="absolute" style="top: 70px; left: 575px; ">
+<div class="absolute" style="top: 60px; left: 585px; ">
 <div class="fragment fade-out" data-fragment-index="1">
 <p>Consider instead the fit of the lower order marginals.</p>
 <ul>
 <li><p><strong>Univariate</strong>: <span class="math inline">\(\ \dot\pi_i := \operatorname{P}(y_i = 1)\)</span></p></li>
 <li><p><strong>Bivariate</strong>: <span class="math inline">\(\ \dot\pi_{ij} := \operatorname{P}(y_i = 1, y_j=1)\)</span></p></li>
-<li><p>Collectively: <span class="math display">\[
+<li><p>Collectively <span class="math display">\[
 {\boldsymbol\pi}_2 = \begin{pmatrix}
 \dot{\boldsymbol\pi}_1 \\
 \dot{\boldsymbol\pi}_2 \\
@@ -1375,7 +1384,9 @@ y_i = \begin{cases}
 (\dot\pi_1, \dots, \dot\pi_p)^\top \\
 \big(\dot\pi_{ij}\big)_{i&lt;j} \\
 \end{pmatrix}
-\]</span> This is of dimensions <span class="math inline">\(S=p(p+1)/2 \ll R\)</span>.</p></li>
+\]</span> This is of dimensions <span class="math display">\[
+S=p + p(p-1)/2 \ll R.
+\]</span></p></li>
 </ul>
 </div>
 </div>
@@ -1405,7 +1416,7 @@ y_i = \begin{cases}
 </section>
 <section id="transformation-matrix" class="slide level2">
 <h2>Transformation matrix</h2>
-<p>Define <span class="math inline">\({\mathbf T}_2: \mathbb{R}^R \to \mathbb{R}^S\)</span> such that <span class="math inline">\({\boldsymbol\pi}\mapsto {\boldsymbol\pi}_2\)</span>. To illustrate, consider <span class="math inline">\(p=3\)</span> (<span class="math inline">\(R=2^3=8\)</span> and <span class="math inline">\(S=3+3=6\)</span>):</p>
+<p>Define <span class="math inline">\({\mathbf T}_2: \mathbb{R}^R \to \mathbb{R}^S\)</span> such that <span class="math inline">\({\boldsymbol\pi}\mapsto {\boldsymbol\pi}_2\)</span>. To illustrate, consider <span class="math inline">\(p=3\)</span> so that <span class="math inline">\(R=2^3=8\)</span> and <span class="math inline">\(S=3+3=6\)</span>.</p>
 <p><span class="math display">\[
 {\color{lightgray}\overbrace{\color{black}
 \left(
@@ -1455,7 +1466,7 @@ y_i = \begin{cases}
 \pi_{111} \\
 \end{array}
 }
-}^{T_2}}
+}^{{\mathbf T}_2}}
 \
 {\color{lightgray}\overbrace{\color{black}
 \left(
@@ -1484,20 +1495,23 @@ y_i = \begin{cases}
 <p><strong>Theorem</strong></p>
 </div>
 <div class="callout-content">
-<p>Consider the residuals <span class="math inline">\(\hat{\mathbf e}_2 = {\mathbf p}_2 - {\boldsymbol\pi}_2(\hat{\boldsymbol\theta}_{\text{PL}}) = {\mathbf T}_2\big({\mathbf p}- {\boldsymbol\pi}(\hat{\boldsymbol\theta}_{\text{PL}})\big)\)</span>. Then as <span class="math inline">\(n\to\infty\)</span>, <span class="math display">\[
-\sqrt n \hat{\mathbf e}_2 \xrightarrow{\text D} {\mathop{\mathrm{N}}}_S\left({\mathbf 0}, {\boldsymbol\Omega}_2\right)
-\]</span> where <span class="math inline">\({\boldsymbol\Omega}_2 = \left( {\mathbf I}- {\boldsymbol\Delta}_2{\mathcal H}({\boldsymbol\theta})^{-1} {\mathbf B}({\boldsymbol\theta})  \right) {\boldsymbol\Sigma}_2 \left( {\mathbf I}- {\boldsymbol\Delta}_2{\mathcal H}({\boldsymbol\theta})^{-1} {\mathbf B}({\boldsymbol\theta})  \right)^\top\)</span>, and</p>
+<p>Consider the lower order residuals <span class="math inline">\(\hat{\mathbf e}_2 = {\mathbf p}_2 - {\boldsymbol\pi}_2(\hat{\boldsymbol\theta}_{\text{PL}})\)</span>. Then as <span class="math inline">\(n\to\infty\)</span>, <span class="math display">\[
+\sqrt n \, \hat{\mathbf e}_2 \xrightarrow{\text D} {\mathop{\mathrm{N}}}_S\left({\mathbf 0}, {\boldsymbol\Omega}_2\right)
+\]</span> where <span class="math inline">\({\boldsymbol\Omega}_2 = \left( {\mathbf I}- {\boldsymbol\Delta}_2{\mathcal H}({\boldsymbol\theta})^{-1} {\mathbf B}({\boldsymbol\theta})  \right) {\boldsymbol\Sigma}_2 \left( {\mathbf I}- {\boldsymbol\Delta}_2{\mathcal H}({\boldsymbol\theta})^{-1} {\mathbf B}({\boldsymbol\theta})  \right)^\top\)</span>,</p>
 <div class="nudge-down">
 <ul>
 <li><span class="math inline">\({\boldsymbol\Sigma}_2 = {\mathbf T}_2{\boldsymbol\Sigma}{\mathbf T}_2^\top\)</span> (uni &amp; bivariate multinomial matrix);</li>
 <li><span class="math inline">\({\boldsymbol\Delta}_2 = {\mathbf T}_2 \big(\partial\pi_r({\boldsymbol\theta}) / \partial\theta_k \big)_{r,k}\)</span> (uni &amp; bivariate derivatives);</li>
-<li><span class="math inline">\({\mathcal H}({\boldsymbol\theta})\)</span> is the sensitivity matrix; and</li>
-<li><span class="math inline">\({\mathbf B}({\boldsymbol\theta})\)</span> is some transformation matrix dependent on <span class="math inline">\({\boldsymbol\theta}\)</span>.</li>
+<li><span class="math inline">\({\mathcal H}({\boldsymbol\theta})\)</span> (sensitivity matrix); and</li>
+<li><span class="math inline">\({\mathbf B}({\boldsymbol\theta})\)</span> (some transformation matrix dependent on <span class="math inline">\({\boldsymbol\theta}\)</span>).</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
+</div>
+<div class="nudge-up">
+<p>To use <span class="math inline">\({\boldsymbol\Omega}_2\)</span> in practice, use “hat versions” of relevant matrices.</p>
 </div>
 <!-- Using usual Taylor expansion arguments, we can show -->
 <!-- $\sqrt n (\bp - \bpi) \xrightarrow{\text D} \N_R(\bzero, \bSigma)$ [CLT].  -->
@@ -3688,38 +3702,39 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
 <h2>Conclusions</h2>
 <ul>
 <li><p>Pairwise likelihood estimation alleviates some issues associated with the UV approach for binary factor models.</p></li>
-<li><p>Sampling weights are easily incorporated in the PML estimation, and found to perform well in limited simulation studies.</p></li>
+<li><p>Sampling weights are easily incorporated in the PML estimation, and found to perform well in (limited) simulation studies.</p></li>
 <li><p>Sparsity impairs the dependability of GOF tests but are circumvented by considering lower order statistics. Wald, Pearson, and others are investigated across a variety of scenarios.</p>
 <ul>
-<li>Wald and Pearson tests perform well in most scenarios.</li>
-<li>The proposed Wald Diagonal does not.</li>
-<li>Added variability due to complex sampling designs.</li>
+<li>Generally all tests have acceptable Type I errors, except WaldDiag test.</li>
+<li>Wald test needs <span class="math inline">\({\boldsymbol\Omega}_2^{-1}\)</span>, but WaldVCF does not.</li>
+<li>Pearson test has more power than the Wald-type test in more complicated scenarios.</li>
+<li>Added variability due to complex designs (expected), but overall power curves are not drastically different.</li>
 </ul></li>
 </ul>
 </section>
 <section id="software" class="slide level2">
 <h2>Software</h2>
 <div class="nudge-up-small">
-<p>R software implementation in <code>{lavaan}</code> (PML weights) and a separate package <code>{lavaan.bingof}</code> for the LIGOF tests.</p>
+<p>R software implementation in <code>{lavaan}</code> 0.6-18 (PML weights) and a separate package <code>{lavaan.bingof}</code> for the LIGOF tests.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>fit <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">sem</span>(</span>
+<div class="sourceCode cell-code" id="cb6" data-code-line-numbers="|5,6|8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>fit <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">sem</span>(</span>
 <span id="cb6-2"><a href=""></a>  <span class="at">model =</span> <span class="st">"eta1 =~ y1 + y2 + y3 + y4 + y5"</span>,</span>
 <span id="cb6-3"><a href=""></a>  <span class="at">data =</span> lavaan.bingof<span class="sc">::</span><span class="fu">gen_data_bin_wt</span>(<span class="at">n =</span> <span class="dv">1000</span>),</span>
 <span id="cb6-4"><a href=""></a>  <span class="at">std.lv =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb6-5"><a href=""></a>  <span class="at">estimator =</span> <span class="st">"PML"</span>,</span>
 <span id="cb6-6"><a href=""></a>  <span class="at">sampling.weights =</span> <span class="st">"wt"</span></span>
 <span id="cb6-7"><a href=""></a>)</span>
-<span id="cb6-8"><a href=""></a><span class="fu">all_tests</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-8"><a href=""></a>lavaan.bingof<span class="sc">::</span><span class="fu">all_tests</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 6
-     X2    df name           pval Xi_rank     S
-  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;   &lt;int&gt; &lt;int&gt;
-1 13.4   5    Wald         0.0198      13    15
-2 13.1   5    WaldVCF      0.0223       5    15
-3  4.65  3.19 WaldDiag,MM3 0.221       15    15
-4 10.1   3.48 Pearson,MM3  0.0265      15    15
-5 11.6   4.01 RSS,MM3      0.0205      15    15
-6 10.1   3.47 Multn,MM3    0.0263      15    15</code></pre>
+     X2    df name          pval Xi_rank     S
+  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;   &lt;int&gt; &lt;int&gt;
+1 1.57   5    Wald         0.904      12    15
+2 1.56   5    WaldVCF      0.906       5    15
+3 0.185  3.23 WaldDiag,MM3 0.986      15    15
+4 0.856  3.53 Pearson,MM3  0.895      15    15
+5 1.17   4.18 RSS,MM3      0.898      15    15
+6 0.856  3.53 Multn,MM3    0.895      15    15</code></pre>
 </div>
 </div>
 </div>

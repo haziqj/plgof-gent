@@ -87,7 +87,7 @@ p_power_samp <-
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         legend.position = "top", plot.margin = unit(c(-8,0,0,0), "pt"),
         legend.box.spacing = unit(0, "pt")) +
-  labs(x = "Sample size (n)", y = "Power", col = "Sampling method", fill = "Sampling method")
+  labs(x = "Sample size (n)", y = "Power", col = "Sampling method", fill = "Sampling method") 
   
 p_power_tests <-
   ggplot(plot_df, aes(samp_size, rej_rate)) +

@@ -233,13 +233,13 @@ Photo credits: Unsplash
 - Let $\by = (y_1, \ldots, y_p)^\top \in\{0,1\}^p$ be a vector of Bernoulli random variables.
 
 ::: {.incremental .nudge-up-small}
-- The joint probability of observing any response pattern $\bc_r=(c_{r1},\dots,c_{rp})^\top$, for any $r=1,\dots,R:=2^p$, is given by
+- The joint probability of observing a response pattern $\bc_r=(c_{r1},\dots,c_{rp})^\top$, for each $r=1,\dots,R:=2^p$, is given by
 $$
-\pi_r = \Pr(\by = \bc_r) = \Pr(y_1=c_{r1},\dots,y_p=c_{rp}).
+\pi_r = \Pr(\by = \bc_r) = \Pr(y_1=c_{r1},\dots,y_p=c_{rp}),
 $${#eq-joint-bern-prob}
-and $\sum_{r=1}^R \pi_r = 1$.
+with $\sum_{r=1}^R \pi_r = 1$.
 
-- Suppose $h=1,\dots,n$ observations of $\by=\by^{(h)}$ are recorded, and each unit has a probability of selection $1/w_h$. 
+- Suppose observations $\cY := \big\{\by^{(h)}\big\}_{h=1}^n$  are obtained, where each unit $h$ has a probability of selection $1/w_h$. 
 
 - Out of convenience, sampling weights are (typically) normalised so that $\sum_{h=1}^n w_h = n$.
   - Simple random sampling (SRS): $w_h=\text{const.}, \forall h$.
@@ -251,27 +251,34 @@ and $\sum_{r=1}^R \pi_r = 1$.
 
 - Let $p_r = \hat n_r \big/ \sum_h w_h$ be the the $r$th entry of the $R$-vector of proportions $\bp$, with $\hspace{1.4cm}$
 
-::: {.nudge-up-large}
+::: {.nudge-up-small}
+::: {.nudge-up-xl}
 $$
 \hat n_r = \sum_{h=1}^n w_h [\by^{(h)} = \bc_r].
 $${#eq-obs-freq}
 :::
-
-::: {.nudge-up-small}
-::: {.fragment fragment-index=1 .nudge-up-xl}
-- The random vector $\hat\bn = (\hat n_1,\dots,\hat n_R)^\top$ follows a multinomial distribution with parameters $n$, $R$, and $\bpi:=(\pi_1,\dots,\pi_R)^\top$.
-:::
 :::
 
-::: {.nudge-up-xxl}
-::: {.fragment fragment-index=1 .nudge-up-large}
-$$
-\E(\hat\bn) = n\bp = n\bpi \hspace{2em}\text{and}\hspace{2em} \Var(\hat\bn) = n\big( \ \myoverbrace{\diag(\bpi) - \bpi\bpi^\top}{\bSigma} \ \big)
-$$
-:::
-:::
 
 ::: {.nudge-up-large}
+::: {.fragment fragment-index=1 .nudge-up-xl}
+- The random vector $\hat\bn = (\hat n_1,\dots,\hat n_R)^\top$ follows a multinomial distribution with parameters $n$, $R$, and $\bpi:=(\pi_1,\dots,\pi_R)^\top$, with
+:::
+:::
+
+
+::: {.nudge-up-small}
+::: {.nudge-up-xxl}
+::: {.fragment fragment-index=1 .nudge-up-xl}
+$$
+\E(\hat\bn) = n\bp = n\bpi \hspace{2em}\text{and}\hspace{2em} \Var(\hat\bn) = n\big( \ \myoverbrace{\diag(\bpi) - \bpi\bpi^\top}{\bSigma} \ \big).
+$$
+:::
+:::
+:::
+
+::: {.nudge-up-small}
+::: {.nudge-up-xl}
 ::: {.fragment .nudge-up-xxl}
 - It is widely known that [@agresti2012categorical] for IID samples that
 $$
@@ -280,19 +287,20 @@ $${#eq-multin-clt}
 as $n\to\infty$. This also works for complex sampling [@fuller2009introduction], but $\bSigma$ may take a different form.
 :::
 :::
+:::
 
 ## Parametric models
 
 
 ::: {.columns}
 
-::: {.column width=37%}
+::: {.column width=36%}
 
 ![](figures/sem_path.png)
 
 :::
 
-::: {.column width=63%}
+::: {.column width=64%}
 
 ::: {.absolute top=25}
 - E.g. binary factor model with underlying variable approach (s.t. constraints)
@@ -311,9 +319,9 @@ $${#eq-facmod}
 
 ::: {.fragment fragment-index=1 .absolute top=355}
 - The log-likelihood for 
-$\btheta^\top = ($[$\blambda$]{.ubdred}$,$[$\brho$]{.ubdteal}$,$[$\btau$]{.ubdblue}$)$ is $\hspace{3.8cm}$
+$\btheta^\top = ($[$\blambda$]{.ubdred}$,\,$[$\brho$]{.ubdteal}$,\,$[$\btau$]{.ubdblue}$)\in\bbR^m$ is 
 $$
-\log L(\btheta \mid \by) = \sum_{r=1}^R \hat n_r \log \pi_r(\btheta)
+\log L(\btheta \mid \cY) = \sum_{r=1}^R \hat n_r \log \pi_r(\btheta)
 $${#eq-facmod-loglik}
 where $\pi_r(\btheta) = \int \phi_p(\by^* \mid \bzero, \bLambda\bPsi\bLambda^\top + \bTheta_\epsilon) \dint \by^*$.
 :::
@@ -330,7 +338,7 @@ where $\pi_r(\btheta) = \int \phi_p(\by^* \mid \bzero, \bLambda\bPsi\bLambda^\to
 
 ## Composite likelihood 
 
-- Terminology: Pseudo-likelihood, quasi-likelihood (à la @wedderburn1974quasilikelihood or misspecified models), limited information methods.
+- *Terminology*: Pseudo-likelihood, quasi-likelihood (à la @wedderburn1974quasilikelihood or misspecified models), limited information methods.
 
 ::: {.incremental .nudge-up}
 - Let $\{\cA_1,\dots,\cA_K\}$ a set of marginal or conditional events (partitioning the variable space). The composite likelihood is defined as [@lindsay1988composite]
@@ -422,11 +430,11 @@ There are $\tilde R = 4 \times \binom{p}{2}$ such probabilities, with $\sum_{c,c
 ::: {.incremental .nudge-up}
 - The pairwise log-likelihood takes the form [@katsikatsou2012pairwise]
 $$
-\log \pL(\btheta \mid \by) = \sum_{i<j} \sum_{c}\sum_{c'} \hat n_{cc'}^{(ij)} \log \pi_{y_iy_j}^{(ij)}(\btheta),
+\log \pL(\btheta \mid \cY) = \sum_{i<j} \sum_{c}\sum_{c'} \hat n_{cc'}^{(ij)} \log \pi_{y_iy_j}^{(ij)}(\btheta),
 $${#eq-pairwise-loglik}
 where $\hat n_{cc'}^{(ij)} = \sum_h w_h [\by^{(h)}_i = c, \by^{(h)}_j = c']$.
 
-- Evaluation of @eq-pairwise-loglik now involves only bivariate normal integrals!
+- The evaluation of @eq-pairwise-loglik now involves only bivariate normal integrals!
 $$
 \pi_{cc'}^{(ij)}(\btheta) = \iint \phi_2\big(\by^*_{ij} \mid \bzero, \bSigma_{y^*}^{(ij)} (\btheta)\big) \dint \by^*_{ij},
 $$
@@ -434,7 +442,7 @@ $$
 
 ## MPLE properties
 
-- Let $\mlepl = \argmax_{\btheta} \pL(\btheta \mid \by)$. Under certain regularity conditions, [@varin2011overview]
+- Let $\mlepl = \argmax_{\btheta} \pL(\btheta \mid \cY)$. Under certain regularity conditions [@varin2011overview], as $n\to\infty$,
 $$
 \sqrt n (\mlepl - \btheta) \xrightarrow{\text D} {\N}_m
 \left(
@@ -445,15 +453,18 @@ $${#eq-asymptotic-mple}
    - $\cH(\btheta)=-\E\nabla^2\log \pL(\btheta \mid \by^{(h)})$ is the *sensitivity matrix*; and
    - $\cJ(\btheta)=\Var\big(\nabla\log\pL(\btheta \mid \by^{(h)})\big)$ is the *variability matrix*.
 
-::: {.incremental .nudge-up-small}
+::: {.fragment .nudge-up-small}
 - Estimators of these matrices are given by [@zhao.joe05;@asparouhov2005sampling]
+
+::: {.nudge-up-xl}
 $$
 \begin{aligned}
-\bH &= - \frac{1}{\sum_h w_h} \sum_h \nabla^2\log \pL(\btheta \mid \by^{(h)}) \Bigg|_{\btheta = \mlepl} \hspace{2em}\text{and} \\
-\bJ &= \frac{1}{\sum_h w_h} \sum_h \nabla\log \pL(\btheta \mid \by^{(h)}) \nabla\log \pL(\btheta \mid \by^{(h)})^\top \Bigg|_{\btheta = \mlepl}.
+\hat\bH &= - \frac{1}{\sum_h w_h} \sum_h \nabla^2\log \pL(\btheta \mid \by^{(h)}) \Bigg|_{\btheta = \mlepl} \hspace{2em}\text{and} \\
+\hat\bJ &= \frac{1}{\sum_h w_h} \sum_h \nabla\log \pL(\btheta \mid \by^{(h)}) \nabla\log \pL(\btheta \mid \by^{(h)})^\top \Bigg|_{\btheta = \mlepl}.
 \end{aligned}
 $${#eq-hessian}
 :::
+::: 
 
 # Limited information GOF tests
 
@@ -508,10 +519,10 @@ knitr::include_graphics("figures/mult_bern2.png")
 :::
 
 ::: {.fragment}
-- E.g.
+- Most common tests are
 
    - LR: $X^2 = 2n\sum_r  p_r\log( p_r/\hat\pi_r)$;
-   - Pearson: $X^2 = n\sum_r ( p_r - \hat\pi_r)^2 / \hat\pi_r$,
+   - Pearson: $X^2 = n\sum_r ( p_r - \hat\pi_r)^2 / \hat\pi_r$.
    
   These tests are asymptotically distributed as chi square.
 :::
@@ -535,7 +546,7 @@ knitr::include_graphics("figures/mult_bern2.png")
 ```
 :::
 
-:::: {.absolute left=575 top=70}
+:::: {.absolute left=585 top=60}
 
 ::: {.fragment fragment-index=1 .fade-out}
 Consider instead the fit of the lower order marginals.
@@ -544,7 +555,7 @@ Consider instead the fit of the lower order marginals.
 
 - **Bivariate**:  $\ \dot\pi_{ij} := \Pr(y_i = 1, y_j=1)$
 
-- Collectively:
+- Collectively
 $$
 \bpi_2 = \begin{pmatrix}
 \dot\bpi_1 \\
@@ -556,7 +567,10 @@ $$
 \big(\dot\pi_{ij}\big)_{i<j} \\
 \end{pmatrix}
 $$
-This is of dimensions $S=p(p+1)/2 \ll R$.
+This is of dimensions 
+$$
+S=p + p(p-1)/2 \ll R.
+$$
 
 :::
 
@@ -582,7 +596,7 @@ knitr::include_graphics("figures/mult_bern4.png")
 ## Transformation matrix
 
 Define $\bT_2: \mathbb{R}^R \to \mathbb{R}^S$ such that $\bpi \mapsto \bpi_2$.
-To illustrate, consider $p=3$ ($R=2^3=8$ and $S=3+3=6$):
+To illustrate, consider $p=3$ so that $R=2^3=8$ and $S=3+3=6$.
 
 $$
 \myoverbrace{
@@ -633,7 +647,7 @@ $$
 \pi_{111} \\
 \end{array}
 }
-}{T_2}
+}{\bT_2}
 \
 \myoverbrace{
 \left(
@@ -657,22 +671,24 @@ See @reiser1996analysis and @maydeu2005limited for further details.
 ## Asymptotic distribution of residuals
 
 ::: {#thm-dist-of-residuals .callout-note icon=false title="Theorem"}
-Consider the residuals $\hat\be_2 = \bp_2 - \bpi_2(\mlepl) = \bT_2\big(\bp - \bpi(\mlepl)\big)$.
+Consider the lower order residuals $\hat\be_2 = \bp_2 - \bpi_2(\mlepl)$.
 Then as $n\to\infty$,
 $$
-\sqrt n \hat\be_2 \xrightarrow{\text D} {\N}_S\left(\bzero, \bOmega_2\right)
+\sqrt n \, \hat\be_2 \xrightarrow{\text D} {\N}_S\left(\bzero, \bOmega_2\right)
 $$ 
-where $\bOmega_2 = \left( \bI - \bDelta_2\cH(\btheta)^{-1} \bB(\btheta)  \right) \bSigma_2 \left( \bI - \bDelta_2\cH(\btheta)^{-1} \bB(\btheta)  \right)^\top$, and
+where $\bOmega_2 = \left( \bI - \bDelta_2\cH(\btheta)^{-1} \bB(\btheta)  \right) \bSigma_2 \left( \bI - \bDelta_2\cH(\btheta)^{-1} \bB(\btheta)  \right)^\top$, 
 
 ::: {.nudge-down}
 
 - $\bSigma_2 = \bT_2\bSigma\bT_2^\top$ (uni \& bivariate multinomial matrix);
 - $\bDelta_2 = \bT_2 \big(\partial\pi_r(\btheta) / \partial\theta_k \big)_{r,k}$ (uni \& bivariate derivatives);
-- $\cH(\btheta)$ is the sensitivity matrix; and
-- $\bB(\btheta)$ is some transformation matrix dependent on $\btheta$.
-
+- $\cH(\btheta)$ (sensitivity matrix); and
+- $\bB(\btheta)$ (some transformation matrix dependent on $\btheta$).
+:::
 :::
 
+::: {.nudge-up}
+To use $\bOmega_2$ in practice, use "hat versions" of relevant matrices.
 :::
 
 <!-- Using usual Taylor expansion arguments, we can show -->
@@ -1169,8 +1185,8 @@ ICC for test items range between 0.05 and 0.60.
 
 ```{r}
 #| out-width: 100%
-#| fig-width: 7
-#| fig-height: 3.8
+#| fig-width: 8
+#| fig-height: 4.4
 bind_rows(
   res_srs_type1,
   res_complex_type1
@@ -1185,8 +1201,7 @@ bind_rows(
     sampling = factor(sampling, levels = c("SRS", "Cluster", "Strat-clust"))
   ) |>
   mutate(
-    name = factor(name, labels = c("Wald", "WaldVCF", "WaldDiag", "Pearson", "RSS", "Multn")),
-    name = factor(name, levels = rev(levels(name)))
+    name = factor(name, levels = rev(levels(lavaan.bingof::res_srs_type1$name)))
   ) |>
   filter(sampling != "Stratified") |>
   ggplot(aes(rej_rate, name, col = sampling)) +
@@ -1195,9 +1210,9 @@ bind_rows(
     aes(xmin = rej_rate - crit, xmax = rej_rate + crit),
     position = position_dodge(width = 0.5)
   ) +
+  scale_x_continuous(labels = scales::percent) +
   facet_grid(. ~ sim) +
   theme_bw() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   labs(y = NULL, x = expression("Rejection rate"), col = "Sampling\ndesign")
 ```
 
@@ -1235,7 +1250,7 @@ load("R/p_power.RData")
 #| out-width: 100%
 #| fig-width: 8
 #| fig-height: 4.4
-p_power_samp
+p_power_samp + scale_y_continuous(labels = scales::percent)
 ```
 :::
 
@@ -1244,7 +1259,7 @@ p_power_samp
 #| out-width: 100%
 #| fig-width: 8
 #| fig-height: 4.4
-p_power_tests
+p_power_tests + scale_y_continuous(labels = scales::percent)
 ```
 :::
 
@@ -1254,20 +1269,22 @@ p_power_tests
 
 - Pairwise likelihood estimation alleviates some issues associated with the UV approach for binary factor models. 
 
-- Sampling weights are easily incorporated in the PML estimation, and found to perform well in limited simulation studies.
+- Sampling weights are easily incorporated in the PML estimation, and found to perform well in (limited) simulation studies.
 
 - Sparsity impairs the dependability of GOF tests but are circumvented by considering lower order statistics. Wald, Pearson, and others are investigated across a variety of scenarios.
-  - Wald and Pearson tests perform well in most scenarios.
-  - The proposed Wald Diagonal does not.
-  - Added variability due to complex sampling designs. 
+  - Generally all tests have acceptable Type I errors, except WaldDiag test.
+  - Wald test needs $\bOmega_2^{-1}$, but WaldVCF does not.
+  - Pearson test has more power than the Wald-type test in more complicated scenarios.
+  - Added variability due to complex designs (expected), but overall power curves are not drastically different.
 
 ## Software
 
 ::: {.nudge-up-small}
-R software implementation in `{lavaan}` (PML weights) and a separate package `{lavaan.bingof}` for the LIGOF tests.
+R software implementation in `{lavaan}` 0.6-18 (PML weights) and a separate package `{lavaan.bingof}` for the LIGOF tests.
 
 ```{r}
 #| echo: true
+#| code-line-numbers: "|5,6|8"
 fit <- lavaan::sem(
   model = "eta1 =~ y1 + y2 + y3 + y4 + y5",
   data = lavaan.bingof::gen_data_bin_wt(n = 1000),
@@ -1275,7 +1292,7 @@ fit <- lavaan::sem(
   estimator = "PML",
   sampling.weights = "wt"
 )
-all_tests(fit)
+lavaan.bingof::all_tests(fit)
 ```
 :::
 
