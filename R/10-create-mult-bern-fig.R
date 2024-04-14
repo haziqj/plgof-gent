@@ -42,7 +42,7 @@ get_uni2 <- function(x) {
 plot_df <-
   dat %>%
   mutate(pattern = apply(across(everything()), 1, paste0, collapse = ""),
-         data = "All\n(N x p)") %>%
+         data = "All\n(n x p)") %>%
   bind_cols(biv_dat) %>%
   
   # Flow from response patterns to bivariate marginals (positive responses)
