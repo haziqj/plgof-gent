@@ -383,7 +383,7 @@ $$
 
 ## An analogy 
 
-::: {.fragment .fade-out fragment-index=1 .absolute top=30 left=125}
+::: {.absolute top=30 left=125}
 ![](figures/Jigsaw.png){width=85%}
 :::
 
@@ -505,22 +505,13 @@ $${#eq-hessian}
 ::: {.absolute left=0 top=70}
 ```{r}
 #| echo: false
-knitr::include_graphics("figures/mult_bern1.png")
-```
-:::
-
-::: {.absolute .fragment fragment-index=1 left=0 top=70}
-```{r}
-#| echo: false
 knitr::include_graphics("figures/mult_bern2.png")
 ```
 :::
 
 :::: {.absolute left=580 top=70}
 
-::: {.fragment fragment-index=1}
 - GOF tests are usually constructed by inspecting the fit of the joint probabilities $\hat\pi_r := \pi_r(\hat\btheta)$.
-:::
 
 ::: {.fragment}
 - Most common tests are
@@ -1285,6 +1276,11 @@ p_power_tests + scale_y_continuous(labels = scales::percent)
 
 ::: {.nudge-up-small}
 R software implementation in `{lavaan}` 0.6-18 (PML weights) and a separate package `{lavaan.bingof}` for the LIGOF tests.
+
+```{r}
+#| include: false
+options(width = 80)
+```
 
 ```{r}
 #| echo: true

@@ -1212,7 +1212,7 @@ y_i = \begin{cases}
 </section>
 <section id="an-analogy" class="slide level2">
 <h2>An analogy</h2>
-<div class="fragment fade-out absolute" data-fragment-index="1" style="top: 30px; left: 125px; ">
+<div class="absolute" style="top: 30px; left: 125px; ">
 <p><img data-src="figures/Jigsaw.png" style="width:85.0%"></p>
 </div>
 <div class="fragment fade-in absolute" data-fragment-index="1" style="top: 30px; left: 125px; ">
@@ -1319,17 +1319,6 @@ y_i = \begin{cases}
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="figures/mult_bern1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div class="absolute fragment" data-fragment-index="1" style="top: 70px; left: 0px; ">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
 <p><img data-src="figures/mult_bern2.png" width="960"></p>
 </figure>
 </div>
@@ -1337,11 +1326,9 @@ y_i = \begin{cases}
 </div>
 </div>
 <div class="absolute" style="top: 70px; left: 580px; ">
-<div class="fragment" data-fragment-index="1">
 <ul>
 <li>GOF tests are usually constructed by inspecting the fit of the joint probabilities <span class="math inline">\(\hat\pi_r := \pi_r(\hat{\boldsymbol\theta})\)</span>.</li>
 </ul>
-</div>
 <div class="fragment">
 <ul>
 <li><p>Most common tests are</p>
@@ -3667,7 +3654,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-16-1.png" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-15-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -3681,7 +3668,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-18-1.png" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-17-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -3692,7 +3679,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-19-1.png" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-18-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -3735,12 +3722,12 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
 <pre><code># A tibble: 6 × 6
      X2    df name          pval Xi_rank     S
   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;   &lt;int&gt; &lt;int&gt;
-1  5.80  5    Wald         0.327      13    15
-2  5.50  5    WaldVCF      0.357       5    15
-3  3.81  3.46 WaldDiag,MM3 0.350      15    15
-4  3.51  3.61 Pearson,MM3  0.416      15    15
-5  4.18  4.20 RSS,MM3      0.410      15    15
-6  3.52  3.61 Multn,MM3    0.414      15    15</code></pre>
+1  6.39  5    Wald         0.270      13    15
+2  6.25  5    WaldVCF      0.283       5    15
+3  3.65  3.29 WaldDiag,MM3 0.345      15    15
+4  5.24  3.14 Pearson,MM3  0.169      15    15
+5  5.86  3.82 RSS,MM3      0.191      15    15
+6  5.25  3.14 Multn,MM3    0.168      15    15</code></pre>
 </div>
 </div>
 </div>
@@ -3868,7 +3855,7 @@ Zhao, Y, and H. Joe. 2005. <span>“Composite Likelihood Estimation in Multivari
 'autoAnimateUnmatched': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true},
-'multiplex': {"secret":"17131251981203795784","id":"70979053ac3b41e8","url":"https://reveal-multiplex.glitch.me/"},
+'multiplex': {"secret":"17131265015046804260","id":"19c1da0a27a15c7b","url":"https://reveal-multiplex.glitch.me/"},
 'smaller': false,
  
         // Display controls in the bottom right corner
