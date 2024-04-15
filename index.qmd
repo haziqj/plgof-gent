@@ -440,7 +440,7 @@ where $\hat n_{cc'}^{(ij)} = \sum_h w_h [\by^{(h)}_i = c, \by^{(h)}_j = c']$.
 
 - The evaluation of @eq-pairwise-loglik now involves only bivariate normal integrals!
 $$
-\pi_{cc'}^{(ij)}(\btheta) = \iint \phi_2\big(\by^*_{ij} \mid \bzero, \bSigma_{y^*}^{(ij)} (\btheta)\big) \dint \by^*_{ij},
+\pi_{cc'}^{(ij)}(\btheta) = \iint \phi_2\big(\by^*_{ij} \mid \bzero, \bSigma_{y^*}^{(ij)} (\btheta)\big) \dint \by^*_{ij}
 $$
 :::
 
@@ -749,14 +749,14 @@ where the $\delta_s$ are the eigenvalues of $\bM = \bOmega_2\bXi$. Two cases:
 ::: {.column width=59%}
 <br>
 
-|   | Name         | $\bXi$                              | D.f.  |
+|   | Name         | $\hat{\bXi}$                              | D.f.  |
 |---|--------------|-------------------------------------|-------|
-| 1 | Wald         | $\bOmega_2^+$                       | $S-m$ |
-| 2 | Wald (VCF)   | $\bXi\bOmega_2\bXi$                 | $S-m$ |
-| 3 | Wald (Diag.) | $\diag(\bOmega_2)^{-1}$             | est.  |
-| 4 | Pearson      | $\diag(\bpi_2)^{-1}$               | est.  |
+| 1 | Wald         | $\hat{\bOmega}^+_2$                       | $S-m$ |
+| 2 | Wald (VCF)   | $\bXi\hat{\bOmega}_2\bXi$                 | $S-m$ |
+| 3 | Wald (Diag.) | $\diag(\hat{\bOmega}_2)^{-1}$             | est.  |
+| 4 | Pearson      | $\diag(\hat{\bpi}_2)^{-1}$               | est.  |
 | 5 | RSS          | $\mathbf I$                         | est.  |
-| 6 | Multinomial  | $\bSigma_2^{-1}$ | est.  |
+| 6 | Multinomial  | $\hat{\bSigma}_2^{-1}$ | est.  |
 |   |              |                                     |       |
 
 : {.table-ubd}
