@@ -1275,7 +1275,7 @@ p_power_tests + scale_y_continuous(labels = scales::percent)
 ## Software
 
 ::: {.nudge-up-small}
-R software implementation in `{lavaan}` 0.6-18 (PML weights) and a separate package `{lavaan.bingof}` for the LIGOF tests.
+R software implementation in `{lavaan}` 0.6-17 (PML weights) and a separate package `{lavaan.bingof}` for the LIGOF tests.
 
 ```{r}
 #| include: false

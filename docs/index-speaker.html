@@ -1255,7 +1255,7 @@ y_i = \begin{cases}
 \log \operatorname{\mathcal L_{\text P}}({\boldsymbol\theta}\mid {\mathcal Y}) = \sum_{i&lt;j} \sum_{c}\sum_{c'} \hat n_{cc'}^{(ij)} \log \pi_{y_iy_j}^{(ij)}({\boldsymbol\theta}),
 \tag{7}\]</span></span> where <span class="math inline">\(\hat n_{cc'}^{(ij)} = \sum_h w_h [{\mathbf y}^{(h)}_i = c, {\mathbf y}^{(h)}_j = c']\)</span>.</p></li>
 <li class="fragment"><p>The evaluation of <a href="#/pairwise-likelihood-estimation" class="quarto-xref">Equation&nbsp;7</a> now involves only bivariate normal integrals! <span class="math display">\[
-\pi_{cc'}^{(ij)}({\boldsymbol\theta}) = \iint \phi_2\big({\mathbf y}^*_{ij} \mid {\mathbf 0}, {\boldsymbol\Sigma}_{y^*}^{(ij)} ({\boldsymbol\theta})\big) \mathop{\mathrm{d}}\hspace{0.5pt}\!{\mathbf y}^*_{ij},
+\pi_{cc'}^{(ij)}({\boldsymbol\theta}) = \iint \phi_2\big({\mathbf y}^*_{ij} \mid {\mathbf 0}, {\boldsymbol\Sigma}_{y^*}^{(ij)} ({\boldsymbol\theta})\big) \mathop{\mathrm{d}}\hspace{0.5pt}\!{\mathbf y}^*_{ij}
 \]</span></p></li>
 </ul>
 </div>
@@ -1562,7 +1562,7 @@ X^2 \xrightarrow{\text D} \sum_{s=1}^S \delta_s\chi^2_1 \quad \text{as} \quad n\
 <tr class="header">
 <th></th>
 <th>Name</th>
-<th><span class="math inline">\({\boldsymbol\Xi}\)</span></th>
+<th><span class="math inline">\(\hat{{\boldsymbol\Xi}}\)</span></th>
 <th>D.f.</th>
 </tr>
 </thead>
@@ -1570,25 +1570,25 @@ X^2 \xrightarrow{\text D} \sum_{s=1}^S \delta_s\chi^2_1 \quad \text{as} \quad n\
 <tr class="odd">
 <td>1</td>
 <td>Wald</td>
-<td><span class="math inline">\({\boldsymbol\Omega}_2^+\)</span></td>
+<td><span class="math inline">\(\hat{{\boldsymbol\Omega}}^+_2\)</span></td>
 <td><span class="math inline">\(S-m\)</span></td>
 </tr>
 <tr class="even">
 <td>2</td>
 <td>Wald (VCF)</td>
-<td><span class="math inline">\({\boldsymbol\Xi}{\boldsymbol\Omega}_2{\boldsymbol\Xi}\)</span></td>
+<td><span class="math inline">\({\boldsymbol\Xi}\hat{{\boldsymbol\Omega}}_2{\boldsymbol\Xi}\)</span></td>
 <td><span class="math inline">\(S-m\)</span></td>
 </tr>
 <tr class="odd">
 <td>3</td>
 <td>Wald (Diag.)</td>
-<td><span class="math inline">\(\mathop{\mathrm{diag}}({\boldsymbol\Omega}_2)^{-1}\)</span></td>
+<td><span class="math inline">\(\mathop{\mathrm{diag}}(\hat{{\boldsymbol\Omega}}_2)^{-1}\)</span></td>
 <td>est.</td>
 </tr>
 <tr class="even">
 <td>4</td>
 <td>Pearson</td>
-<td><span class="math inline">\(\mathop{\mathrm{diag}}({\boldsymbol\pi}_2)^{-1}\)</span></td>
+<td><span class="math inline">\(\mathop{\mathrm{diag}}(\hat{{\boldsymbol\pi}}_2)^{-1}\)</span></td>
 <td>est.</td>
 </tr>
 <tr class="odd">
@@ -1600,7 +1600,7 @@ X^2 \xrightarrow{\text D} \sum_{s=1}^S \delta_s\chi^2_1 \quad \text{as} \quad n\
 <tr class="even">
 <td>6</td>
 <td>Multinomial</td>
-<td><span class="math inline">\({\boldsymbol\Sigma}_2^{-1}\)</span></td>
+<td><span class="math inline">\(\hat{{\boldsymbol\Sigma}}_2^{-1}\)</span></td>
 <td>est.</td>
 </tr>
 <tr class="odd">
@@ -3708,7 +3708,7 @@ w_h^{-1} = \frac{1}{1 + \exp(y_1^*)}.
 <section id="software" class="slide level2">
 <h2>Software</h2>
 <div class="nudge-up-small">
-<p>R software implementation in <code>{lavaan}</code> 0.6-18 (PML weights) and a separate package <code>{lavaan.bingof}</code> for the LIGOF tests.</p>
+<p>R software implementation in <code>{lavaan}</code> 0.6-17 (PML weights) and a separate package <code>{lavaan.bingof}</code> for the LIGOF tests.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6" data-code-line-numbers="|5,6|8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>fit <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">sem</span>(</span>
 <span id="cb6-2"><a href=""></a>  <span class="at">model =</span> <span class="st">"eta1 =~ y1 + y2 + y3 + y4 + y5"</span>,</span>
@@ -3855,7 +3855,7 @@ Zhao, Y, and H. Joe. 2005. <span>“Composite Likelihood Estimation in Multivari
 'autoAnimateUnmatched': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true},
-'multiplex': {"secret":"17131734015431352008","id":"1c5c1ee5be45dc9a","url":"https://reveal-multiplex.glitch.me/"},
+'multiplex': {"secret":"17131816150481065942","id":"7e7a02b8b2252e25","url":"https://reveal-multiplex.glitch.me/"},
 'smaller': false,
  
         // Display controls in the bottom right corner
