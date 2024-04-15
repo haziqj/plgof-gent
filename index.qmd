@@ -246,7 +246,7 @@ with $\sum_{r=1}^R \pi_r = 1$.
 - Suppose observations $\cY := \big\{\by^{(h)}\big\}_{h=1}^n$  are obtained, where each unit $h$ has a probability of selection $1/w_h$. 
 
 - Out of convenience, sampling weights are (typically) normalised so that $\sum_{h=1}^n w_h = n$.
-  - Simple random sampling (SRS): $w_h=\text{const.}, \forall h$.
+  - Simple random sampling (SRS): $w_h=1, \forall h$.
   - Stratified sampling: $w_h = N_s(h)/N$, the stratum fractions.
   - Etc.
 :::
